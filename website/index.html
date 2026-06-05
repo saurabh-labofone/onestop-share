@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OneStop + Jarvis — Website Copy &amp; Wireframe (v2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1518; --deepwater:#07384D; --tide:#006FA6;
+    --cyan:#15A7DC; --cyan-lo:#4BD0F0; --cyan-hi:#1188C4;
+    --foam:#F2FBFD; --cite:#5E6E74;
+    --page:#E7EEF1; --card:#FFFFFF; --line:#D8E3E8;
+    --tag:#8AA0AA;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',Inter,system-ui,sans-serif;
+    background:var(--page); color:var(--ink);
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+  }
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky; top:0; z-index:50; background:var(--deepwater);
+    border-bottom:1px solid rgba(255,255,255,.08);}
+  .topbar .wrap{display:flex; align-items:center; gap:20px; height:60px;}
+  .lockup{display:inline-flex; align-items:center; gap:10px;}
+  .lockup .mark{height:24px; width:auto; display:block;}
+  .lockup .wm{height:13px; width:auto; display:block;}
+  .lockup.light .mark,.lockup.light .wm{filter:brightness(0) invert(1);}
+  .lockup.ink .mark,.lockup.ink .wm{filter:brightness(0);}
+  .topbar .doctitle{color:#cfe8f0; font-size:13px; font-weight:600; letter-spacing:.2px;}
+  .topbar .doctitle b{color:#fff; font-weight:700;}
+  .topbar .jump{margin-left:auto; display:flex; gap:6px;}
+  .topbar .jump a{color:#bfe0ec; font-size:12.5px; font-weight:600; text-decoration:none;
+    padding:7px 13px; border:1px solid rgba(255,255,255,.16); border-radius:2px;}
+  .topbar .jump a:hover{background:rgba(255,255,255,.08); color:#fff;}
+  .topbar .jump a.badge{border-color:var(--cyan); background:rgba(21,167,220,.16); color:#eafaff;}
+
+  /* ---------- doc intro ---------- */
+  .intro{padding:48px 0 8px;}
+  .intro h1{font-size:34px; font-weight:800; letter-spacing:-.5px; line-height:1.12;}
+  .intro .sub{color:var(--cite); font-size:15px; margin-top:12px; max-width:700px;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px;}
+  .legend .lz{flex:1 1 300px; background:var(--card); border:1px solid var(--line);
+    border-radius:4px; padding:16px 18px;}
+  .legend .lz .k{font-size:11px; font-weight:700; letter-spacing:1.4px; color:var(--tide);
+    text-transform:uppercase;}
+  .legend .lz p{font-size:13.5px; color:#3c4a50; margin-top:7px;}
+  .legend .lz .pill{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:1px;
+    color:var(--tag); border:1px solid var(--line); border-radius:3px; padding:2px 7px; margin-top:9px;}
+
+  /* ---------- page band ---------- */
+  .pageband{margin-top:54px; padding:30px 0 18px; border-top:2px solid var(--deepwater);}
+  .pageband .ey{font-size:12px; font-weight:800; letter-spacing:2px; color:var(--cyan-hi);
+    text-transform:uppercase;}
+  .pageband h2{font-size:27px; font-weight:800; letter-spacing:-.3px; margin-top:8px;}
+  .pageband .url{display:inline-block; font-size:13px; font-weight:700; color:var(--tide);
+    background:var(--foam); border:1px solid var(--line); border-radius:3px; padding:3px 10px; margin-top:12px;}
+  .pageband .purpose{font-size:14.5px; color:#3c4a50; max-width:780px; margin-top:14px;}
+
+  .guard{margin-top:18px; background:#0c2c3b; border-radius:6px; padding:18px 20px;}
+  .guard .gh{display:flex; align-items:center; gap:9px; color:#bfe6f2; font-size:11.5px;
+    font-weight:800; letter-spacing:1.4px; text-transform:uppercase;}
+  .guard .gh svg{width:15px; height:15px; stroke:var(--cyan-lo);}
+  .guard ul{list-style:none; margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:7px 22px;}
+  .guard li{color:#d4e9f1; font-size:12.8px; padding-left:18px; position:relative; line-height:1.45;}
+  .guard li::before{content:""; position:absolute; left:0; top:7px; width:8px; height:8px;
+    border:1.5px solid var(--cyan-lo); border-top:0; border-right:0; transform:rotate(-45deg);}
+
+  /* ---------- section row ---------- */
+  .sec{background:var(--card); border:1px solid var(--line); border-radius:6px;
+    margin-top:18px; overflow:hidden;}
+  .sec .sechead{display:flex; align-items:center; gap:12px; padding:13px 20px;
+    border-bottom:1px solid var(--line); background:#fafdfe;}
+  .sec .sn{font-size:12px; font-weight:800; color:#fff; background:var(--deepwater);
+    border-radius:3px; padding:3px 8px; letter-spacing:.5px;}
+  .sec .snm{font-size:13.5px; font-weight:700; letter-spacing:.2px;}
+  .sec .slay{margin-left:auto; font-size:10.5px; font-weight:700; letter-spacing:.8px;
+    color:var(--tag); text-transform:uppercase; border:1px solid var(--line); border-radius:20px; padding:3px 11px;}
+
+  .grid{display:grid; grid-template-columns:0.92fr 1.08fr; gap:0;}
+  .grid .col{padding:28px 26px;}
+  .grid .col.copy{border-left:1px solid var(--line); background:#fff;}
+
+  /* ---------- image placeholder ---------- */
+  .ph{position:relative; height:100%; min-height:240px; border:1.5px dashed #B9CCD4;
+    border-radius:5px; background:
+      repeating-linear-gradient(135deg, rgba(21,167,220,.04) 0 11px, rgba(21,167,220,0) 11px 22px),
+      var(--foam);
+    padding:18px; display:flex; flex-direction:column;}
+  .ph .ptype{display:inline-flex; align-items:center; gap:7px; align-self:flex-start;
+    font-size:10.5px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase;
+    color:var(--tide); background:#fff; border:1px solid var(--line); border-radius:3px; padding:4px 9px;}
+  .ph .ptype svg{width:14px; height:14px; stroke:var(--tide); fill:none; stroke-width:1.6;}
+  .ph .pico{flex:0 0 auto; margin:14px 0 4px; opacity:.5;}
+  .ph .pico svg{width:34px; height:34px; stroke:var(--tide); fill:none; stroke-width:1.4;}
+  .ph .pdesc{font-size:13px; color:#33454d; line-height:1.5;}
+  .ph .pnote{margin-top:auto; padding-top:14px; font-size:11.5px; color:var(--cite);
+    border-top:1px dashed #cfdde3;}
+  .ph .pnote b{color:var(--tide); font-weight:700; letter-spacing:.3px;}
+  .ph .pratio{position:absolute; top:16px; right:16px; font-size:10.5px; font-weight:700;
+    color:var(--tag);}
+
+  /* ---------- copy blocks ---------- */
+  .crow{display:grid; grid-template-columns:84px 1fr; gap:16px; padding:11px 0;}
+  .crow + .crow{border-top:1px dotted #E2EBEF;}
+  .crow .tag{font-size:10px; font-weight:800; letter-spacing:1px; color:var(--tag);
+    text-transform:uppercase; padding-top:5px;}
+  .crow .cval{min-width:0;}
+  .eyebrow{font-size:12px; font-weight:800; letter-spacing:2px; color:var(--cyan-hi); text-transform:uppercase;}
+  h3.h1{font-size:32px; font-weight:800; letter-spacing:-.6px; line-height:1.08;}
+  h3.h2{font-size:25px; font-weight:800; letter-spacing:-.3px; line-height:1.14;}
+  .subhead{font-size:16.5px; font-weight:600; color:#27343a; line-height:1.44;}
+  .body{font-size:14.5px; color:#374249; line-height:1.62;}
+  .callout{font-size:18px; font-weight:800; color:var(--tide); line-height:1.28;
+    border-left:3px solid var(--cyan); padding-left:14px; letter-spacing:-.2px;}
+  .lead{font-weight:800; color:var(--ink);}
+  ul.clist{list-style:none; display:flex; flex-direction:column; gap:11px;}
+  ul.clist li{font-size:14px; color:#374249; line-height:1.5; padding-left:24px; position:relative;}
+  ul.clist li b{color:var(--ink); font-weight:700;}
+  ul.clist li::before{content:""; position:absolute; left:2px; top:7px; width:9px; height:9px;
+    border-radius:50%; border:2px solid var(--cyan); }
+  ul.clist.num{counter-reset:c;}
+  ul.clist.num li::before{content:counter(c); counter-increment:c; border:0; width:auto; height:auto;
+    left:0; top:0; font-size:11px; font-weight:800; color:#fff; background:var(--tide);
+    border-radius:50%; min-width:18px; height:18px; display:flex; align-items:center; justify-content:center; line-height:1;}
+  ul.clist.num li{padding-left:28px;}
+  ul.clist.never li::before{border:0; left:1px; top:3px; width:13px; height:13px; border-radius:50%;
+    background:var(--cite);}
+  ul.clist.never li{padding-left:24px; color:#374249;}
+  .ctas{display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
+  .btn{display:inline-flex; align-items:center; font-size:13.5px; font-weight:700; border-radius:3px;
+    padding:11px 20px; text-decoration:none; letter-spacing:.2px;}
+  .btn.pri{background:var(--tide); color:#fff;}
+  .btn.sec{background:transparent; color:var(--tide); border:1.5px solid var(--tide);}
+  .micro{font-size:12.5px; color:var(--cite);}
+  .form{display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
+  .field{font-size:12.5px; color:var(--cite); background:var(--foam); border:1px dashed #c4d4db;
+    border-radius:3px; padding:9px 14px; font-weight:600;}
+  .confirm{font-size:13px; color:#2b6b52; background:#eafaf2; border:1px solid #cdeadb;
+    border-radius:4px; padding:11px 14px; line-height:1.5;}
+  .disc{font-size:12px; color:var(--cite); background:var(--foam); border:1px solid var(--line);
+    border-radius:4px; padding:11px 14px; line-height:1.5;}
+
+  /* dark close sections render copy on tinted bg */
+  .sec.closing .col.copy{background:#072634;}
+  .sec.closing .col.copy .eyebrow{color:var(--cyan-lo);}
+  .sec.closing .col.copy h3{color:#fff;}
+  .sec.closing .col.copy .body,.sec.closing .col.copy .subhead{color:#bcd6e0;}
+  .sec.closing .col.copy .body .lead{color:#fff;}
+  .sec.closing .col.copy .crow + .crow{border-top-color:rgba(255,255,255,.10);}
+  .sec.closing .col.copy .tag{color:#6f93a1;}
+  .sec.closing .col.copy .btn.sec{color:#bfe6f2; border-color:#3d6a7b;}
+  .sec.closing .col.copy .micro{color:#9fc0cd;}
+
+  /* ---------- footers within pages ---------- */
+  .pgfoot{background:#fff; border:1px solid var(--line); border-radius:6px; margin-top:18px;
+    padding:22px 24px; display:flex; flex-wrap:wrap; gap:16px; align-items:center;}
+  .pgfoot .nav{display:flex; gap:18px; flex-wrap:wrap; margin-left:auto;}
+  .pgfoot .nav span{font-size:12.5px; font-weight:600; color:var(--cite);}
+  .pgfoot .discline{flex:1 1 100%; font-size:11.5px; color:var(--cite); border-top:1px solid var(--line);
+    padding-top:14px; line-height:1.5;}
+
+  /* ---------- doc footer ---------- */
+  .docfoot{margin:60px 0 40px; text-align:center; color:var(--cite); font-size:12.5px; line-height:1.7;}
+  .docfoot b{color:var(--ink);}
+
+  @media (max-width:820px){
+    .grid{grid-template-columns:1fr;}
+    .grid .col.copy{border-left:0; border-top:1px solid var(--line);}
+    .guard ul{grid-template-columns:1fr;}
+    .crow{grid-template-columns:1fr; gap:4px;}
+    .crow .tag{padding-top:0;}
+    .topbar .doctitle{display:none;}
+    .intro h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="lockup light"><img class="mark" src="data:image/png;base64,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" alt=""><img class="wm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI4AAAAOCAYAAAD5TSTQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAA3RJREFUeAHlme1xGyEQhl/PuAB1YFJBlApyqcBKBTpXkLgC4wosV+BzBbYrkFKB1YFIBVEqcFizzHEYOMAn+UeemR1OBywfu8AeOsGQRss5p0LLjN/vtSgtWy33WjZIs+b6cOp/4zTGg5Y5P99qWQXKCNZdyqWWx0Q+jbPV8pX7MEM/dkKhH/8T0uOnfp+jnk8j+Q2msVFuP/cspLPzMwWMQV4yxXcMn12gzjOGxvBx25eRMqKgj660iLPU8qdQ30NiLF1lH60gMfZ1gZ4xG3UVfdtZnaesJNSIYiFokuZOXsN1viC9i7hQ/RstF5iObWb7KvKexiUxXLUbvNUpHCEWnH4P6LQrP9SWv4uVcEgb7RNlhPd8B3N6vK5G16tWCK8mqiS9shJhdhjuNG6dm0iddYZe4ekSeB9Nob6VV36GfFoMV24JLaa3UeeUuUMaicC41wUK/PLrSBnXcdpAw1cjemVEr8C0jiM8fT+RdgYbC1k5luMcwkZdgc4ZhvPU0FHlbm9PGIeCpIaf58hDwhhp6fwmrvE+aPdKbcOUd5nIVzBHU+PoszoVet32+TfM8bjBcXHn+VdG+RobpXizQE69l6XxQumKO0M/IMm67lHPYiRfIe04xAX3Zem88+OFkN4O73f8XEpjIxWpm9LfJPL8E2JLjrNHr1wgr5FaKJikrdMapYNZxRvUMRYcK4xDZVqYY2qO/nP8DMOAVqCfH0olzOrf4PAc2kYLjC9CyzX3Z3AePmRUvMMw8A3hxzguwsunT+E5PibGWXBbEnkTJzAM9nPiDUuLaWKcdUb5HBt1KP8cX9nKtOPQqmn4N03eFcJbsN2yWufdLcpRMJ9zNAGC9ZLD5hyTU9No+cHP1D7tYCpRXrFMETeU4NqI0hIb5YQC9mIzBs3NI5y5IcchL1qiX70SZtt2J3GO4S0lOO8RdSgY57GXggJ1jAXHlthNKvXfOg71Y8flFMwR6nKG/rbWkhOoTsGhbbRFfJdPIhC+7Y3JM/JvjttEORps6NZWIt7PlwppEUdW6uxQRov6o4oQmNZGHeqO3FfszbGC+Y+kRf8/iB9g2VtVWr1jXqy8ejHI0+mr5yrQVo7uXFL6JMwk0gr+jD44jrW9Qd5/QaE+KEdPKQr5NqJjp0N+f/6ikJORfMGpwv+HcJ5TV/IfjeBU4Yj8Axu80erk57SFAAAAAElFTkSuQmCC" alt="OneStop"></span>
+    <span class="doctitle"><b>Website copy &amp; wireframe</b> · v2 for review</span>
+    <nav class="jump">
+      <a href="#home">OneStop home</a>
+      <a href="#jarvis" class="badge">Jarvis page</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="doc"></main>
+
+<footer class="docfoot wrap">
+  <p><b>OneStop + Jarvis — website copy &amp; wireframe, v2.</b> Drafted 5 June 2026 for team review.</p>
+  <p>Two pages: a company page and a product page. Copy is final-but-editable. The left-hand visuals are descriptions, not final art.</p>
+</footer>
+
+<script>
+/* ----------------------------------------------------------
+   Structured wireframe. Each section = one row:
+   image (left, described) + copy blocks (right, role-tagged).
+   OneStop home = company page. Jarvis = product page,
+   written in Jarvis's own voice (dry, honest, system-roasting).
+   ---------------------------------------------------------- */
+
+const ICON = {
+  PHOTO:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.4"/><path d="M8 5l1.5-2h5L16 5"/></svg>',
+  'CHAT UI':'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 3v-3H4z"/><path d="M8 9h8M8 12.5h5"/></svg>',
+  TYPE:'<svg viewBox="0 0 24 24"><path d="M5 7V5h14v2M12 5v14M9 19h6"/></svg>',
+  NOTIF:'<svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 6h6M9 9.5h6M9 13h4"/></svg>',
+  BRAND:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4.2 9.5C6 11 6 13 4.2 14.5M19.8 9.5C18 11 18 13 19.8 14.5"/></svg>'
+};
+const shield = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>';
+
+/* ===================== PAGE 1 — ONESTOP HOME (company) ===================== */
+const HOME = {
+  id:'home',
+  eyebrow:'Page 1 · company',
+  title:'OneStop — Homepage',
+  url:'onestop.com',
+  purpose:'The company page. What OneStop is, what it stands for, and where it’s going. It frames the mission, then hands the visitor to Jarvis — the first product. Spare and impactful, not a sales pitch.',
+  guard:[
+    'A company page, not a sales pitch.',
+    'Ambitious vision, concrete only about Jarvis.',
+    'Travel &amp; shopping as direction, no dates.',
+    'Global voice, no per-country claims.',
+    'The promise, said once: “On your side, always.”'
+  ],
+  sections:[
+    {
+      n:'01', name:'Hero', lay:'Full-bleed',
+      img:{type:'PHOTO', ratio:'16:10',
+        desc:'Calm, premium, human. A real person with the everyday handled — closing the laptop, stepping out into warm natural light, open sky or water behind them. Lots of quiet space for the headline.',
+        note:'Full-width background. Real human + open space, the OneStop photography line. No screens, no dashboards, no robots.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'OneStop'},
+        {r:'HEADLINE', h:1, t:'We build AI that’s on your side.'},
+        {r:'SUBHEAD', sub:'For the everyday parts of life — money first, travel and shopping next. Built for you. Not for the advertiser. Not for the broker. For you.'},
+        {r:'CTA', pri:'Meet Jarvis', sec:'Join the waitlist'}
+      ]
+    },
+    {
+      n:'02', name:'What we stand for', lay:'Statement',
+      img:{type:'CHAT UI', ratio:'4:3',
+        desc:'A single frosted-glass WhatsApp-style card floating over a warm human photo — the “moments in between” treatment. One real question, one calm reply. Quiet space around it.',
+        note:'Centred card over photography. Editorial and premium.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'What we stand for'},
+        {r:'HEADLINE', h:2, t:'Most apps don’t work for you. That’s the whole problem.'},
+        {r:'BODY', body:'Every app on your phone is quietly optimising you for someone else’s number — the advertiser’s, the broker’s, the brand with a quota. OneStop is the opposite bet. AI that answers to you, keeps your context to itself, and hands you the decision. <span class="lead">On your side, always.</span>'}
+      ]
+    },
+    {
+      n:'03', name:'What we’re building', lay:'Category tiles',
+      img:{type:'BRAND', ratio:'4:3',
+        desc:'Three clean category tiles in the Open Water style, each with a line icon and a status tag. Money (orbit) — Live, as Jarvis. Travel (compass) — Exploring. Shopping (bag) — Exploring. Generous whitespace.',
+        note:'A row of cards on desktop, stacked on mobile.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'What we’re building'},
+        {r:'HEADLINE', h:2, t:'One company for the boring, expensive, exhausting parts of life.'},
+        {r:'BODY', body:'Money first, through Jarvis. Then travel, then shopping — the recurring, time-eating, headspace-hogging stuff where an AI built for you saves real hours and real worry.'},
+        {r:'TILES', list:['<b>Money</b> — Live now, as Jarvis.','<b>Travel</b> — On the map.','<b>Shopping</b> — On the map.']},
+        {r:'MICRO', micro:'We’ll tell you what’s real when it’s real. No vaporware.'}
+      ]
+    },
+    {
+      n:'04', name:'Meet Jarvis', lay:'Bridge to product',
+      img:{type:'CHAT UI', ratio:'4:3',
+        desc:'A short WhatsApp thread. A slightly anxious user message, and Jarvis’s calm reply that asks the right question back instead of giving a buy/sell call. Subtle WhatsApp cues, lots of calm space.',
+        note:'The bridge to the Jarvis page. Chat one side, copy the other.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'The first one'},
+        {r:'HEADLINE', h:2, t:'It starts with your money. It starts with Jarvis.'},
+        {r:'BODY', body:'An AI investing companion on WhatsApp. It won’t tell you what to buy. It remembers you, and helps you think. The first proof of what OneStop is for.'},
+        {r:'CTA', pri:'See what Jarvis does', sec:'Join the waitlist'}
+      ]
+    },
+    {
+      n:'05', name:'Brand close', lay:'Full-bleed dark', closing:true,
+      img:{type:'BRAND', ratio:'16:9',
+        desc:'The signature OneStop brand-dark moment: a deep teal-to-bright-cyan grained Open Water gradient, the orbit mark as a large thin-stroke arc bleeding off one edge. The tagline set large in calm space.',
+        note:'Full-bleed dark gradient band, centred message.'},
+      copy:[
+        {r:'HEADLINE', h:2, t:'On your side, always.'},
+        {r:'SUPPORT', body:'Start with your money. We’ll be here for the rest of the everyday as it comes.'},
+        {r:'CTA', pri:'Join the waitlist', sec:'Follow us on Instagram'}
+      ]
+    }
+  ],
+  foot:{
+    nav:['Jarvis','What we’re building','Manifesto','Privacy'],
+    disc:'OneStop provides information and tools to help you think. It is not financial advice.'
+  }
+};
+
+/* ===================== PAGE 2 — JARVIS (product) ===================== */
+const JARVIS = {
+  id:'jarvis',
+  eyebrow:'Page 2 · product',
+  title:'Jarvis — Product page',
+  url:'onestop.com/jarvis',
+  purpose:'The product page. One job: get the right person to join the waitlist. Written in Jarvis’s own voice — dry, honest, got-your-back. It roasts the system, never the user. One idea per section, one line you’d screenshot.',
+  guard:[
+    'Information and thinking — never “advice” or “recommendations.”',
+    'No returns, no tips, no urgency.',
+    'Portfolio = statement upload (broker connect is “coming soon”).',
+    'Weekly alert only (custom alerts “coming soon”).',
+    'No pricing, no user counts, no testimonials.',
+    'Roasts the system, never the user.',
+    'Global voice. Stands on its own — no Iron Man.'
+  ],
+  sections:[
+    {
+      n:'01', name:'Hero', lay:'Product is the hero',
+      img:{type:'CHAT UI', ratio:'4:3',
+        desc:'The hero is the product: a WhatsApp thread. User, mid-panic: “NVDA’s down 12% since I bought. Should I sell?” Jarvis: “Before that — has anything changed about why you bought it, or just the price? Let’s take those one at a time.” Clean phone frame, real WhatsApp cues, calm space.',
+        note:'The chat IS the proof. Phone one side, headline opposite.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'Jarvis · an AI investing companion on WhatsApp'},
+        {r:'HEADLINE', h:1, t:'You don’t need a hot tip. You need a clearer head.'},
+        {r:'SUBHEAD', sub:'It won’t tell you what to buy. It remembers you. And it’s calm when you’re not.'},
+        {r:'CTA', pri:'Join the waitlist'},
+        {r:'MICRO', micro:'Free. On WhatsApp. Invite-only beta.'}
+      ]
+    },
+    {
+      n:'02', name:'The moment', lay:'Notification stack',
+      img:{type:'NOTIF', ratio:'4:5',
+        desc:'A phone screen with a chaotic stack of notifications stacking up — red market alerts, panicked group-chat pings, a finfluencer doompost — and one calm Jarvis WhatsApp line sliding in at the top: “Your plan is fine. Close the app.” The brand’s native moment.',
+        note:'The reader should feel seen. Calm line on top of the chaos.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'The moment'},
+        {r:'HEADLINE', h:2, t:'It’s 11pm. It’s down 12%. Your thumb’s on sell.'},
+        {r:'BODY', body:'That’s the moment. Not your five-year plan — the decision in front of you right now. The dip that’s tempting you. The fund a colleague won’t stop mentioning. Jarvis is the friend you message before you do something you’ll regret.'}
+      ]
+    },
+    {
+      n:'03', name:'Today, without Jarvis', lay:'The noise',
+      img:{type:'TYPE', ratio:'4:3',
+        desc:'A tasteful pile of “too many voices, none of them yours” — desaturated YouTube finance thumbnails, a noisy group chat, an SEO-spam results page, a finfluencer mid-shout, all pushed back and muted. Premium and a little ironic, never crypto-bro neon.',
+        note:'Busy “before” image, deliberately clean copy beside it.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'Today, without Jarvis'},
+        {r:'HEADLINE', h:2, t:'Everyone’s got an opinion. Nobody remembers you.'},
+        {r:'BODY', body:'Google gives you SEO spam. YouTube gives you an ad in a trench coat. The group chat gives you ten opinions and zero frameworks. The finfluencer’s real product is the finfluencer.'},
+        {r:'CALLOUT', callout:'Every time, you start from scratch.'}
+      ]
+    },
+    {
+      n:'04', name:'The part nobody tells you', lay:'Typographic',
+      img:{type:'TYPE', ratio:'4:3',
+        desc:'A native Open Water typographic slide, like the decks. “The right answer” struck through and faded; “a better question” clear and in cyan. Big Manrope, lots of air.',
+        note:'Typographic hero. The deck thesis-slide treatment.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'The part nobody tells you'},
+        {r:'HEADLINE', h:2, t:'You don’t lose money picking the wrong stock. You lose it checking the right one eleven times a day.'},
+        {r:'BODY', body:'Most money mistakes aren’t math. They’re nerves. Panic-selling the dip. Chasing the thing a colleague mentioned. The fix was never a better tip — it’s a better question and a calmer head.'},
+        {r:'CALLOUT', callout:'Jarvis is built on one rule: it frames, it doesn’t prescribe.'}
+      ]
+    },
+    {
+      n:'05', name:'What it does today', lay:'Chat montage · 6 lines',
+      img:{type:'CHAT UI', ratio:'4:5',
+        desc:'A montage of WhatsApp snippets, each showing one thing live — a calm reframe, a memory callback (“last month you said…”), a portfolio read off an uploaded statement, the weekly nudge. Real-feeling, Open Water tones.',
+        note:'Montage left; the six live things listed right, as tight one-liners.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'What it does today'},
+        {r:'HEADLINE', h:2, t:'Six things it does. Today.'},
+        {r:'LIST', list:[
+          '<b>Lives on WhatsApp.</b> No app to download. It’s already where you are.',
+          '<b>Talks you down.</b> When the market’s loud, you get a calm read — not more noise.',
+          '<b>Remembers you.</b> Your goals, your worries, what you said last week. It builds on the last chat instead of starting cold.',
+          '<b>Frames the decision.</b> You get a way to think it through, not a verdict to obey.',
+          '<b>Reads your portfolio.</b> Upload your statement and it talks about your actual holdings — what’s concentrated, what overlaps, what doesn’t fit. Yours, not generic.',
+          '<b>Nudges you weekly.</b> One message a week on what actually moved. So you can stop refreshing.'
+        ]},
+        {r:'MICRO', micro:'Coming soon: connect your broker so it sees your holdings automatically, and set your own alerts.'}
+      ]
+    },
+    {
+      n:'06', name:'Why Jarvis', lay:'Two moats',
+      img:{type:'TYPE', ratio:'4:3',
+        desc:'Two stacked Open Water statements. Top: a memory thread quietly building over weeks. Bottom, bold: “We’ll never tell you what to buy.” Calm and deliberate.',
+        note:'Two big statements, the two things only Jarvis can say.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'Why Jarvis, not the rest'},
+        {r:'HEADLINE', h:2, t:'Two things nobody else will say.'},
+        {r:'01', body:'<span class="lead">It remembers you.</span> Google starts from zero every time. So does the group chat. Jarvis gets more useful the longer you use it — because it actually knows your situation.'},
+        {r:'02', body:'<span class="lead">It won’t tell you what to buy.</span> Everyone else is racing to hand you a pick. The second a tool does that, it’s not on your side anymore — it’s selling. Jarvis would rather you be clear than tell you you’re right.'}
+      ]
+    },
+    {
+      n:'07', name:'Where it draws the line', lay:'Guardrails as values',
+      img:{type:'TYPE', ratio:'4:3',
+        desc:'A clean “never” list as a native Open Water values card — a few short lines with line icons. Designed like a statement of principle, not a legal disclaimer.',
+        note:'Values card. This is the regulatory line, framed as character.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'Where it draws the line'},
+        {r:'HEADLINE', h:2, t:'Sharp about the system. Never about you.'},
+        {r:'BODY', body:'Jarvis will roast a 1% fee, a finfluencer, an insurance commission all day. It will never roast you. And it will never:'},
+        {r:'NEVER', never:true, list:[
+          'Tell you what to buy, sell or hold.',
+          'Predict a price or promise a return.',
+          'Rush you into anything.',
+          'Pretend to know when nobody does.'
+        ]},
+        {r:'CLOSE', callout:'It gives you information and a way to think. Not advice. Never a tip.'}
+      ]
+    },
+    {
+      n:'08', name:'Get early access', lay:'Full-bleed dark · form', closing:true,
+      img:{type:'BRAND', ratio:'16:9',
+        desc:'The canonical Jarvis close, straight from the launch deck: deep Open Water gradient, the dotted-orbit mark glowing at centre, concentric rings. A simple waitlist form sits in calm centre space.',
+        note:'Full-bleed dark gradient, centred form. Matches the “We’re building Jarvis” deck close.'},
+      copy:[
+        {r:'EYEBROW', eyebrow:'Get early access'},
+        {r:'HEADLINE', h:2, t:'Get a clearer head about your money.'},
+        {r:'SUBHEAD', sub:'An AI investing companion on WhatsApp. Launching soon, invite-only for now.'},
+        {r:'PROOF', body:'We’re early. A private beta’s underway with our first users. No fake numbers. No testimonials we wrote ourselves.'},
+        {r:'FORM', form:['Name','Phone or email','Join the waitlist']},
+        {r:'CONFIRM', confirm:'After submit → “You’re on the list. It’s invite-only for now — we’ll message you the moment a spot opens.”'},
+        {r:'SECONDARY', micro:'Not ready? Follow Jarvis on Instagram — we post the receipts.'}
+      ]
+    }
+  ],
+  foot:{
+    nav:['Jarvis','OneStop','Privacy'],
+    disc:'Jarvis gives you information and frameworks to help you think. It is not investment advice, and not a recommendation to buy, sell or hold any security. Jarvis is not a registered investment adviser.'
+  }
+};
+
+/* ===================== RENDER ===================== */
+function copyBlock(c){
+  let v='';
+  if(c.eyebrow) v=`<div class="eyebrow">${c.eyebrow}</div>`;
+  else if(c.h) v=`<h3 class="h${c.h}">${c.t}</h3>`;
+  else if(c.sub) v=`<div class="subhead">${c.sub}</div>`;
+  else if(c.body) v=`<div class="body">${c.body}</div>`;
+  else if(c.callout) v=`<div class="callout">${c.callout}</div>`;
+  else if(c.list){
+    const cls = c.num?'clist num':(c.never?'clist never':'clist');
+    v=`<ul class="${cls}">${c.list.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+  }
+  else if(c.pri){
+    v=`<div class="ctas"><a class="btn pri">${c.pri}</a>${c.sec?`<a class="btn sec">${c.sec}</a>`:''}</div>`;
+  }
+  else if(c.form){
+    v=`<div class="form">${c.form.slice(0,-1).map(f=>`<span class="field">${f}</span>`).join('')}<a class="btn pri">${c.form[c.form.length-1]}</a></div>`;
+  }
+  else if(c.confirm) v=`<div class="confirm">${c.confirm}</div>`;
+  else if(c.micro) v=`<div class="micro">${c.micro}</div>`;
+  return `<div class="crow"><div class="tag">${c.r}</div><div class="cval">${v}</div></div>`;
+}
+
+function section(s){
+  const t = s.img.type;
+  return `
+  <section class="sec ${s.closing?'closing':''}">
+    <div class="sechead">
+      <span class="sn">${s.n}</span>
+      <span class="snm">${s.name}</span>
+      <span class="slay">${s.lay}</span>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <div class="ph">
+          <span class="ptype">${ICON[t]||''}${t}</span>
+          <span class="pratio">${s.img.ratio}</span>
+          <span class="pico">${ICON[t]||''}</span>
+          <div class="pdesc">${s.img.desc}</div>
+          <div class="pnote"><b>Layout</b> · ${s.img.note}</div>
+        </div>
+      </div>
+      <div class="col copy">
+        ${s.copy.map(copyBlock).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+function page(p){
+  return `
+  <div id="${p.id}"></div>
+  <div class="pageband">
+    <div class="ey">${p.eyebrow}</div>
+    <h2>${p.title}</h2>
+    <span class="url">${p.url}</span>
+    <p class="purpose">${p.purpose}</p>
+    <div class="guard">
+      <div class="gh">${shield} Built to the brief’s guardrails</div>
+      <ul>${p.guard.map(g=>`<li>${g}</li>`).join('')}</ul>
+    </div>
+  </div>
+  ${p.sections.map(section).join('')}
+  <div class="pgfoot">
+    <span class="lockup ink"><img class="mark" src="data:image/png;base64,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" alt=""><img class="wm" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI4AAAAOCAYAAAD5TSTQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAA3RJREFUeAHlme1xGyEQhl/PuAB1YFJBlApyqcBKBTpXkLgC4wosV+BzBbYrkFKB1YFIBVEqcFizzHEYOMAn+UeemR1OBywfu8AeOsGQRss5p0LLjN/vtSgtWy33WjZIs+b6cOp/4zTGg5Y5P99qWQXKCNZdyqWWx0Q+jbPV8pX7MEM/dkKhH/8T0uOnfp+jnk8j+Q2msVFuP/cspLPzMwWMQV4yxXcMn12gzjOGxvBx25eRMqKgj660iLPU8qdQ30NiLF1lH60gMfZ1gZ4xG3UVfdtZnaesJNSIYiFokuZOXsN1viC9i7hQ/RstF5iObWb7KvKexiUxXLUbvNUpHCEWnH4P6LQrP9SWv4uVcEgb7RNlhPd8B3N6vK5G16tWCK8mqiS9shJhdhjuNG6dm0iddYZe4ekSeB9Nob6VV36GfFoMV24JLaa3UeeUuUMaicC41wUK/PLrSBnXcdpAw1cjemVEr8C0jiM8fT+RdgYbC1k5luMcwkZdgc4ZhvPU0FHlbm9PGIeCpIaf58hDwhhp6fwmrvE+aPdKbcOUd5nIVzBHU+PoszoVet32+TfM8bjBcXHn+VdG+RobpXizQE69l6XxQumKO0M/IMm67lHPYiRfIe04xAX3Zem88+OFkN4O73f8XEpjIxWpm9LfJPL8E2JLjrNHr1wgr5FaKJikrdMapYNZxRvUMRYcK4xDZVqYY2qO/nP8DMOAVqCfH0olzOrf4PAc2kYLjC9CyzX3Z3AePmRUvMMw8A3hxzguwsunT+E5PibGWXBbEnkTJzAM9nPiDUuLaWKcdUb5HBt1KP8cX9nKtOPQqmn4N03eFcJbsN2yWufdLcpRMJ9zNAGC9ZLD5hyTU9No+cHP1D7tYCpRXrFMETeU4NqI0hIb5YQC9mIzBs3NI5y5IcchL1qiX70SZtt2J3GO4S0lOO8RdSgY57GXggJ1jAXHlthNKvXfOg71Y8flFMwR6nKG/rbWkhOoTsGhbbRFfJdPIhC+7Y3JM/JvjttEORps6NZWIt7PlwppEUdW6uxQRov6o4oQmNZGHeqO3FfszbGC+Y+kRf8/iB9g2VtVWr1jXqy8ejHI0+mr5yrQVo7uXFL6JMwk0gr+jD44jrW9Qd5/QaE+KEdPKQr5NqJjp0N+f/6ikJORfMGpwv+HcJ5TV/IfjeBU4Yj8Axu80erk57SFAAAAAElFTkSuQmCC" alt="OneStop"></span>
+    <div class="nav">${p.foot.nav.map(n=>`<span>${n}</span>`).join('')}</div>
+    <div class="discline">${p.foot.disc}</div>
+  </div>`;
+}
+
+const intro = `
+  <div class="intro">
+    <h1>OneStop + Jarvis — website copy &amp; wireframe</h1>
+    <p class="sub">Two pages, drafted from the team’s brief. A company page (OneStop) and a product page (Jarvis), written in Jarvis’s own voice. This is a structured wireframe: the words are final-but-editable, the visuals are described so the designer knows what to make. Read each row left to right.</p>
+    <div class="legend">
+      <div class="lz"><div class="k">Left — the image</div><p>A plain-language description of the visual: mood, subject, composition. A brief for the designer, not final art.</p><span class="pill">Placeholder</span></div>
+      <div class="lz"><div class="k">Right — the copy</div><p>The final words for that section. The faint grey tags (EYEBROW, HEADLINE, CTA…) mark each line’s role in the layout.</p><span class="pill">Final copy</span></div>
+      <div class="lz"><div class="k">Per page — guardrails</div><p>A card at the top of each page lists what we deliberately kept on and off it, mapped to your “what to leave out” and legal notes.</p><span class="pill">Q13 · Q14</span></div>
+    </div>
+  </div>`;
+
+document.getElementById('doc').innerHTML = intro + page(HOME) + page(JARVIS);
+</script>
+</body>
+</html>
