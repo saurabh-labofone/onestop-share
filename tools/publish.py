@@ -156,6 +156,17 @@ def cmd_publish(a):
     if not os.path.isfile(src):
         sys.exit(f"input not found: {src}")
     slug = a.slug or slugify(a.title)
+    man = load_manifest()
+    # guard: same title at a different slug almost always means an accidental duplicate
+    # (e.g. republishing by --title only after the first publish used a custom --slug)
+    dup = next((x for x in man["items"]
+                if x["title"].strip().lower() == a.title.strip().lower() and x["slug"] != slug), None)
+    if dup and not a.force:
+        sys.exit(
+            f"! an item titled '{a.title}' already exists at slug '{dup['slug']}'.\n"
+            f"  to UPDATE that one (same link):  re-run with  --slug {dup['slug']}\n"
+            f"  to add a genuinely NEW entry:    re-run with  --force"
+        )
     print(f"publishing '{a.title}'  ->  /{slug}/")
     html = open(src, encoding="utf-8").read()
     html = flatten(html, os.path.dirname(src))
@@ -165,7 +176,6 @@ def cmd_publish(a):
         f.write(html)
     size = len(html.encode()) // 1024
     print(f"   wrote {slug}/index.html ({size}KB self-contained)")
-    man = load_manifest()
     man["items"] = [x for x in man["items"] if x["slug"] != slug]
     man["items"].append({
         "slug": slug, "title": a.title, "blurb": a.blurb or "",
@@ -251,6 +261,7 @@ def main():
     p.add_argument("--slug")
     p.add_argument("--blurb")
     p.add_argument("--push", action="store_true")
+    p.add_argument("--force", action="store_true", help="publish even if title matches an existing item at a different slug")
     p.add_argument("--list", action="store_true")
     p.add_argument("--remove")
     a = p.parse_args()
