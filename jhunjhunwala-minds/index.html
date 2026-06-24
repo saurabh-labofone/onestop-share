@@ -338,8 +338,8 @@
   <h3>Caption — Instagram post body</h3>
   <p>In 2008, the crash wiped out nearly a third of Rakesh Jhunjhunwala's fortune — hundreds of crores, gone in months. He didn't sell a thing. By 2012 he'd earned all of it back.</p>
   <p>That's the whole story of India's "Big Bull." He started in 1985 with ₹5,000 and died in 2022 worth about $5.8 billion — and almost none of it came from trading fast. One stock made the legend: he bought Titan around ₹30 in 2003 and simply never sold. Twenty years later it was up roughly 82 times.</p>
-  <p>Here's the part people skip: he COULD trade. His first money came from quick wins — Tata Tea (₹43 to ₹143 in months), Sesa Goa (₹25 to ₹2,200). The fast trades made him lakhs. The holding made him crores. As he put it: "Bad times are good times for those who keep their nerve."</p>
-  <p>Everyone copies the buy. The buy was the easy part. The hard part was the dead years — Titan going sideways, then crashing in 2008, while everyone told him he was wrong. You won't get his capital or his timing. What you can borrow is his tolerance for boredom. The position doesn't need you to be clever; it needs you to not flinch.</p>
+  <p>His rule, in his own words: "Bad times are good times for those who keep their nerve."</p>
+  <p>Everyone copies the buy. The buy was the easy part. The hard part was the dead years — Titan going sideways, then crashing in 2008, while everyone told him he was wrong. He just didn't flinch.</p>
   <p>So: when did you last sell something good just because it stopped moving — and what did you do with the money instead?</p>
   <p>Education only, not investment advice. Figures rounded and illustrative. Sources: Forbes; Business Today; BSE; Wikipedia; Trade Brains.</p>
   <p>Save this, and send it to the friend who panic-sells.</p>
@@ -352,5 +352,39 @@
   </linearGradient>
 </svg>
 
+<!-- SLIDE-DOWNLOAD (auto) -->
+<button id="dlAll" aria-label="Download all slides" style="position:fixed;right:20px;bottom:20px;z-index:99999;font-family:'Manrope',system-ui,sans-serif;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(108deg,#4CE4EE,#1E6CF7);border:none;border-radius:999px;padding:14px 22px;box-shadow:0 8px 28px rgba(30,108,247,.45);cursor:pointer;display:flex;align-items:center;gap:9px;">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+  <span id="dlAllTxt">Download all slides</span>
+</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(function(){
+  var SLUG="jhunjhunwala-minds", N=7, BASE="https://saurabh-labofone.github.io/onestop-share/slides/";
+  var btn=document.getElementById("dlAll"), txt=document.getElementById("dlAllTxt");
+  btn.addEventListener("click", async function(){
+    if(typeof JSZip==="undefined"){ txt.textContent="loading…"; return; }
+    btn.disabled=true; var old=txt.textContent;
+    try{
+      var zip=new JSZip();
+      for(var i=1;i<=N;i++){
+        var nn=("0"+i).slice(-2);
+        txt.textContent="zipping "+i+"/"+N+"…";
+        var r=await fetch(BASE+SLUG+"/"+nn+".jpg");
+        if(!r.ok) throw new Error(r.status);
+        zip.file(SLUG+"-"+nn+".jpg", await r.blob());
+      }
+      txt.textContent="saving…";
+      var blob=await zip.generateAsync({type:"blob"});
+      var a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+      a.download=SLUG+"-slides.zip"; a.click();
+      setTimeout(function(){URL.revokeObjectURL(a.href);},3000);
+      txt.textContent=old;
+    }catch(e){ txt.textContent="⚠ retry"; }
+    btn.disabled=false;
+  });
+})();
+</script>
+<!-- /SLIDE-DOWNLOAD -->
 </body>
 </html>
