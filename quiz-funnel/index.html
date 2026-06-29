@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jarvis — Quiz Funnel Wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --deepwater: #07384D;
+    --tide: #006FA6;
+    --current: #18A8D8;
+    --aqua: #63E4EF;
+    --foam: #F2FBFD;
+    --coral: #F04E36;
+    --ink: #0E1518;
+    --cite: #5E6E74;
+    --line: #D8E3E8;
+    --wa-header: #075E54;
+    --wa-canvas: #ECE5DD;
+    --wa-out: #D9FDD3;
+    --shadow: 0 10px 40px rgba(7,56,77,.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #E9F4F8; color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { padding: 32px 28px 80px; }
+
+  /* ---------- page header ---------- */
+  .masthead { max-width: 1180px; margin: 0 auto 22px; }
+  .lockup { display: flex; align-items: center; gap: 10px; }
+  .orbit { width: 22px; height: 22px; }
+  .wordmark { font-weight: 800; letter-spacing: .14em; font-size: 14px; color: var(--deepwater); }
+  .wordmark .by { font-weight: 600; letter-spacing: .04em; color: var(--cite); font-size: 11px; margin-left: 8px; }
+  h1.title { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: var(--deepwater); margin: 16px 0 6px; line-height: 1.1; }
+  .subtitle { color: var(--cite); font-size: 15px; max-width: 720px; line-height: 1.55; }
+  .meta-row { display:flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 12.5px; color: var(--tide); font-weight: 600; }
+  .meta-row span { display:flex; align-items:center; gap:6px; }
+  .dot { width:6px; height:6px; border-radius:50%; background: var(--current); }
+
+  /* ---------- controls ---------- */
+  .controls { max-width: 1180px; margin: 22px auto 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .tabs { display: inline-flex; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px; box-shadow: 0 2px 8px rgba(7,56,77,.05); }
+  .tab { border: none; background: transparent; font-family: inherit; font-weight: 700; font-size: 13.5px; color: var(--cite); padding: 9px 18px; border-radius: 999px; cursor: pointer; transition: all .18s; letter-spacing: -0.01em; }
+  .tab small { display:block; font-weight:500; font-size:10.5px; letter-spacing: .02em; opacity:.8; margin-top:1px; }
+  .tab.active { background: var(--deepwater); color: #fff; }
+  .toggle { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600; color: var(--deepwater); background:#fff; border:1px solid var(--line); border-radius:999px; padding: 8px 14px 8px 12px; cursor:pointer; user-select:none; }
+  .switch { width: 38px; height: 22px; border-radius: 999px; background: var(--line); position: relative; transition: background .18s; flex: none; }
+  .switch::after { content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .18s; }
+  .toggle.on .switch { background: var(--coral); }
+  .toggle.on .switch::after { transform: translateX(16px); }
+  .btn-ghost { border:1px solid var(--line); background:#fff; color:var(--tide); font-family:inherit; font-weight:700; font-size:12.5px; padding:9px 16px; border-radius:999px; cursor:pointer; }
+  .btn-ghost:hover { border-color: var(--current); }
+
+  /* ---------- stage ---------- */
+  .stage { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 250px 1fr 320px; gap: 26px; align-items: start; }
+
+  /* flow map */
+  .flowmap { position: sticky; top: 20px; }
+  .flowmap h3, .notes h3 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--cite); font-weight: 700; margin-bottom: 14px; }
+  .stage-item { display: flex; gap: 11px; align-items: flex-start; padding: 7px 0; position: relative; }
+  .stage-item .bub { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); background: #fff; flex: none; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--cite); z-index:1; }
+  .stage-item::before { content:''; position:absolute; left: 10px; top: 24px; bottom: -8px; width: 2px; background: var(--line); }
+  .stage-item:last-child::before { display:none; }
+  .stage-item .lbl { font-size: 13px; font-weight: 600; color: var(--cite); padding-top: 2px; line-height:1.3; }
+  .stage-item .lbl small { display:block; font-weight:500; font-size:11px; color: #9aabb2; }
+  .stage-item.active .bub { border-color: var(--coral); background: var(--coral); color:#fff; }
+  .stage-item.active .lbl { color: var(--deepwater); font-weight: 800; }
+  .stage-item.done .bub { border-color: var(--current); background: var(--current); color:#fff; }
+
+  /* ---------- phone ---------- */
+  .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .phone { width: 340px; height: 720px; background: #000; border-radius: 46px; padding: 11px; box-shadow: var(--shadow); position: relative; }
+  .notch { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 130px; height: 26px; background: #000; border-radius: 0 0 16px 16px; z-index: 20; }
+  .screen { width: 100%; height: 100%; background: var(--foam); border-radius: 36px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+  .statusbar { height: 40px; flex: none; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 22px 5px; font-size: 12px; font-weight: 700; color: var(--ink); }
+  .statusbar.dark { color: #fff; }
+  .statusbar .sb-icons { letter-spacing: 1px; font-size: 11px; }
+  .view { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .view::-webkit-scrollbar { width: 0; }
+
+  .phone-caption { font-size: 12px; color: var(--cite); font-weight: 600; }
+
+  /* generic screen blocks */
+  .pad { padding: 22px 22px 26px; }
+  .kicker { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--current); margin-bottom: 14px; }
+  .progress { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 0 22px; flex: none; }
+  .progress > i { display: block; height: 100%; background: var(--current); border-radius: 999px; transition: width .3s; }
+  .q-num { font-size: 12px; color: var(--cite); font-weight: 700; margin: 18px 22px 0; }
+  h2.q { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--deepwater); line-height: 1.2; margin: 8px 22px 6px; }
+  .micro { font-size: 12.5px; color: var(--cite); margin: 0 22px 16px; line-height: 1.45; font-style: italic; }
+  .opts { display: flex; flex-direction: column; gap: 10px; padding: 6px 22px 22px; }
+  .opt { text-align: left; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--deepwater); background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 15px 16px; cursor: pointer; transition: all .14s; }
+  .opt:hover { border-color: var(--current); background: #fff; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(7,56,77,.08); }
+  .opt.sel { border-color: var(--coral); background: #FFF5F3; }
+  .ms-hint { font-size: 11.5px; color: var(--cite); margin: 0 22px; }
+
+  /* primary CTA inside phone */
+  .cta { display:block; width: calc(100% - 44px); margin: 8px 22px 0; text-align:center; font-family: inherit; font-weight: 800; font-size: 15.5px; color:#fff; background: var(--coral); border:none; border-radius: 14px; padding: 16px; cursor:pointer; letter-spacing: -0.01em; box-shadow: 0 6px 18px rgba(240,78,54,.32); }
+  .cta:hover { filter: brightness(1.04); }
+  .cta.secondary { background:#fff; color: var(--tide); border: 1.5px solid var(--line); box-shadow:none; margin-top: 10px; }
+  .cta.wa { background: #25D366; box-shadow: 0 6px 18px rgba(37,211,102,.3); }
+  .skip { display:block; text-align:center; color: var(--cite); font-size: 13px; font-weight:600; margin: 14px 22px 0; cursor:pointer; }
+  .skip:hover { color: var(--tide); }
+
+  /* ---------- IG ad screen ---------- */
+  .ig-top { display:flex; align-items:center; gap:9px; padding: 12px 14px; flex: none; }
+  .ig-av { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg,var(--tide),var(--aqua)); display:grid; place-items:center; flex:none; }
+  .ig-handle { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .ig-handle small { display:block; font-weight:500; font-size:10.5px; color: var(--cite); }
+  .ig-sponsored { font-size: 10.5px; color: var(--cite); font-weight: 600; }
+  .ig-creative { background: linear-gradient(160deg, var(--deepwater), var(--tide) 130%); color:#fff; padding: 30px 24px; min-height: 340px; display:flex; flex-direction:column; justify-content:center; gap: 14px; position: relative; }
+  .ig-creative .big { font-size: 27px; font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; }
+  .ig-creative .big .hl { color: var(--aqua); }
+  .ig-creative .sub { font-size: 13.5px; color: rgba(255,255,255,.82); line-height:1.5; font-weight:500; }
+  .ig-creative .coin { position:absolute; right: 20px; top: 22px; font-size: 11px; font-weight:700; letter-spacing:.1em; color: rgba(255,255,255,.5); }
+  .ig-cta-bar { display:flex; align-items:center; justify-content:space-between; background:#fff; padding: 13px 16px; flex:none; border-top: 1px solid var(--line); }
+  .ig-cta-bar .lm { font-weight: 800; font-size: 14px; color: var(--tide); }
+  .ig-cta-bar .arr { color: var(--tide); font-weight:800; }
+  .ig-actions { display:flex; gap:16px; padding: 11px 16px; font-size: 19px; flex:none; }
+  .ig-caption { padding: 0 16px 16px; font-size: 12.5px; line-height: 1.5; color: var(--ink); flex:none; }
+  .ig-caption b { font-weight: 800; }
+
+  /* ---------- landing ---------- */
+  .landing { padding: 40px 24px; display:flex; flex-direction:column; height:100%; }
+  .landing .mark-row { display:flex; align-items:center; gap:8px; margin-bottom: auto; }
+  .landing .mark-row span { font-weight:800; letter-spacing:.12em; font-size:12px; color: var(--deepwater); }
+  .landing h2 { font-size: 30px; font-weight: 800; letter-spacing:-0.025em; color: var(--deepwater); line-height: 1.08; margin-bottom: 14px; }
+  .landing p { font-size: 15px; color: var(--cite); line-height:1.55; margin-bottom: 26px; }
+  .landing .badges { display:flex; gap: 8px; flex-wrap:wrap; margin-bottom: 22px; }
+  .badge { font-size: 11px; font-weight:700; color: var(--tide); background:#fff; border:1px solid var(--line); border-radius:999px; padding:6px 11px; }
+
+  /* ---------- email ---------- */
+  .field { margin: 4px 22px 14px; }
+  .field input { width:100%; font-family:inherit; font-size:15px; padding: 15px 16px; border:1.5px solid var(--line); border-radius:14px; color: var(--ink); background:#fff; }
+  .field input:focus { outline:none; border-color: var(--current); }
+  .reassure { font-size:12px; color: var(--cite); margin: 0 22px 16px; line-height:1.45; display:flex; gap:7px; }
+  .reassure svg { flex:none; margin-top:1px; }
+
+  /* ---------- loading ---------- */
+  .loading { height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 26px; padding: 30px; text-align:center; }
+  .spinner { width: 56px; height:56px; border-radius:50%; border: 4px solid var(--line); border-top-color: var(--current); animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading h3 { font-size: 19px; font-weight:800; color: var(--deepwater); letter-spacing:-0.01em; }
+  .loading .lines { font-size: 13px; color: var(--cite); height: 18px; }
+
+  /* ---------- result ---------- */
+  .result-head { background: linear-gradient(160deg, var(--deepwater), var(--tide)); color:#fff; padding: 26px 22px 30px; flex:none; }
+  .result-head .kicker2 { font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color: var(--aqua); font-weight:700; margin-bottom:14px; }
+  .result-head .bignum { font-size: 44px; font-weight: 800; letter-spacing:-0.03em; line-height:1; }
+  .result-head .bignum small { font-size: 22px; }
+  .result-head .num-cap { font-size: 12.5px; color: rgba(255,255,255,.8); margin-top: 10px; line-height:1.45; }
+  .gauge { height: 8px; background: rgba(255,255,255,.22); border-radius:999px; margin-top:18px; overflow:hidden; }
+  .gauge > i { display:block; height:100%; background: var(--coral); border-radius:999px; }
+  .gauge-cap { display:flex; justify-content:space-between; font-size:10px; color: rgba(255,255,255,.65); margin-top:6px; font-weight:600; }
+  .rcards { padding: 16px 18px 4px; display:flex; flex-direction:column; gap: 11px; }
+  .rcard { background:#fff; border:1px solid var(--line); border-radius:14px; padding: 14px; }
+  .rcard .rc-lbl { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color: var(--cite); font-weight:700; }
+  .rcard .rc-val { font-size: 17px; font-weight:800; color: var(--deepwater); margin-top:4px; }
+  .rcard .rc-sub { font-size:12px; color: var(--cite); margin-top:3px; line-height:1.4; }
+  .rcard.flag { border-color: #F6D6CF; background: #FFF7F5; }
+  .disclaimer { margin: 14px 18px 8px; font-size: 11.5px; color: var(--cite); line-height: 1.5; background: #EAF4F8; border-radius: 12px; padding: 12px 13px; }
+  .disclaimer b { color: var(--deepwater); }
+
+  /* ---------- archetype ---------- */
+  .arch-head { background: linear-gradient(160deg, var(--tide), var(--current)); color:#fff; padding: 30px 22px; flex:none; text-align:center; }
+  .arch-icon { width: 64px; height:64px; margin: 0 auto 16px; border-radius: 18px; background: rgba(255,255,255,.16); display:grid; place-items:center; }
+  .arch-head .a-kick { font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color: var(--aqua); font-weight:700; }
+  .arch-head h2 { font-size: 28px; font-weight:800; letter-spacing:-0.02em; margin: 8px 0 8px; }
+  .arch-head p { font-size: 13.5px; color: rgba(255,255,255,.85); line-height:1.5; }
+  .score-card { margin: 16px 18px 0; background:#fff; border:1px solid var(--line); border-radius:16px; padding: 18px; text-align:center; }
+  .score-card .sc-num { font-size: 40px; font-weight:800; color: var(--deepwater); letter-spacing:-0.02em; }
+  .score-card .sc-num span { font-size:20px; color: var(--cite); }
+  .score-card .sc-lbl { font-size:12px; color: var(--cite); margin-top:4px; line-height:1.45; }
+  .tripup { margin: 14px 18px 0; background:#FFF7F5; border:1px solid #F6D6CF; border-radius:14px; padding:14px; }
+  .tripup .tu-lbl { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--coral); font-weight:700; margin-bottom:6px; }
+  .tripup p { font-size:13px; color: var(--ink); line-height:1.5; }
+
+  /* ---------- whatsapp ---------- */
+  .wa { height:100%; display:flex; flex-direction:column; background: var(--wa-canvas); background-image: radial-gradient(rgba(7,56,77,.04) 1px, transparent 1px); background-size: 18px 18px; }
+  .wa-header { background: var(--wa-header); color:#fff; padding: 8px 14px 12px; display:flex; align-items:center; gap:11px; flex:none; }
+  .wa-back { font-size:18px; font-weight:700; }
+  .wa-av { width:36px; height:36px; border-radius:50%; background: linear-gradient(135deg,var(--tide),var(--aqua)); display:grid; place-items:center; flex:none; }
+  .wa-name { font-size:15px; font-weight:700; }
+  .wa-name small { display:block; font-weight:400; font-size:11px; color: rgba(255,255,255,.7); }
+  .wa-body { flex:1; overflow-y:auto; padding: 16px 12px; display:flex; flex-direction:column; gap:9px; }
+  .wa-day { align-self:center; background: rgba(255,255,255,.7); color: var(--cite); font-size:10.5px; font-weight:600; padding:4px 10px; border-radius:8px; margin-bottom: 4px; }
+  .bubble { max-width: 82%; font-size: 13.5px; line-height:1.45; padding: 9px 12px; border-radius: 12px; position:relative; box-shadow: 0 1px 1px rgba(0,0,0,.08); }
+  .bubble.in { align-self:flex-start; background:#fff; border-top-left-radius: 4px; color: var(--ink); }
+  .bubble.out { align-self:flex-end; background: var(--wa-out); border-top-right-radius:4px; color: var(--ink); }
+  .bubble .t { font-size: 9.5px; color: var(--cite); text-align:right; margin-top:3px; }
+  .wa-foot { flex:none; padding: 12px; background: transparent; }
+  .signature { text-align:center; font-size:12.5px; color: var(--deepwater); font-weight:600; line-height:1.5; padding: 6px 16px 0; font-style: italic; }
+
+  /* ---------- notes panel ---------- */
+  .notes { position: sticky; top: 20px; background:#fff; border:1px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: 0 4px 18px rgba(7,56,77,.06); }
+  .notes .n-stage { font-size: 11px; letter-spacing:.12em; text-transform:uppercase; color: var(--coral); font-weight:800; }
+  .notes h4 { font-size: 18px; font-weight:800; color: var(--deepwater); letter-spacing:-0.01em; margin: 6px 0 12px; line-height:1.2; }
+  .notes .n-block { margin-bottom: 14px; }
+  .notes .n-lbl { font-size: 10.5px; letter-spacing:.1em; text-transform:uppercase; color: var(--cite); font-weight:700; margin-bottom: 5px; }
+  .notes .n-txt { font-size: 13px; color: var(--ink); line-height:1.55; }
+  .notes .n-compliance { background:#EAF4F8; border-radius:12px; padding: 11px 12px; }
+  .notes .n-compliance .n-lbl { color: var(--tide); }
+  .nav-mini { display:flex; gap:8px; margin-top: 8px; }
+  .nav-mini button { flex:1; font-family:inherit; font-weight:700; font-size:12.5px; padding:10px; border-radius:10px; cursor:pointer; border:1px solid var(--line); background:#fff; color: var(--cite); }
+  .nav-mini button.fwd { background: var(--deepwater); color:#fff; border-color: var(--deepwater); }
+  .nav-mini button:disabled { opacity:.4; cursor:default; }
+
+  .footnote { max-width: 1180px; margin: 36px auto 0; font-size: 11.5px; color: var(--cite); line-height:1.6; border-top:1px solid var(--line); padding-top: 16px; }
+
+  @media (max-width: 1080px) {
+    .stage { grid-template-columns: 1fr; }
+    .flowmap, .notes { position: static; }
+    .flowmap { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="lockup">
+    <svg class="orbit" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#07384D" stroke-width="4"/><circle cx="20" cy="6" r="3.4" fill="#F04E36"/></svg>
+    <div class="wordmark">ONESTOP<span class="by">building Jarvis</span></div>
+  </div>
+  <h1 class="title">Instagram paid-quiz funnel — makeshift wireframe</h1>
+  <p class="subtitle">A clickable mock of the ADHD-quiz pattern, built for Jarvis. Two funnels on one system: <b>Funnel A</b> drives a cold paid ad into a fee-roast diagnostic; <b>Funnel B</b> is the evergreen money-personality quiz. Tap through the phone. The right panel is the thinking — what each screen is doing and where the SEBI line sits.</p>
+  <div class="meta-row">
+    <span><i class="dot"></i> Maps to GTM Option 2 + 3</span>
+    <span><i class="dot"></i> Value-first → WhatsApp handoff</span>
+    <span><i class="dot"></i> India v1 · ₹ · no buy/sell, no named fund</span>
+    <span><i class="dot"></i> Not built — a wireframe to react to</span>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-funnel="A">Funnel A<small>Fee Roast · the paid ad</small></button>
+    <button class="tab" data-funnel="B">Funnel B<small>Money Personality · content</small></button>
+  </div>
+  <div class="toggle" id="paidToggle"><div class="switch"></div> Show the optional ₹79 paid step</div>
+  <button class="btn-ghost" id="restartBtn">↻ Restart funnel</button>
+</div>
+
+<div class="stage">
+  <aside class="flowmap">
+    <h3>The flow</h3>
+    <div id="flowmap"></div>
+  </aside>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen" id="screen"></div>
+    </div>
+    <div class="phone-caption" id="phoneCaption"></div>
+  </div>
+
+  <aside class="notes" id="notes"></aside>
+</div>
+
+<p class="footnote" id="footnote"></p>
+
+<script>
+/* ============================================================
+   Jarvis quiz-funnel wireframe — interactive prototype
+   ============================================================ */
+
+const state = { funnel: 'A', idx: 0, showPaid: false, answers: {} };
+
+/* ---------- helpers ---------- */
+function fmtINR(n) {
+  if (n >= 1e7) return '₹' + (n/1e7).toFixed(n/1e7 >= 10 ? 0 : 1) + ' Cr';
+  if (n >= 1e5) return '₹' + (n/1e5).toFixed(n/1e5 >= 10 ? 0 : 1) + ' L';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+const statusbar = (dark) => `<div class="statusbar ${dark?'dark':''}"><span>9:41</span><span class="sb-icons">5G &nbsp;100%</span></div>`;
+
+/* ---------- A: fee-drag math (rough, for the demo) ---------- */
+function computeA(a) {
+  const amt = {u5:300000, '5_25':1500000, '25_1c':6000000, o1c:20000000, ns:1500000}[a.amount] ?? 1500000;
+  const er  = {regular:0.011, mix:0.007, direct:0.001, noidea:0.011}[a.plan] ?? 0.009;
+  const annual = amt * er;
+  const cost25 = annual * 25 * 1.9;           // crude compounding uplift, clearly labelled an estimate
+  const idle = {u1:50000, '1_10':500000, '10_50':2500000, more:8000000}[a.idle] ?? 0;
+  const manyFunds = (a.funds === 'f9_15' || a.funds === 'f15');
+  return { amt, er, annual, cost25, idle, manyFunds };
+}
+
+/* ---------- B: archetype + clarity score ---------- */
+const ARCHETYPES = {
+  compounder: { name:'The Quiet Compounder', desc:'You hold through the noise and let time do the work. Rare, and quietly powerful.' },
+  refresher:  { name:'The Vigilant Refresher', desc:'You watch closely — which keeps you sharp, but also keeps you anxious on red days.' },
+  chaser:     { name:'The Tip-Chaser', desc:'You move fast on a good story. Energy is an asset; it just needs a filter.' },
+  drifter:    { name:'The Set-and-Drifter', desc:'You set things up once and looked away. Calm, but a lot can drift in the dark.' },
+  researcher: { name:'The Deliberate Researcher', desc:'You read before you act. Thorough — as long as research doesn’t become a place to hide.' },
+  delegator:  { name:'The Trusting Delegator', desc:'Someone else drives your money. Convenient, if you know what you’re paying them for.' },
+};
+function computeB(a) {
+  let key = 'researcher';
+  if (a.drop === 'hold' && (a.check === 'rare' || a.check === 'monthly')) key = 'compounder';
+  else if (a.check === 'daily' || a.drop === 'check') key = 'refresher';
+  else if (a.tip === 'big' || a.decide === 'trend') key = 'chaser';
+  else if (a.drop === 'away' && (a.goals === 'vague' || a.goals === 'none')) key = 'drifter';
+  else if (a.decide === 'advisor') key = 'delegator';
+  else if (a.decide === 'research') key = 'researcher';
+
+  let score = 58;
+  if (a.fees === 'know') score += 14; if (a.fees === 'overpay') score += 4;
+  if (a.fees === 'noclue') score -= 12; if (a.fees === 'free') score -= 16;
+  if (a.goals === 'clear') score += 10; if (a.goals === 'none') score -= 10;
+  if (a.decide === 'research') score += 6; if (a.decide === 'trend') score -= 8;
+  if (a.check === 'daily') score -= 6; if (a.check === 'rare' || a.check === 'monthly') score += 4;
+  if (a.tip === 'ignore') score += 6; if (a.tip === 'big') score -= 8;
+  score = Math.max(31, Math.min(94, score));
+
+  const tripups = {
+    compounder: 'You’re calm in a crash — good. But calm can hide a fee leak you’ve never actually checked. Steady money still bleeds quietly.',
+    refresher:  'You see every dip, which means you feel every dip. The cost isn’t your picks — it’s the trades anxiety talks you into.',
+    chaser:     'The tips that reach you are the ones already crowded. The system loves a fast mover; it rarely pays one.',
+    drifter:    'The danger isn’t a bad decision — it’s the years of small ones nobody made. Drift compounds the same way returns do.',
+    researcher: 'You’ll out-read most people. Just watch the funds that overlap — twelve reports can still own the same three things.',
+    delegator:  'Trust is fine. Not knowing the commission baked into that trust is the part the system counts on.',
+  };
+  return { arch: ARCHETYPES[key], score, tripup: tripups[key] };
+}
+
+/* ============================================================
+   SCREEN DEFINITIONS
+   ============================================================ */
+const SCREENS = {
+
+  /* ---------------- FUNNEL A ---------------- */
+  a_ad: { stage:'Ad', dark:false, render: () => `
+    ${statusbar(false)}
+    <div class="ig-top">
+      <div class="ig-av"><svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#fff" stroke-width="4"/><circle cx="20" cy="7" r="3.4" fill="#63E4EF"/></svg></div>
+      <div style="flex:1"><div class="ig-handle">jarvis.money <small>Sponsored</small></div></div>
+      <div style="font-size:18px;color:var(--cite)">···</div>
+    </div>
+    <div class="ig-creative">
+      <div class="coin">ONESTOP</div>
+      <div class="big">If you can’t see the fee,<br><span class="hl">you’re the fee.</span></div>
+      <div class="sub">Your regular mutual funds quietly pay someone a commission every year. We did the math on 25 years of it.</div>
+    </div>
+    <div class="ig-cta-bar" data-action="next">
+      <span class="lm">Learn more</span><span class="arr">→</span>
+    </div>
+    <div class="ig-actions"><span>♡</span><span>💬</span><span>➤</span></div>
+    <div class="ig-caption"><b>jarvis.money</b> The 3-minute money check. No login. No judgment. Just your number. <span style="color:var(--tide)">Tap “Learn more”.</span></div>
+  `},
+
+  a_landing: { stage:'Quiz', dark:false, render: () => `
+    ${statusbar(false)}
+    <div class="landing">
+      <div class="mark-row"><svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#07384D" stroke-width="4"/><circle cx="20" cy="7" r="3.4" fill="#F04E36"/></svg><span>quiz.jarvis.money</span></div>
+      <h2>What are your investments actually costing you?</h2>
+      <p>A 3-minute money check. No login, no judgment — just an honest estimate of the fees nobody put on a receipt.</p>
+      <div class="badges"><span class="badge">3 minutes</span><span class="badge">8 questions</span><span class="badge">No statement needed</span></div>
+      <button class="cta" data-action="next" style="margin-left:0;margin-right:0;width:100%">Start the check</button>
+    </div>
+  `},
+
+  a_q1: { stage:'Quiz', q:true, render: () => question({
+    key:'amount', num:1, total:7,
+    q:'Roughly how much do you have in mutual funds?',
+    micro:'Ballpark is fine. Nobody’s checking.',
+    opts:[['u5','Under ₹5 lakh'],['5_25','₹5–25 lakh'],['25_1c','₹25 lakh – ₹1 crore'],['o1c','Over ₹1 crore'],['ns','Honestly not sure']]
+  })},
+
+  a_q2: { stage:'Quiz', q:true, render: () => question({
+    key:'plan', num:2, total:7,
+    q:'Are they mostly regular plans, or direct?',
+    micro:'Regular plans carry a built-in commission. Most people are never shown it.',
+    opts:[['regular','Mostly regular'],['direct','Mostly direct'],['mix','A bit of both'],['noidea','No idea what that means']]
+  })},
+
+  a_q3: { stage:'Quiz', q:true, render: () => question({
+    key:'funds', num:3, total:7,
+    q:'How many funds are you holding, roughly?',
+    micro:'',
+    opts:[['f1_3','1–3'],['f4_8','4–8'],['f9_15','9–15'],['f15','15 or more']]
+  })},
+
+  a_q4: { stage:'Quiz', q:true, render: () => question({
+    key:'years', num:4, total:7,
+    q:'How long have you been investing?',
+    micro:'',
+    opts:[['y2','Under 2 years'],['y5','2–5 years'],['y10','5–10 years'],['y10p','10+ years']]
+  })},
+
+  a_q5: { stage:'Quiz', q:true, render: () => question({
+    key:'idle', num:5, total:7,
+    q:'Any idle cash just sitting in savings or current accounts?',
+    micro:'Idle money isn’t safe. It just feels safe.',
+    opts:[['u1','Under ₹1 lakh'],['1_10','₹1–10 lakh'],['10_50','₹10–50 lakh'],['more','More than that']]
+  })},
+
+  a_q6: { stage:'Quiz', q:true, render: () => question({
+    key:'whoset', num:6, total:7,
+    q:'Who set up most of your investments?',
+    micro:'',
+    opts:[['me','I did, myself'],['advisor','An advisor / relationship manager'],['bank','My bank'],['friend','A friend or family member']]
+  })},
+
+  a_q7: { stage:'Quiz', q:true, render: () => question({
+    key:'drop', num:7, total:7,
+    q:'Markets drop 10% on a Tuesday. You usually…',
+    micro:'No wrong answer here. This one’s just for your read.',
+    opts:[['hold','Hold and get on with my day'],['check','Check the app every hour'],['buy','Quietly buy a little more'],['away','Look away till it passes']]
+  })},
+
+  a_email: { stage:'Email', render: () => `
+    ${statusbar(false)}
+    <div class="progress"><i style="width:100%"></i></div>
+    <div class="q-num">Last one</div>
+    <h2 class="q">Where should we send your money picture?</h2>
+    <p class="micro" style="font-style:normal">It’s ready. Drop an email and your number’s inside.</p>
+    <div class="field"><input type="email" placeholder="you@email.com" /></div>
+    <div class="reassure">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E6E74" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      No spam. No advisor will call you. One email — your number, and nothing you have to do.
+    </div>
+    <button class="cta" data-action="next">Show me my number</button>
+  `},
+
+  a_loading: { stage:'Result', auto: 1700, render: () => `
+    ${statusbar(false)}
+    <div class="loading">
+      <div class="spinner"></div>
+      <h3>Doing the math on your fee drag…</h3>
+      <div class="lines" id="loadLines">Reading your answers…</div>
+    </div>
+  `},
+
+  a_result: { stage:'Result', render: () => {
+    const r = computeA(state.answers);
+    return `
+    ${statusbar(true)}
+    <div class="view">
+      <div class="result-head">
+        <div class="kicker2">Your money picture</div>
+        <div class="bignum">≈ ${fmtINR(r.cost25)}</div>
+        <div class="num-cap">is roughly what fees could quietly skim over the next 25 years — based on ${fmtINR(r.amt)} in ${planLabel(state.answers.plan)}.*</div>
+        <div class="gauge"><i style="width:${Math.min(92, 22 + r.er*4000)}%"></i></div>
+        <div class="gauge-cap"><span>Lean fees</span><span>Heavy drag</span></div>
+      </div>
+      <div class="rcards">
+        <div class="rcard">
+          <div class="rc-lbl">Estimated fee drag</div>
+          <div class="rc-val">≈ ${fmtINR(r.annual)} / year</div>
+          <div class="rc-sub">The bill that never comes with a receipt.</div>
+        </div>
+        ${r.idle >= 1000000 ? `
+        <div class="rcard flag">
+          <div class="rc-lbl">Idle cash, sitting still</div>
+          <div class="rc-val">${fmtINR(r.idle)}+ parked</div>
+          <div class="rc-sub">Not wrong. Just not working — worth a look.</div>
+        </div>` : ''}
+        ${r.manyFunds ? `
+        <div class="rcard flag">
+          <div class="rc-lbl">Possible overlap</div>
+          <div class="rc-val">${state.answers.funds==='f15'?'15+':'9–15'} funds</div>
+          <div class="rc-sub">A pile of funds often owns the same things twice. Diversification you’re paying for, not getting.</div>
+        </div>` : ''}
+      </div>
+      <div class="disclaimer">
+        <b>This is a rough picture, not advice.</b> It’s built from typical category fees, not your real statement — an estimate. No fund named, nothing to buy or sell. Your exact number lives in your actual holdings.
+      </div>
+      <div class="pad" style="padding-top:6px">
+        <button class="cta wa" data-action="next">See my exact number on WhatsApp →</button>
+        ${state.showPaid ? `<button class="cta secondary" data-action="paid">Or unlock the full picture →</button>` : ''}
+      </div>
+    </div>
+  `}},
+
+  a_paid: { stage:'Paid', render: () => `
+    ${statusbar(false)}
+    <div class="view pad">
+      <div class="kicker" style="color:var(--coral)">Optional</div>
+      <h2 class="q" style="margin-left:0">Want the exact number, not the estimate?</h2>
+      <p class="micro" style="margin-left:0;font-style:normal">Upload your statement once. Jarvis reads your real holdings — fees, overlaps, idle cash — and explains them in plain language. Jump the invite queue while you’re at it.</p>
+      <div class="rcard" style="margin-bottom:12px">
+        <div class="rc-lbl">What you get</div>
+        <div class="rc-sub" style="margin-top:8px;line-height:1.7">
+          · Your real fee number, from your real funds<br>
+          · Overlaps and concentration, named plainly<br>
+          · Priority onboarding to Jarvis on WhatsApp
+        </div>
+      </div>
+      <div style="text-align:center;margin:18px 0 6px">
+        <span style="font-size:34px;font-weight:800;color:var(--deepwater);letter-spacing:-0.02em">₹79</span>
+        <span style="font-size:13px;color:var(--cite);font-weight:600"> one-time</span>
+      </div>
+      <p class="micro" style="text-align:center;font-style:normal;margin:0 22px 14px">You already have your free picture. This is just the deeper, faster version.</p>
+      <button class="cta" data-action="next">Unlock for ₹79</button>
+      <div class="skip" data-action="next">No thanks — take me to Jarvis</div>
+      <p class="micro" style="text-align:center;margin-top:14px">Still a description of what you already own. Never a buy or sell call.</p>
+    </div>
+  `},
+
+  a_whatsapp: { stage:'WhatsApp', dark:true, render: () => `
+    ${statusbar(true)}
+    <div class="wa">
+      <div class="wa-header">
+        <span class="wa-back">‹</span>
+        <div class="wa-av"><svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#fff" stroke-width="4"/><circle cx="20" cy="7" r="3.4" fill="#63E4EF"/></svg></div>
+        <div class="wa-name">Jarvis <small>online</small></div>
+      </div>
+      <div class="wa-body">
+        <div class="wa-day">TODAY</div>
+        <div class="bubble in">Got your money picture — ${fmtINR(computeA(state.answers).cost25)} of fee drag over 25 years, roughly.<div class="t">9:41</div></div>
+        <div class="bubble in">Want me to pull the <b>exact</b> number from your real statement? I’ll read your actual funds and explain the leaks in plain words. No selling you anything.<div class="t">9:41</div></div>
+        <div class="bubble out">go on then<div class="t">9:41 ✓✓</div></div>
+        <div class="bubble in">Send me your CAS whenever you’re ready. And hey — your 25-year plan is fine. This isn’t an emergency.<div class="t">9:42</div></div>
+      </div>
+      <div class="wa-foot">
+        <button class="cta wa" data-action="restart">Open WhatsApp · join the beta</button>
+        <div class="signature">“Markets are down 2%. Your 25-year plan is fine.<br>Close the app. Go for a walk.”</div>
+      </div>
+    </div>
+  `},
+
+  /* ---------------- FUNNEL B ---------------- */
+  b_ad: { stage:'Post', render: () => `
+    ${statusbar(false)}
+    <div class="ig-top">
+      <div class="ig-av"><svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#fff" stroke-width="4"/><circle cx="20" cy="7" r="3.4" fill="#63E4EF"/></svg></div>
+      <div style="flex:1"><div class="ig-handle">jarvis.money</div></div>
+      <div style="font-size:18px;color:var(--cite)">···</div>
+    </div>
+    <div class="ig-creative" style="background:linear-gradient(160deg,var(--tide),var(--current))">
+      <div class="coin">6 TYPES</div>
+      <div class="big">There are six kinds of investor.<br><span class="hl">One quietly loses the most</span> — and doesn’t know it.</div>
+      <div class="sub">Not a test you can fail. Just a 3-minute read on how you actually move with money.</div>
+    </div>
+    <div class="ig-cta-bar" data-action="next">
+      <span class="lm">Find my type</span><span class="arr">→</span>
+    </div>
+    <div class="ig-actions"><span>♡</span><span>💬</span><span>➤</span></div>
+    <div class="ig-caption"><b>jarvis.money</b> Which one are you? Six investor types, one honest read. <span style="color:var(--tide)">Tap to start.</span></div>
+  `},
+
+  b_landing: { stage:'Quiz', render: () => `
+    ${statusbar(false)}
+    <div class="landing">
+      <div class="mark-row"><svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#07384D" stroke-width="4"/><circle cx="20" cy="7" r="3.4" fill="#F04E36"/></svg><span>quiz.jarvis.money</span></div>
+      <h2>What’s your money personality?</h2>
+      <p>Six types. One’s yours. It’s about how you behave with money — not whether your picks are good. No judgment, none of it leaves with a sales call.</p>
+      <div class="badges"><span class="badge">3 minutes</span><span class="badge">8 questions</span><span class="badge">Shareable result</span></div>
+      <button class="cta" data-action="next" style="margin-left:0;margin-right:0;width:100%">Find my type</button>
+    </div>
+  `},
+
+  b_q1: { stage:'Quiz', q:true, render: () => question({
+    key:'drop', num:1, total:7,
+    q:'Markets drop 10%. Your gut says…',
+    micro:'',
+    opts:[['hold','Hold — this is normal'],['check','Check it constantly'],['buy','Buy more, it’s on sale'],['away','Look away till it passes']]
+  })},
+
+  b_q2: { stage:'Quiz', q:true, render: () => question({
+    key:'check', num:2, total:7,
+    q:'How often do you check your investments?',
+    micro:'',
+    opts:[['rare','Barely ever'],['monthly','Monthly-ish'],['weekly','A few times a week'],['daily','Several times a day']]
+  })},
+
+  b_q3: { stage:'Quiz', q:true, render: () => question({
+    key:'decide', num:3, total:7,
+    q:'How do most of your money decisions get made?',
+    micro:'',
+    opts:[['research','I research first'],['gut','Gut feeling'],['advisor','My advisor decides'],['trend','Whatever’s trending']]
+  })},
+
+  b_q4: { stage:'Quiz', q:true, render: () => question({
+    key:'tip', num:4, total:7,
+    q:'A friend shares a “can’t-miss” tip. You…',
+    micro:'',
+    opts:[['ignore','Ignore it'],['look','Look into it calmly'],['little','Put a little in'],['big','Go big before it’s gone']]
+  })},
+
+  b_q5: { stage:'Quiz', q:true, render: () => question({
+    key:'goals', num:5, total:7,
+    q:'How clear are your money goals?',
+    micro:'',
+    opts:[['clear','Crystal clear'],['rough','Roughly there'],['vague','Pretty vague'],['none','What goals']]
+  })},
+
+  b_q6: { stage:'Quiz', q:true, render: () => question({
+    key:'worry', num:6, total:7,
+    q:'Your biggest money worry right now?',
+    micro:'Pick the one that nags most.',
+    opts:[['behind','Am I behind?'],['fees','Fees eating my returns'],['concentrated','Too much in one place'],['noplan','No real plan'],['outlive','Outliving my savings']]
+  })},
+
+  b_q7: { stage:'Quiz', q:true, render: () => question({
+    key:'fees', num:7, total:7,
+    q:'Be honest — the fees and commissions you pay are…',
+    micro:'',
+    opts:[['know','Something I know exactly'],['overpay','Probably more than I should'],['noclue','A total mystery'],['free','Wait, aren’t they free?']]
+  })},
+
+  b_email: { stage:'Email', render: () => `
+    ${statusbar(false)}
+    <div class="progress"><i style="width:100%"></i></div>
+    <div class="q-num">Last one</div>
+    <h2 class="q">Where should we send your type?</h2>
+    <p class="micro" style="font-style:normal">Your archetype and clarity score are ready.</p>
+    <div class="field"><input type="email" placeholder="you@email.com" /></div>
+    <div class="reassure">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E6E74" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      No spam. Your type and score, one email. No advisor will call you.
+    </div>
+    <button class="cta" data-action="next">Reveal my type</button>
+  `},
+
+  b_loading: { stage:'Result', auto: 1700, render: () => `
+    ${statusbar(false)}
+    <div class="loading">
+      <div class="spinner"></div>
+      <h3>Reading how you move with money…</h3>
+      <div class="lines" id="loadLines">Matching your pattern…</div>
+    </div>
+  `},
+
+  b_result: { stage:'Result', dark:true, render: () => {
+    const r = computeB(state.answers);
+    return `
+    ${statusbar(true)}
+    <div class="view">
+      <div class="arch-head">
+        <div class="arch-icon"><svg width="30" height="30" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#fff" stroke-width="3.5"/><circle cx="20" cy="7" r="3.2" fill="#63E4EF"/></svg></div>
+        <div class="a-kick">You are</div>
+        <h2>${r.arch.name}</h2>
+        <p>${r.arch.desc}</p>
+      </div>
+      <div class="score-card">
+        <div class="sc-num">${r.score}<span>/100</span></div>
+        <div class="sc-lbl">Your money clarity score — how clearly you see your own money. Not how good your picks are.</div>
+      </div>
+      <div class="tripup">
+        <div class="tu-lbl">What people like you get tripped up by</div>
+        <p>${r.tripup}</p>
+      </div>
+      <div class="pad" style="padding-top:16px">
+        <button class="cta secondary" data-action="none">Share your type</button>
+        <button class="cta wa" data-action="next" style="margin-top:10px">Meet Jarvis — built for your type →</button>
+      </div>
+    </div>
+  `}},
+
+  b_whatsapp: { stage:'WhatsApp', dark:true, render: () => {
+    const r = computeB(state.answers);
+    return `
+    ${statusbar(true)}
+    <div class="wa">
+      <div class="wa-header">
+        <span class="wa-back">‹</span>
+        <div class="wa-av"><svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#fff" stroke-width="4"/><circle cx="20" cy="7" r="3.4" fill="#63E4EF"/></svg></div>
+        <div class="wa-name">Jarvis <small>online</small></div>
+      </div>
+      <div class="wa-body">
+        <div class="wa-day">TODAY</div>
+        <div class="bubble in">So you’re ${r.arch.name.replace('The ','')}. Makes sense.<div class="t">9:41</div></div>
+        <div class="bubble in">I’m built for exactly your type — I’ll catch the thing your pattern tends to miss, and I’ll never tell you what to buy. Want to start with what you already own?<div class="t">9:41</div></div>
+        <div class="bubble out">yeah okay<div class="t">9:41 ✓✓</div></div>
+        <div class="bubble in">Good. No rush, no app to download. I’m right here in the chat you already check.<div class="t">9:42</div></div>
+      </div>
+      <div class="wa-foot">
+        <button class="cta wa" data-action="restart">Open WhatsApp · join the beta</button>
+        <div class="signature">“Markets are down 2%. Your 25-year plan is fine.<br>Close the app. Go for a walk.”</div>
+      </div>
+    </div>
+  `}},
+};
+
+/* ---------- question template ---------- */
+function question({key, num, total, q, micro, opts}) {
+  const pct = Math.round((num/(total+1))*100);
+  const sel = state.answers[key];
+  return `
+    ${statusbar(false)}
+    <div class="progress"><i style="width:${pct}%"></i></div>
+    <div class="view">
+      <div class="q-num">Question ${num} of ${total}</div>
+      <h2 class="q">${q}</h2>
+      ${micro ? `<p class="micro">${micro}</p>` : '<div style="height:6px"></div>'}
+      <div class="opts">
+        ${opts.map(([v,l]) => `<button class="opt ${sel===v?'sel':''}" data-action="choose" data-key="${key}" data-value="${v}">${l}</button>`).join('')}
+      </div>
+    </div>
+  `;
+}
+function planLabel(p){ return {regular:'mostly regular plans', direct:'mostly direct plans', mix:'a mix of plans', noidea:'plans you haven’t checked yet'}[p] || 'your funds'; }
+
+/* ============================================================
+   SEQUENCES + NOTES
+   ============================================================ */
+const SEQ = {
+  A: ['a_ad','a_landing','a_q1','a_q2','a_q3','a_q4','a_q5','a_q6','a_q7','a_email','a_loading','a_result','a_paid','a_whatsapp'],
+  B: ['b_ad','b_landing','b_q1','b_q2','b_q3','b_q4','b_q5','b_q6','b_q7','b_email','b_loading','b_result','b_whatsapp'],
+};
+function activeSeq() {
+  let s = SEQ[state.funnel].slice();
+  if (state.funnel === 'A' && !state.showPaid) s = s.filter(id => id !== 'a_paid');
+  return s;
+}
+
+const NOTES = {
+  a_ad: { title:'The driving ad', intent:'Cold paid creative on IG/Meta. Steals the genre skeleton (pain → soft “Learn more” → quiz) but in Jarvis’s register: a reframe punchline, not hype. The villain is the fee system, never the user.', comp:'No return promise, no named fund, no live ticker. Roasts the commission, not the person — keeps Meta’s finance-vertical review happy too.' },
+  a_landing: { title:'Quiz landing', intent:'Own quiz.* subdomain, time-boxed promise (“3 minutes”), one Start button. The number kills hesitation; “no judgment” pre-empts the shame most finance ads trade on.', comp:'Frames the output as “an estimate of fees,” never “a plan.” Sets the education tone from screen one.' },
+  a_q1: { title:'Sunk-cost question 1', intent:'Bands, not exact figures — every easy tap builds commitment and self-relevance. The quiz IS the pitch.', comp:'Ranges only. We never ask for or store a real holding here.' },
+  a_q2: { title:'The wedge question', intent:'Regular-vs-direct is the felt-outrage moment (INDmoney’s validated angle). The micro-line teaches without lecturing.', comp:'States a category fact (“regular plans carry a commission”). Generic, true, no named AMC.' },
+  a_q3: { title:'Overlap signal', intent:'Fund count seeds the “diversification you’re paying for but not getting” flag on the result screen.', comp:'Counting funds is description, not a recommendation to consolidate.' },
+  a_q4: { title:'Context', intent:'Tenure colours the read and makes the result feel personal. Low-friction single tap.', comp:'Neutral — no advice implication.' },
+  a_q5: { title:'Idle-cash signal', intent:'Surfaces a second leak beyond fees. “Idle isn’t safe, it just feels safe” is the reframe.', comp:'We flag that it’s idle. We do NOT say where to move it.' },
+  a_q6: { title:'The half-trusted advisor', intent:'Quietly qualifies the mass-affluent user (has an advisor / RM / bank) without saying “qualify”.', comp:'No screening language — it reads as curiosity, not a suitability test.' },
+  a_q7: { title:'Behaviour seed', intent:'Last real question is about them, not their money — warm, and it seeds Funnel B’s archetype if we cross-link.', comp:'“No wrong answer” — we never grade the user.' },
+  a_email: { title:'The email gate', intent:'Sits at the very end, after maximum sunk cost. Framed as delivery (“where to send your picture”), not a toll.', comp:'DPDP: minimal data, explicit reassurance no advisor calls. Consent is clean and narrow.' },
+  a_loading: { title:'The reveal beat', intent:'A short “building your result” pause is the genre’s favourite trick — it makes the output feel computed and earned. Calm copy, not hype.', comp:'—' },
+  a_result: { title:'The free aha — Money Picture', intent:'Value delivered BEFORE any paywall. The big 25-year number creates the “oh” the whole funnel exists for. This is the conversion fuel.', comp:'THE load-bearing screen. Estimate from category averages, labelled an estimate. No fund named, nothing to buy/sell. “A rough picture, not advice” sits right under the number.' },
+  a_paid: { title:'Optional ₹79 tripwire', intent:'Only appears AFTER the free aha — so paying feels like “deeper + faster,” never a toll on the door. Tests willingness-to-pay and filters for real money (the $2-quiz logic).', comp:'Highest-risk screen. A paid read of a real CAS edges toward robo-advice — must stay strictly descriptive (overlaps, fees), route every “what do I do” to frameworks / a SEBI-RIA. Needs counsel sign-off before it ships.' },
+  a_whatsapp: { title:'The real conversion', intent:'Not a PDF dead-end — a living WhatsApp thread. The handoff is the actual business goal: first session with a real money problem already loaded.', comp:'Jarvis describes the leak, never prescribes. Closes on the signature line — restraint as the brand’s whole personality.' },
+
+  b_ad: { title:'Organic / content post', intent:'The evergreen engine. “6 types, one quietly loses the most” is a curiosity hook that earns saves and shares for free — feeds the same funnel without ad spend.', comp:'Pure curiosity, zero advice or performance claim.' },
+  b_landing: { title:'Quiz landing', intent:'“About how you behave, not whether your picks are good” — the line that makes it safe AND non-judgmental.', comp:'Explicitly NOT about holdings. The safest possible structure.' },
+  b_q1: { title:'Behaviour only', intent:'Every question is about the human, never the portfolio — that’s what makes this the zero-advice-risk funnel (the 1Finance MoneySign model).', comp:'No securities touched at any point.' },
+  b_q2: { title:'Behaviour only', intent:'Checking frequency feeds the archetype. High completion because it’s fun, not financial.', comp:'Clean.' },
+  b_q3: { title:'Behaviour only', intent:'How decisions get made — separates the Researcher / Delegator / Tip-Chaser.', comp:'Clean.' },
+  b_q4: { title:'Behaviour only', intent:'The tip question is the most shareable — everyone recognises themselves.', comp:'Clean.' },
+  b_q5: { title:'Behaviour only', intent:'Goal clarity feeds the clarity score and the “Set-and-Drifter” read.', comp:'Clean.' },
+  b_q6: { title:'Soft pain capture', intent:'The one worry that nags — useful context for the WhatsApp handoff, and it primes the user for Jarvis’s value.', comp:'Captures a worry, not a holding. No advice triggered.' },
+  b_q7: { title:'Fee awareness', intent:'Bridges to Funnel A’s theme and drops the clarity score for the “aren’t they free?” crowd — a teachable jolt.', comp:'A self-assessment, not a recommendation.' },
+  b_email: { title:'The email gate', intent:'Same as A: end-placed, framed as delivering the result, not gating it.', comp:'Minimal data, narrow consent (DPDP).' },
+  b_loading: { title:'The reveal beat', intent:'Builds anticipation for the archetype reveal — the dopamine the whole quiz is paying off.', comp:'—' },
+  b_result: { title:'Archetype + clarity score', intent:'The shareable payoff: a named identity + a /100 number people want to improve (drives return visits). “Roast the system, never the user” is literally coded into the trip-up line.', comp:'Score anchored to BEHAVIOUR, never pick-quality. The trip-up names a system trap (fees, crowded tips), not a user failing.' },
+  b_whatsapp: { title:'The handoff', intent:'Jarvis greets you by your type — instant “it knows me.” Same conversion goal as A: a WhatsApp first session.', comp:'No buy/sell. Offers to “start with what you already own,” framed as understanding, not advice.' },
+};
+
+/* ---------- flow-map stages ---------- */
+const STAGE_ORDER = ['Ad','Quiz','Email','Result','Paid','WhatsApp'];
+const STAGE_LABEL = {
+  Ad:['The ad','cold paid creative'], Post:['The post','organic / content'],
+  Quiz:['The quiz','sunk-cost questions'], Email:['Email gate','where to send it'],
+  Result:['The aha','free value first'], Paid:['₹79 (optional)','willingness-to-pay'],
+  WhatsApp:['WhatsApp','the real conversion'],
+};
+
+/* ============================================================
+   RENDER + NAV
+   ============================================================ */
+const screenEl = document.getElementById('screen');
+const notesEl = document.getElementById('notes');
+const flowEl = document.getElementById('flowmap');
+const captionEl = document.getElementById('phoneCaption');
+
+function curId(){ return activeSeq()[state.idx]; }
+
+function render() {
+  const seq = activeSeq();
+  if (state.idx >= seq.length) state.idx = seq.length - 1;
+  const id = seq[state.idx];
+  const def = SCREENS[id];
+
+  screenEl.innerHTML = def.render();
+  captionEl.textContent = `${state.funnel === 'A' ? 'Funnel A · Fee Roast' : 'Funnel B · Money Personality'}  ·  screen ${state.idx+1} of ${seq.length}`;
+
+  renderNotes(id);
+  renderFlow(id);
+
+  // loading auto-advance + rotating lines
+  if (def.auto) {
+    const lines = state.funnel === 'A'
+      ? ['Reading your answers…','Estimating category fees…','Stretching it over 25 years…']
+      : ['Matching your pattern…','Scoring your clarity…','Naming your type…'];
+    let i = 0; const el = document.getElementById('loadLines');
+    const iv = setInterval(()=>{ i++; if(el && lines[i]) el.textContent = lines[i]; }, 520);
+    setTimeout(()=>{ clearInterval(iv); next(); }, def.auto);
+  }
+}
+
+function renderNotes(id) {
+  const n = NOTES[id] || {title:'', intent:'', comp:''};
+  const seq = activeSeq();
+  notesEl.innerHTML = `
+    <div class="n-stage">${SCREENS[id].stage}${SCREENS[id].q?' · question':''}</div>
+    <h4>${n.title}</h4>
+    <div class="n-block"><div class="n-lbl">What this screen does</div><div class="n-txt">${n.intent}</div></div>
+    ${n.comp && n.comp !== '—' ? `<div class="n-block n-compliance"><div class="n-lbl">Voice &amp; compliance note</div><div class="n-txt">${n.comp}</div></div>` : ''}
+    <div class="nav-mini">
+      <button data-action="back" ${state.idx===0?'disabled':''}>← Back</button>
+      <button class="fwd" data-action="next" ${state.idx>=seq.length-1?'disabled':''}>Next →</button>
+    </div>
+  `;
+}
+
+function renderFlow(id) {
+  const stage = SCREENS[id].stage === 'Post' ? 'Ad' : SCREENS[id].stage;
+  const order = STAGE_ORDER.filter(s => state.funnel==='A' ? (s!=='Paid' || state.showPaid) : (s!=='Paid'));
+  const ci = order.indexOf(stage);
+  flowEl.innerHTML = order.map((s, i) => {
+    const lab = STAGE_LABEL[ s==='Ad' && state.funnel==='B' ? 'Post' : s ] || [s,''];
+    const cls = i < ci ? 'done' : (i === ci ? 'active' : '');
+    return `<div class="stage-item ${cls}"><div class="bub">${i<ci?'✓':i+1}</div><div class="lbl">${lab[0]}<small>${lab[1]}</small></div></div>`;
+  }).join('');
+}
+
+/* ---------- navigation ---------- */
+function next() { const seq = activeSeq(); if (state.idx < seq.length-1) { state.idx++; render(); } }
+function back() { if (state.idx > 0) { state.idx--; render(); } }
+function goPaid() { const seq = activeSeq(); const pi = seq.indexOf('a_paid'); if (pi>=0){ state.idx = pi; render(); } }
+
+/* ---------- events ---------- */
+screenEl.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-action]'); if (!t) return;
+  const a = t.dataset.action;
+  if (a === 'next') next();
+  else if (a === 'back') back();
+  else if (a === 'paid') goPaid();
+  else if (a === 'restart') restart();
+  else if (a === 'choose') { state.answers[t.dataset.key] = t.dataset.value; setTimeout(next, 130); }
+});
+notesEl.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-action]'); if (!t) return;
+  if (t.dataset.action === 'next') next();
+  else if (t.dataset.action === 'back') back();
+});
+
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const t = e.target.closest('.tab'); if (!t) return;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  state.funnel = t.dataset.funnel; state.idx = 0; state.answers = {};
+  render();
+});
+
+const paidToggle = document.getElementById('paidToggle');
+paidToggle.addEventListener('click', () => {
+  state.showPaid = !state.showPaid;
+  paidToggle.classList.toggle('on', state.showPaid);
+  render();
+});
+
+document.getElementById('restartBtn').addEventListener('click', restart);
+function restart(){ state.idx = 0; state.answers = {}; render(); }
+
+document.getElementById('footnote').innerHTML =
+  '<b>How to use this:</b> tap through the phone (or use Back/Next in the right panel). Switch funnels with the tabs; flip the toggle to see the optional paid step inside Funnel A. ' +
+  'The result numbers are computed live from your answers with rough category averages — illustrative, clearly labelled an estimate, never a real portfolio read. ' +
+  'Built from the Jun-27 Jarvis GTM deck (Options 2 + 3) and a live Meta Ad Library scan (2026-06-29). Nothing here is advice; it is a wireframe to react to.';
+
+render();
+</script>
+</body>
+</html>
