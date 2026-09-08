@@ -10,6 +10,7 @@ the same and just updates the content.
 
 Usage:
   python3 tools/publish.py --title "MF Fees" --in <path.html> [--slug mffees] [--blurb "..."] [--push]
+  python3 tools/publish.py --title "Site" --slug site --dir <prebuilt-static-folder> [--push]   # copy a folder as-is (no flattening)
   python3 tools/publish.py --list
   python3 tools/publish.py --remove <slug> [--push]
 
@@ -152,8 +153,10 @@ def do_push(msg):
 
 
 def cmd_publish(a):
-    src = os.path.abspath(a.in_path)
-    if not os.path.isfile(src):
+    src = os.path.abspath(a.dir_path or a.in_path)
+    if a.dir_path and not os.path.isdir(src):
+        sys.exit(f"input folder not found: {src}")
+    if not a.dir_path and not os.path.isfile(src):
         sys.exit(f"input not found: {src}")
     slug = a.slug or slugify(a.title)
     man = load_manifest()
@@ -168,14 +171,22 @@ def cmd_publish(a):
             f"  to add a genuinely NEW entry:    re-run with  --force"
         )
     print(f"publishing '{a.title}'  ->  /{slug}/")
-    html = open(src, encoding="utf-8").read()
-    html = flatten(html, os.path.dirname(src))
     out_dir = os.path.join(ROOT, slug)
-    os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
-        f.write(html)
-    size = len(html.encode()) // 1024
-    print(f"   wrote {slug}/index.html ({size}KB self-contained)")
+    if a.dir_path:
+        # prebuilt static site (e.g. a Next.js export): copy the folder as-is, no flattening
+        if os.path.isdir(out_dir):
+            shutil.rmtree(out_dir)
+        shutil.copytree(src, out_dir)
+        total = sum(os.path.getsize(os.path.join(d, f)) for d, _, fs in os.walk(out_dir) for f in fs)
+        print(f"   copied folder -> {slug}/ ({total//1024}KB)")
+    else:
+        html = open(src, encoding="utf-8").read()
+        html = flatten(html, os.path.dirname(src))
+        os.makedirs(out_dir, exist_ok=True)
+        with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
+            f.write(html)
+        size = len(html.encode()) // 1024
+        print(f"   wrote {slug}/index.html ({size}KB self-contained)")
     man["items"] = [x for x in man["items"] if x["slug"] != slug]
     man["items"].append({
         "slug": slug, "title": a.title, "blurb": a.blurb or "",
@@ -258,6 +269,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--title")
     p.add_argument("--in", dest="in_path")
+    p.add_argument("--dir", dest="dir_path", help="publish a prebuilt static folder as-is (no flattening)")
     p.add_argument("--slug")
     p.add_argument("--blurb")
     p.add_argument("--push", action="store_true")
@@ -269,10 +281,10 @@ def main():
         cmd_list(a)
     elif a.remove:
         cmd_remove(a)
-    elif a.title and a.in_path:
+    elif a.title and (a.in_path or a.dir_path):
         cmd_publish(a)
     else:
-        p.error("need --title and --in (or --list / --remove)")
+        p.error("need --title and --in/--dir (or --list / --remove)")
 
 
 if __name__ == "__main__":
