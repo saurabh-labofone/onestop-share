@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JARVIS · An AI that works on your money</title>
+<meta name="description" content="JARVIS reads what you own, finds what is hidden, and speaks first. Start on WhatsApp in two minutes.">
+<meta name="theme-color" content="#001526">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  JAARVIS · PAID-TRAFFIC LANDING PAGE  (route when ported: onestop.<domain>/start)
+  One page, one job: turn an ad click into a first WhatsApp chat with JARVIS.
+
+  URL params (set in the Meta ad URL):
+    m = in | us          market: currency, examples, WhatsApp prefill
+    a = advisor | called | paid | pms | stark | hud | fire | genius  (old: corner | fees | overlap | calm | nobody | film)
+                         ad angle: swaps the hero so it matches the ad the person just saw
+    utm_*                passed through to the WhatsApp ref code
+
+  ⚠ PLACEHOLDERS before launch (search "TODO"):
+    WA_NUMBER  · the JARVIS WhatsApp Business number
+    PIXEL_ID   · the Meta dataset (pixel) id
+-->
+<style>
+:root{
+  --foam:#00FDFF; --aqua:#00D0FF; --current:#00A0CC; --tide:#005A9E; --deep:#002E51; --ink:#001526;
+  --canvas:#F7FBFD; --card:#FFFFFF; --line:#D8E3E8; --muted:#4F6572;
+  --grad:linear-gradient(100deg,#00FDFF,#00D0FF,#00A0CC,#005A9E,#002E51);
+  --grad-lite:linear-gradient(100deg,#00FDFF,#00D0FF 45%,#00A0CC);
+  --r:22px; --pad:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:Manrope,system-ui,-apple-system,sans-serif;background:var(--canvas);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--current)}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.04;font-weight:800}
+h2{font-size:clamp(2rem,6.4vw,3.4rem)}
+.lede{font-size:clamp(1.05rem,2.6vw,1.2rem);color:var(--muted);max-width:34ch}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:1.02rem;letter-spacing:-.01em;border-radius:999px;padding:1.05em 1.6em;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background .2s}
+.btn:active{transform:scale(.98)}
+.btn-dark{background:var(--aqua);color:var(--ink);box-shadow:0 10px 40px -10px rgba(0,208,255,.7)}
+.btn-dark:hover{background:var(--foam)}
+.btn-light{background:var(--tide);color:#fff;box-shadow:0 12px 30px -12px rgba(0,90,158,.6)}
+.btn-light:hover{background:var(--deep)}
+.btn svg{width:20px;height:20px;flex:none}
+.micro{font-size:.8rem;font-weight:600;opacity:.75;margin-top:.9rem;display:flex;gap:.9em;flex-wrap:wrap}
+.micro span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:.5em;vertical-align:middle;opacity:.7}
+
+/* ---------- nav ---------- */
+.nav{position:absolute;inset:0 0 auto 0;z-index:5;padding:18px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{height:26px;width:auto}
+.nav .pill{font-size:.72rem;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.4em .9em;backdrop-filter:blur(8px);background:rgba(0,21,38,.18)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;background:var(--ink);overflow:hidden}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,21,38,.15) 0%,rgba(0,21,38,.05) 30%,rgba(0,21,38,.72) 62%,#001526 100%)}
+.hero .wrap{position:relative;padding-bottom:44px;padding-top:120px}
+.hero h1{font-size:clamp(2.5rem,10.5vw,5.4rem);max-width:13ch;margin:.35em 0 .4em}
+.hero h1 em{font-style:normal;background:var(--grad-lite);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(1.05rem,2.8vw,1.3rem);max-width:36ch;color:rgba(255,255,255,.86);margin-bottom:1.6rem}
+.hero .eyebrow{color:var(--aqua)}
+@media (min-width:900px){
+  .hero{align-items:center}
+  .hero .bg img{object-position:50% 25%}
+  .hero .bg::after{background:linear-gradient(90deg,rgba(0,21,38,.92) 0%,rgba(0,21,38,.65) 42%,rgba(0,21,38,.05) 75%)}
+  .hero .wrap{padding-bottom:80px}
+}
+
+/* ---------- section rhythm ---------- */
+section{padding:88px 0}
+.head{margin-bottom:40px}
+.head h2{margin:.35em 0 .35em;max-width:16ch}
+
+/* ---------- chat demo ---------- */
+.demo .grid{display:grid;gap:40px;align-items:center}
+@media (min-width:900px){.demo .grid{grid-template-columns:1fr 1fr}}
+.phone{width:min(100%,360px);margin:0 auto;border-radius:44px;background:var(--ink);padding:12px;box-shadow:0 40px 80px -30px rgba(0,46,81,.55)}
+.screen{border-radius:34px;background:linear-gradient(180deg,#F3F9FC,#FFFFFF);overflow:hidden;min-height:540px;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:10px;padding:18px 18px 14px;border-bottom:1px solid var(--line);background:#fff}
+.av{width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center}
+.av img{width:20px;filter:brightness(0) invert(1)}
+.bar b{font-size:.95rem;display:block;line-height:1.2}
+.bar small{font-size:.72rem;color:var(--current);font-weight:700}
+.msgs{padding:18px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
+.stamp{align-self:center;font-size:.68rem;font-weight:700;color:var(--muted);background:#E9F2F6;border-radius:999px;padding:.25em .8em;margin-bottom:4px}
+.m{max-width:84%;padding:.7em .95em;border-radius:18px;font-size:.9rem;line-height:1.45;opacity:0;transform:translateY(12px) scale(.97);transition:opacity .45s ease,transform .45s cubic-bezier(.2,1.4,.4,1)}
+.m.in{opacity:1;transform:none}
+.m.j{background:#fff;border:1px solid var(--line);border-bottom-left-radius:6px;align-self:flex-start}
+.m.u{background:var(--tide);color:#fff;border-bottom-right-radius:6px;align-self:flex-end}
+.m .k{display:block;font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--current);margin-bottom:.25em}
+.typing{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:.8em 1em;display:none;gap:4px}
+.typing.on{display:flex}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--current);animation:b 1s infinite ease-in-out}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-4px);opacity:1}}
+.demo .note{font-size:.85rem;color:var(--muted);margin-top:1.2rem;max-width:40ch}
+
+/* ---------- advisor vs ---------- */
+.vt{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.vr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:16px 18px;border-top:1px solid var(--line);font-size:.92rem;align-items:center}
+.vr span:first-child{font-weight:700;color:var(--muted);font-size:.8rem}
+.vr span:nth-child(2){color:var(--muted)}
+.vr span:nth-child(3){font-weight:700;color:var(--tide)}
+.vh{border-top:0;background:var(--ink);color:#fff;font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.vh span:nth-child(2){color:rgba(255,255,255,.6)!important}.vh span:nth-child(3){color:var(--aqua)!important}
+@media(max-width:640px){.vr{grid-template-columns:1fr 1fr;row-gap:4px}.vr span:first-child{grid-column:1/-1}.vh span:first-child{display:none}}
+.fn{font-size:.75rem;color:var(--muted);margin-top:12px;max-width:80ch}
+
+/* ---------- four things ---------- */
+.four{background:#fff;border-block:1px solid var(--line)}
+.cards{display:grid;gap:14px}
+@media (min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:1050px){.cards{grid-template-columns:repeat(4,1fr)}}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:26px 22px 24px;background:var(--canvas);position:relative;overflow:hidden}
+.card .n{font-size:3rem;font-weight:800;letter-spacing:-.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card h3{font-size:1.35rem;margin:.7em 0 .35em}
+.card p{font-size:.95rem;color:var(--muted)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;gap:0;counter-reset:s;max-width:720px}
+.step{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .dot{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--tide);color:var(--tide);display:grid;place-items:center;font-weight:800}
+.step h3{font-size:1.2rem;margin-bottom:.2em;letter-spacing:-.02em}
+.step p{color:var(--muted);font-size:.95rem}
+
+/* ---------- side (dark) ---------- */
+.side{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.side::before{content:"";position:absolute;width:900px;height:900px;right:-420px;top:-380px;border-radius:50%;border:1px solid rgba(0,208,255,.16);box-shadow:0 0 0 90px rgba(0,208,255,.03),0 0 0 180px rgba(0,208,255,.02)}
+.side .lines{position:relative;font-size:clamp(2rem,7vw,4.2rem);font-weight:800;letter-spacing:-.035em;line-height:1.08}
+.side .lines div{opacity:.32;transition:opacity .8s ease}
+.side .lines div.on{opacity:1}
+.side .lines .you{background:var(--grad-lite);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side .sub{color:rgba(255,255,255,.7);margin-top:1.6rem;max-width:44ch;position:relative}
+
+/* ---------- promises ---------- */
+.prom{display:grid;gap:14px}
+@media (min-width:800px){.prom{grid-template-columns:repeat(3,1fr)}}
+.pr{padding:24px 22px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.pr svg{width:26px;height:26px;color:var(--tide);margin-bottom:14px}
+.pr h3{font-size:1.15rem;letter-spacing:-.02em;margin-bottom:.3em}
+.pr p{font-size:.92rem;color:var(--muted)}
+
+/* ---------- close ---------- */
+.close{position:relative;color:#fff;overflow:hidden;padding:0;background:var(--ink)}
+.close img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.close::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,21,38,.25),rgba(0,21,38,.88) 70%)}
+.close .wrap{position:relative;z-index:1;padding-top:200px;padding-bottom:72px}
+.close h2{max-width:14ch;margin-bottom:.5em}
+
+footer{background:var(--ink);color:rgba(255,255,255,.55);font-size:.78rem;padding:34px 0 120px;border-top:1px solid rgba(255,255,255,.08)}
+footer .row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+footer .logo{height:22px}
+footer p{max-width:70ch}
+
+/* ---------- sticky mobile CTA ---------- */
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 10px 10px 18px;border-radius:999px;background:rgba(0,21,38,.92);backdrop-filter:blur(14px);color:#fff;box-shadow:0 16px 40px -12px rgba(0,21,38,.6);transform:translateY(140%);transition:transform .35s ease}
+.sticky.show{transform:none}
+.sticky b{font-size:.88rem;line-height:1.2;flex:1}
+.sticky small{display:block;font-weight:600;opacity:.65;font-size:.72rem}
+.sticky .btn{padding:.8em 1.2em;font-size:.92rem}
+@media (min-width:900px){.sticky{display:none}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv,.m{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* ===== three directions ===== */
+.fx-stark,.fx-hud{display:none;position:absolute;inset:0;pointer-events:none;z-index:1}
+.dir-stark .fx-stark,.dir-hud .fx-hud{display:block}
+.fx-stark i{position:absolute;right:8%;top:16%;width:min(46vw,340px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#E9FFFF 0%,#00FDFF 14%,rgba(0,208,255,.45) 34%,transparent 66%);box-shadow:0 0 120px 40px rgba(0,208,255,.25);mix-blend-mode:screen}
+.fx-stark img{position:absolute;right:calc(8% + min(46vw,340px)/2 - 34px);top:calc(16% + min(46vw,340px)/2 - 34px);width:68px;filter:brightness(0) invert(1) drop-shadow(0 0 10px #00FDFF)}
+.dir-stark .hero .bg img{filter:saturate(.6) brightness(.7)}
+.fx-hud{font-family:ui-monospace,Menlo,monospace;color:#00FDFF}
+.fx-hud .c{position:absolute;width:26px;height:26px;border:2px solid #00D0FF}
+.fx-hud .c1{left:16px;top:76px;border-right:0;border-bottom:0}.fx-hud .c2{right:16px;top:76px;border-left:0;border-bottom:0}
+.fx-hud .ret{position:absolute;right:14%;top:24%;width:180px;height:180px;border:1.5px solid rgba(0,253,255,.6);border-radius:50%}
+.fx-hud .tg{position:absolute;font-size:11px;line-height:1.4;border:1px solid rgba(0,253,255,.5);background:rgba(0,21,38,.55);padding:6px 9px;border-radius:4px}
+.fx-hud .tg b{display:block;color:#fff}
+.fx-hud .t1{right:6%;top:14%}.fx-hud .t2{right:30%;top:36%}.fx-hud .t3{right:4%;top:46%}
+.fx-hud .il{position:absolute;right:16px;top:60px;font-size:9px;opacity:.7}
+@media(max-width:899px){.fx-hud .t2{right:auto;left:16px;top:30%}.fx-hud .ret{right:8%;top:18%;width:130px;height:130px}.fx-hud .t3{top:40%}}
+.hero .wrap{z-index:2}
+
+/* REVIEW-ONLY: remove before launch */
+.phr{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:60;background:#FFB020;color:#3A2200;font:800 11px/1.3 Manrope,system-ui,sans-serif;letter-spacing:.04em;border-radius:999px;padding:7px 14px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4);white-space:nowrap;pointer-events:none}
+</style>
+</head>
+<!-- REVIEW-ONLY ribbon below: delete before launch -->
+<body>
+<div class="phr">Placeholder page · for review only</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <nav class="nav"><div class="wrap">
+    <img class="logo" src="../assets/logo.svg" alt="OneStop">
+    <span class="pill">Now in beta</span>
+  </div></nav>
+  <div class="bg"><picture>
+    <source media="(max-width:899px)" srcset="../assets/moment-window-mobile.jpg">
+    <img id="heroImg" src="../assets/moment-window.jpg" alt="">
+  </picture>
+    <div class="fx-stark" aria-hidden="true"><i></i><img src="../assets/mark.png" alt=""></div>
+    <div class="fx-hud" aria-hidden="true"><span class="c c1"></span><span class="c c2"></span><span class="ret"></span>
+      <span class="tg t1"><b>SCAN COMPLETE</b>4 funds · demat · EPF</span>
+      <span class="tg t2"><b>OVERLAP FOUND</b>12 stocks in 3 funds</span>
+      <span class="tg t3"><b>FEE LEAK</b>2 fees, 1 idea</span>
+      <span class="il">Illustrative</span></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow" id="heroEyebrow">JARVIS · by OneStop</div>
+    <h1 id="heroH1">Your advisor vs JARVIS. <em>It is not close.</em></h1>
+    <p class="sub" id="heroSub">JARVIS reads every page of what you own, speaks first when something changes, and sells you nothing. A personal finance advisor that never logs off.</p>
+    <a class="btn btn-dark js-wa" href="#" data-slot="hero">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5 0a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+      Start with JARVIS
+    </a>
+    <div class="micro"><span>Opens in WhatsApp</span><span>2 minutes</span><span>No forms</span></div>
+  </div>
+</header>
+
+<!-- ============ THE FIRST CHAT ============ -->
+<section class="demo" id="demo">
+  <div class="wrap grid">
+    <div class="rv">
+      <div class="eyebrow">What it feels like</div>
+      <h2 style="margin:.35em 0 .35em;max-width:14ch">Nobody asked. That is the point.</h2>
+      <p class="lede">Most apps wait for you to open them. JARVIS looks at what you own and tells you what it finds, in plain words, before you think to ask.</p>
+      <p class="note">An example conversation. JARVIS explains and informs. The decision always stays yours.</p>
+    </div>
+    <div class="phone rv" aria-label="Example conversation with JARVIS">
+      <div class="screen">
+        <div class="bar"><div class="av"><img src="../assets/mark.png" alt=""></div><div><b>JARVIS</b><small>online</small></div></div>
+        <div class="msgs" id="msgs">
+          <div class="stamp">Today · 6:40 am</div>
+          <div class="m j"><span class="k">Unprompted</span>Small thing before your day starts. Three of your funds hold the same twelve stocks. Nothing is broken. You are just more concentrated than you probably think.</div>
+          <div class="m u">I thought I was diversified.</div>
+          <div class="m j">Most people with three funds do. Want to see which names overlap, or leave it for the weekend?</div>
+          <div class="m u">Show me.</div>
+          <div class="m j" id="lastMsg">Here they are. Twelve names, three fee lines. I sorted them by how much of your money sits in each.</div>
+          <div class="typing" id="typing"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVISOR VS JAARVIS ============ -->
+<section class="vs" id="vs">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">Side by side</div>
+      <h2>Your advisor vs JARVIS.</h2>
+    </div>
+    <div class="vt rv" role="table">
+      <div class="vr vh" role="row"><span></span><span>Your advisor</span><span>JARVIS</span></div>
+      <div class="vr" role="row"><span>Who starts the conversation</span><span>You, when you book a call</span><span>JARVIS, when something changes</span></div>
+      <div class="vr" role="row"><span>What it reads</span><span>The summary page</span><span>Every page of every statement</span></div>
+      <div class="vr" role="row"><span>Who pays it</span><span>Often, the funds it sells you*</span><span>Nobody. It sells nothing.</span></div>
+      <div class="vr" role="row"><span>On a red market day</span><span>A “stay invested” SMS</span><span>Your plan, your reasons, in two lines</span></div>
+      <div class="vr" role="row"><span>Hours</span><span>Monday to Friday, 10 to 6</span><span>6:40 am on a Sunday</span></div>
+      <div class="vr" role="row"><span>Minimum to get attention</span><span>₹50 lakh for a portfolio manager**</span><span>Your first SIP</span></div>
+    </div>
+    <p class="fn">* Regular mutual fund plans pay the distributor a commission every year, out of the fund’s expenses. ** SEBI (Portfolio Managers) Regulations, 2020: minimum investment ₹50 lakh.</p>
+  </div>
+</section>
+
+<!-- ============ FOUR THINGS ============ -->
+<section class="four">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">What JARVIS does</div>
+      <h2>Four things. All on your side.</h2>
+    </div>
+    <div class="cards">
+      <div class="card rv"><div class="n">01</div><h3>Reads everything</h3><p id="c1">Every page of every statement. The fine print you skipped is where the costs live.</p></div>
+      <div class="card rv"><div class="n">02</div><h3>Finds what is hidden</h3><p id="c2">Fees you pay but never see. Funds that repeat each other. Cash that sits and does nothing.</p></div>
+      <div class="card rv"><div class="n">03</div><h3>Speaks first</h3><p>When something in your portfolio changes, you hear it from JARVIS. Not from the news, not from a group chat.</p></div>
+      <div class="card rv"><div class="n">04</div><h3>Knows your plan</h3><p>It remembers why you bought what you own. On a red day, it reminds you. Then it lets you go for a walk.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT STARTS ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">How it starts</div>
+      <h2>Two minutes. Three steps.</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="dot">1</div><div><h3>Tap the button</h3><p>WhatsApp opens with a message ready to send. No app to download. No form to fill.</p></div></div>
+      <div class="step rv"><div class="dot">2</div><div><h3>Say hi</h3><p id="s2">JARVIS asks what you own and what you are saving for. You answer like you would answer a friend.</p></div></div>
+      <div class="step rv"><div class="dot">3</div><div><h3>Get your first finding</h3><p>JARVIS looks at your whole picture and tells you one thing you did not know. Then it stays in your corner.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHOSE SIDE ============ -->
+<section class="side">
+  <div class="wrap">
+    <div class="eyebrow rv" style="color:var(--aqua);margin-bottom:1.4rem">Whose side it is on</div>
+    <div class="lines" id="lines">
+      <div>The bank works for the bank.</div>
+      <div>The fund works for the fund.</div>
+      <div class="you">JARVIS works for you.</div>
+    </div>
+    <p class="sub rv">A broker earns when you trade. A bank earns when you buy its products. JARVIS earns none of it. It has one job: to help you build your wealth.</p>
+  </div>
+</section>
+
+<!-- ============ PROMISES ============ -->
+<section>
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">Three promises</div>
+      <h2>What JARVIS will never do.</h2>
+    </div>
+    <div class="prom">
+      <div class="pr rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><h3>Sell you anything</h3><p>No products, no commissions, no "exclusive offers". Nothing to push, so nothing to hide.</p></div>
+      <div class="pr rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M12 4v16" transform="rotate(45 12 12)"/></svg><h3>Tell you what to buy</h3><p>No buy calls. No sell calls. No tips. Research, clear numbers, and the right question. The decision stays yours.</p></div>
+      <div class="pr rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>Share your data</h3><p>What you tell JARVIS stays between you and JARVIS. It is never sold, never rented, never used for ads.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="close">
+  <img src="../assets/moment-hands.jpg" alt="">
+  <div class="wrap rv">
+    <div class="eyebrow" style="color:var(--aqua)">Decisions, not doubt</div>
+    <h2>A second mind for your money.</h2>
+    <a class="btn btn-dark js-wa" href="#" data-slot="close">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5 0a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+      Start with JARVIS
+    </a>
+    <div class="micro"><span>Free while in beta</span><span>On WhatsApp today</span><span>The JARVIS app is coming</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row"><img class="logo" src="../assets/logo.svg" alt="OneStop"><span>On your side. Always.</span></div>
+    <p>JARVIS is a OneStop product in beta. JARVIS provides education and information, not financial advice. OneStop does not sell financial products or recommend securities. Example conversations are illustrative.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <b>JARVIS<small>Opens in WhatsApp · 2 minutes</small></b>
+  <a class="btn btn-dark js-wa" href="#" data-slot="sticky">Start</a>
+</div>
+
+<script>
+/* ============ CONFIG ============ */
+const WA_NUMBER = "910000000000";   // TODO: the JARVIS WhatsApp Business number, digits only with country code
+const PIXEL_ID  = "";               // TODO: Meta dataset (pixel) id. Empty = no pixel (safe for review)
+
+/* ============ URL → market + angle ============ */
+const q = new URLSearchParams(location.search);
+const M = (q.get("m") || "in").toLowerCase() === "us" ? "us" : "in";
+const A = (q.get("a") || "advisor").toLowerCase();
+
+const ANGLES = {
+  /* Direction 1 · Your advisor vs JARVIS (direct) */
+  advisor: {
+    eyebrow: "Direction 1 · Your advisor vs JARVIS",
+    h1: 'Your advisor vs JARVIS. <em>It is not close.</em>',
+    sub: "JARVIS reads every page of what you own, speaks first when something changes, and sells you nothing. A money advisor that never logs off.",
+    img: "moment-window"
+  },
+  /* Direction 2 · Tony Stark's JARVIS, but for money (bold) */
+  stark: {
+    eyebrow: "Direction 2 · Tony Stark had one",
+    h1: 'Tony Stark had JARVIS. <em>Now your money has one.</em>',
+    sub: "An AI that watches everything, speaks first and never sleeps. Tony pointed his at a suit. Point yours at your money.",
+    img: "moment-hands"
+  },
+  /* Direction 3 · The HUD (bold, visual) */
+  hud: {
+    eyebrow: "Direction 3 · A HUD for your money",
+    h1: 'Your portfolio. <em>Now with a HUD.</em>',
+    sub: "JARVIS scans everything you own and flags what leaks: hidden fees, funds that repeat each other, cash that does nothing.",
+    img: "moment-window"
+  }
+};
+/* old ad keys still land on the right direction */
+const ALIAS = { called:"advisor", paid:"advisor", pms:"advisor", fire:"advisor", genius:"stark", corner:"stark", film:"stark", fees:"hud", overlap:"hud", calm:"advisor", nobody:"advisor" };
+const MARKET = {
+  in: { own: "SIPs, ELSS, demat holdings, EPF", ref: "IN" },
+  us: { own: "401(k), IRA, brokerage account",   ref: "US" }
+};
+
+const DIR = ANGLES[A] ? A : (ALIAS[A] || "advisor");
+const ang = ANGLES[DIR];
+document.body.classList.add("dir-" + DIR);
+document.getElementById("heroEyebrow").textContent = "JARVIS · by OneStop";
+/* Direction 1 puts the comparison table right under the hero */
+if (DIR === "advisor") { const vs = document.getElementById("vs"); document.querySelector(".hero").after(vs); }
+const mk = MARKET[M];
+document.getElementById("heroH1").innerHTML = ang.h1;
+document.getElementById("heroSub").textContent = typeof ang.sub === "string" ? ang.sub : ang.sub[M];
+if (ang.img) {
+  const pic = document.querySelector(".hero picture");
+  pic.querySelector("source").srcset = `../assets/${ang.img}-mobile.jpg`;
+  pic.querySelector("img").src = `../assets/${ang.img}.jpg`;
+}
+document.getElementById("s2").textContent = `JARVIS asks what you own (${mk.own}) and what you are saving for. You answer like you would answer a friend.`;
+
+/* ============ WhatsApp link with a ref code ============ */
+// The ref code rides inside the first message, so the product team can count
+// chats per ad even when the pixel loses the person (iOS, in-app browser).
+const content = (q.get("utm_content") || "").replace(/[^\w-]/g, "").slice(0, 24);
+const REF = [mk.ref, A.replace(/[^a-z0-9]/g, "").toUpperCase().slice(0, 12), content].filter(Boolean).join("-");
+const text = `Hi JARVIS 👋 I'd like to start. (ref: ${REF})`;
+const waHref = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+
+document.querySelectorAll(".js-wa").forEach(a => {
+  a.href = waHref;
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.addEventListener("click", () => {
+    const eventID = "lead-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+    if (window.fbq) fbq("track", "Lead", { content_name: A, content_category: M, slot: a.dataset.slot }, { eventID });
+    // TODO (Pritham): also POST {eventID, REF, fbp, fbc} to /api/capi so the server sends the same Lead (dedupe on eventID)
+  });
+});
+
+/* ============ Meta pixel (only when PIXEL_ID is set) ============ */
+if (PIXEL_ID) {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq("init", PIXEL_ID); fbq("track", "PageView");
+  let sent = false;
+  addEventListener("scroll", () => {
+    if (!sent && scrollY > innerHeight * 1.2) { sent = true; fbq("track", "ViewContent", { content_name: A, content_category: M }); }
+  }, { passive: true });
+}
+
+/* ============ motion ============ */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .18 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+// chat plays itself once, when the phone is on screen
+const msgs = [...document.querySelectorAll("#msgs .m")];
+const typing = document.getElementById("typing");
+let played = false;
+new IntersectionObserver((es, o) => {
+  if (!es[0].isIntersecting || played) return;
+  played = true; o.disconnect();
+  let t = 300;
+  msgs.forEach(m => {
+    if (m.classList.contains("j")) {
+      setTimeout(() => { m.before(typing); typing.classList.add("on"); }, t);
+      t += 1100;
+      setTimeout(() => { typing.classList.remove("on"); m.classList.add("in"); }, t);
+    } else {
+      t += 700;
+      setTimeout(() => m.classList.add("in"), t);
+    }
+    t += 600;
+  });
+}, { threshold: .35 }).observe(document.getElementById("msgs"));
+
+// the three lines light up one by one
+const lines = [...document.querySelectorAll("#lines div")];
+new IntersectionObserver((es, o) => {
+  if (!es[0].isIntersecting) return; o.disconnect();
+  lines.forEach((l, i) => setTimeout(() => l.classList.add("on"), 250 + i * 900));
+}, { threshold: .5 }).observe(document.getElementById("lines"));
+
+// sticky CTA after the hero, hidden at the close
+const sticky = document.getElementById("sticky");
+const closeSec = document.querySelector(".close");
+addEventListener("scroll", () => {
+  const past = scrollY > innerHeight * .8;
+  const atClose = closeSec.getBoundingClientRect().top < innerHeight * .75;
+  sticky.classList.toggle("show", past && !atClose);
+}, { passive: true });
+</script>
+</body>
+</html>

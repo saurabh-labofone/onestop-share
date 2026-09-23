@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JARVIS · 500 Users Plan</title>
+<meta name="description" content="How JARVIS gets its first 500 users in India with Meta ads: the ads, the landing page, WhatsApp, the timeline, the budget and the Meta setup, with a short primer on Meta ads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --foam:#00FDFF; --aqua:#00D0FF; --current:#00A0CC; --tide:#005A9E; --deep:#002E51; --ink:#001526;
+  --canvas:#F7FBFD; --card:#FFFFFF; --line:#D8E3E8; --muted:#4F6572; --soft:#EAF3F7;
+  --warn:#B25E00; --warnbg:#FFF4E5; --ok:#0A7A55; --okbg:#E6F6EF; --bad:#B42318; --badbg:#FDECEA;
+  --wa:#25D366; --wabg:#EFE7DE; --wagreen:#D9FDD3;
+  --grad:linear-gradient(100deg,#00FDFF,#00D0FF,#00A0CC,#005A9E,#002E51);
+  --grad-lite:linear-gradient(100deg,#00FDFF,#00D0FF 45%,#00A0CC);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--canvas);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{letter-spacing:-.03em;line-height:1.08;font-weight:800}
+h2{font-size:clamp(1.9rem,4.6vw,3rem);max-width:20ch}
+h3{font-size:1.25rem;letter-spacing:-.02em}
+p{max-width:68ch}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--current)}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+b,strong{font-weight:700}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.84em;background:var(--soft);border-radius:6px;padding:.1em .4em;color:var(--deep);word-break:break-word}
+
+/* nav */
+.top{position:sticky;top:0;z-index:30;background:rgba(0,21,38,.94);backdrop-filter:blur(12px);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:20px;height:58px}
+.top img{height:20px}
+.top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.8rem;font-weight:700;padding:.45em .8em;border-radius:999px;white-space:nowrap}
+.top nav a:hover,.top nav a.on{color:var(--ink);background:var(--aqua)}
+
+/* cover */
+.cover{background:var(--ink);color:#fff;position:relative;overflow:hidden;padding:90px 0 70px}
+.cover::before{content:"";position:absolute;width:1100px;height:1100px;right:-520px;top:-520px;border-radius:50%;border:1px solid rgba(0,208,255,.18);box-shadow:0 0 0 110px rgba(0,208,255,.035),0 0 0 220px rgba(0,208,255,.02)}
+.cover .eyebrow{color:var(--aqua)}
+.cover h1{font-size:clamp(2.8rem,8.5vw,6.2rem);margin:.3em 0 .35em;max-width:12ch;position:relative}
+.cover h1 em{font-style:normal;background:var(--grad-lite);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover .lede{font-size:clamp(1.05rem,2.2vw,1.3rem);color:rgba(255,255,255,.78);max-width:52ch;position:relative}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:20px;overflow:hidden;margin-top:48px;position:relative}
+@media(min-width:800px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--ink);padding:22px 20px}
+.kpi b{display:block;font-size:clamp(2rem,4.5vw,2.8rem);letter-spacing:-.04em;line-height:1;background:var(--grad-lite);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi span{font-size:.82rem;color:rgba(255,255,255,.65);font-weight:600}
+.meta{margin-top:26px;font-size:.8rem;color:rgba(255,255,255,.5);position:relative}
+
+/* sections */
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+section.alt{background:#fff}
+section.dark{background:var(--ink);color:#fff;border-color:transparent}
+section.dark .muted{color:rgba(255,255,255,.65)}
+.shead{margin-bottom:44px;display:grid;gap:14px}
+.num{font-size:.8rem;font-weight:800;color:var(--tide);display:flex;align-items:center;gap:10px}
+.num::after{content:"";height:1px;width:48px;background:currentColor;opacity:.4}
+.dark .num{color:var(--aqua)}
+
+/* callouts */
+.flag{display:inline-flex;align-items:center;gap:.4em;font-size:.72rem;font-weight:800;letter-spacing:.04em;background:var(--warnbg);color:var(--warn);border-radius:999px;padding:.2em .7em;vertical-align:middle;white-space:nowrap}
+.flag.est{background:var(--soft);color:var(--tide)}
+.note{border-left:3px solid var(--current);background:var(--soft);padding:16px 18px;border-radius:0 14px 14px 0;font-size:.94rem;margin-top:22px;max-width:780px}
+.note.warn{border-color:var(--warn);background:var(--warnbg)}
+.dark .note{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+
+/* one-page summary */
+.sum{display:grid;gap:14px}
+@media(min-width:900px){.sum{grid-template-columns:repeat(5,1fr)}}
+.sum div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px}
+.sum .k{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--current)}
+.sum h4{font-size:1.08rem;margin:.45em 0 .3em}
+.sum p{font-size:.88rem;color:var(--muted)}
+.def{margin-top:28px;display:grid;gap:14px;align-items:stretch}
+@media(min-width:800px){.def{grid-template-columns:1.1fr 1fr 1fr}}
+.def div{border-radius:18px;padding:20px;border:1px solid var(--line);background:var(--canvas)}
+.def .yes{background:var(--ink);color:#fff;border-color:var(--ink)}
+.def .yes .eyebrow{color:var(--aqua)}
+.def h4{font-size:1.15rem;margin:.4em 0 .25em}
+.def p{font-size:.88rem;opacity:.8}
+
+/* journey storyboard */
+.story{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:18px;overflow-x:auto;padding:10px 4px 26px;scroll-snap-type:x mandatory}
+.story::-webkit-scrollbar{height:6px}.story::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+.frame{scroll-snap-align:start}
+.frame .cap{margin-top:14px}
+.frame .cap .eyebrow{font-size:.66rem}
+.frame .cap h4{font-size:1rem;margin:.3em 0 .2em}
+.frame .cap p{font-size:.82rem;color:var(--muted)}
+.ph{position:relative;aspect-ratio:9/18.5;border-radius:30px;background:var(--ink);padding:8px;box-shadow:0 26px 50px -26px rgba(0,46,81,.55)}
+.ph .sc{position:absolute;inset:8px;border-radius:23px;overflow:hidden;background:#fff;display:flex;flex-direction:column;font-size:11px;line-height:1.4}
+.arrow{position:relative}
+/* feed screen */
+.ig-top{display:flex;align-items:center;gap:6px;padding:8px 10px;font-weight:700;font-size:10px}
+.ig-top i{width:20px;height:20px;border-radius:50%;background:var(--ink) url(assets/mark.png) center/12px no-repeat;flex:none}
+.ig-top small{display:block;font-weight:500;color:#667;font-size:8.5px}
+.ig-img{aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--deep)}
+.ig-cta{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#EEF6FA;font-weight:700;font-size:9.5px;color:var(--tide)}
+.ig-cap{padding:6px 10px;font-size:9px;color:#333}
+/* LP screen */
+.lp-sc{background:var(--ink);color:#fff}
+.lp-sc .bgimg{height:62%;background:url(assets/moment-window-mobile.jpg) center 20%/cover;position:relative}
+.lp-sc .bgimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--ink))}
+.lp-sc .t{padding:0 12px;margin-top:-40px;position:relative}
+.lp-sc h5{font-size:17px;letter-spacing:-.03em;line-height:1.05;font-weight:800}
+.lp-sc h5 em{font-style:normal;color:var(--aqua)}
+.lp-sc p{font-size:9px;opacity:.8;margin:.5em 0 .8em}
+.lp-sc .b{display:inline-block;background:var(--aqua);color:var(--ink);font-weight:800;font-size:9.5px;border-radius:99px;padding:.6em 1em}
+/* whatsapp screen */
+.wa-sc{background:var(--wabg)}
+.wa-bar{background:#075E54;color:#fff;padding:9px 10px;display:flex;align-items:center;gap:7px;font-weight:700;font-size:10.5px}
+.wa-bar i{width:22px;height:22px;border-radius:50%;background:var(--ink) url(assets/mark.png) center/12px no-repeat;flex:none}
+.wa-bar small{display:block;font-weight:500;font-size:8px;opacity:.8}
+.wa-body{flex:1;padding:10px 8px;display:flex;flex-direction:column;gap:6px;justify-content:flex-end}
+.wb{max-width:86%;padding:6px 8px;border-radius:9px;font-size:9.6px;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.wb.me{align-self:flex-end;background:var(--wagreen)}
+.wb.jv{align-self:flex-start;background:#fff}
+.wa-in{display:flex;gap:6px;align-items:center;padding:7px 8px;background:#F0F0F0}
+.wa-in span{flex:1;background:#fff;border-radius:99px;padding:6px 9px;font-size:9.4px}
+.wa-in b{width:24px;height:24px;border-radius:50%;background:#00A884;display:grid;place-items:center;color:#fff;font-size:10px}
+.wb .sys{font-size:8px;color:#777}
+
+/* lanes diagram */
+.lanes{display:grid;gap:18px}
+.lane{border:1px solid var(--line);border-radius:22px;background:#fff;padding:22px}
+.lane-h{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:18px}
+.tag{font-size:.7rem;font-weight:800;border-radius:999px;padding:.3em .8em;background:var(--ink);color:#fff;letter-spacing:.04em}
+.tag.b{background:var(--tide)}
+.tag.o{background:var(--soft);color:var(--tide)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0}
+.st{flex:1 1 150px;min-width:140px;background:var(--canvas);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;position:relative}
+.st .eyebrow{font-size:.62rem}
+.st h4{font-size:.98rem;margin:.35em 0 .25em}
+.st p{font-size:.78rem;color:var(--muted)}
+.st .ev{margin-top:8px;font-size:.68rem;font-weight:800;color:var(--tide);font-family:ui-monospace,Menlo,monospace}
+.st.hot{background:var(--ink);color:#fff;border-color:var(--ink)}
+.st.hot p{color:rgba(255,255,255,.7)}.st.hot .ev{color:var(--aqua)}.st.hot .eyebrow{color:var(--aqua)}
+.ar{flex:0 0 34px;display:grid;place-items:center;color:var(--current)}
+.ar svg{width:22px;height:22px}
+.ar .pct{display:none}
+@media(max-width:760px){.flow{flex-direction:column}.ar{flex-basis:30px;transform:rotate(90deg)}}
+.loop{margin-top:14px;display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--muted);background:var(--soft);border-radius:14px;padding:12px 14px}
+.loop svg{width:20px;height:20px;color:var(--tide);flex:none}
+
+/* why-lanes compare */
+.twocol{display:grid;gap:18px}
+@media(min-width:860px){.twocol{grid-template-columns:1fr 1fr}}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:.88rem;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tbl th,.tbl td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--canvas);font-weight:800}
+.tbl td:first-child{font-weight:700}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scroll-x .tbl{min-width:640px}
+
+/* LP preview */
+.lpgrid{display:grid;gap:36px;align-items:start}
+@media(min-width:980px){.lpgrid{grid-template-columns:400px 1fr}}
+.dev{width:100%;max-width:380px;margin:0 auto;border-radius:48px;background:var(--ink);padding:12px;box-shadow:0 40px 80px -34px rgba(0,46,81,.6);position:sticky;top:80px}
+.dev iframe{display:block;width:100%;height:740px;border:0;border-radius:37px;background:#fff}
+.ctrls{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.ctrls button{font:inherit;font-size:.78rem;font-weight:700;border:1px solid var(--line);background:#fff;color:var(--deep);border-radius:999px;padding:.45em .9em;cursor:pointer}
+.ctrls button.on{background:var(--tide);border-color:var(--tide);color:#fff}
+.ctrl-label{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.anat{display:grid;gap:10px;counter-reset:a}
+.an{display:grid;grid-template-columns:40px 1fr;gap:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.an::before{counter-increment:a;content:counter(a);width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--aqua);display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.an h4{font-size:1rem;margin-bottom:.2em}
+.an p{font-size:.86rem;color:var(--muted)}
+.an .why{font-size:.8rem;color:var(--tide);font-weight:700;margin-top:.4em}
+
+/* ads */
+.ads{display:grid;gap:22px}
+@media(min-width:760px){.ads{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.ads{grid-template-columns:1fr 1fr 1fr}}
+.ad{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.post{border-bottom:1px solid var(--line)}
+.post .ig-top{font-size:12px;padding:10px 12px}
+.post .ig-top i{width:26px;height:26px;background-size:15px}
+.post .ig-top small{font-size:10px}
+.post .ig-cta{font-size:12px;padding:10px 12px}
+.cr{aspect-ratio:4/5;position:relative;overflow:hidden;color:#fff;background:var(--ink)}
+.cr .ph-img{position:absolute;inset:0;background-size:cover;background-position:center 25%}
+.cr .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,21,38,.05) 30%,rgba(0,21,38,.85))}
+.cr .lock{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center}
+.cr .lock img{height:13px}
+.cr .lock span{font-size:9px;font-weight:700;opacity:.7}
+.cr .hl{position:absolute;left:16px;right:16px;bottom:18px;font-size:clamp(1.35rem,2.4vw,1.75rem);font-weight:800;letter-spacing:-.035em;line-height:1.05}
+.cr .hl em{font-style:normal;color:var(--aqua)}
+.cr .hl small{display:block;font-size:.5em;font-weight:600;letter-spacing:-.01em;opacity:.8;margin-top:.6em;line-height:1.3}
+/* receipt creative */
+.rc{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%) rotate(-3deg);width:62%;background:#fff;color:var(--ink);border-radius:6px;padding:14px 14px 18px;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;box-shadow:0 20px 40px -10px rgba(0,0,0,.5)}
+.rc .r{display:flex;justify-content:space-between;border-bottom:1px dashed #ccd;padding:4px 0}
+.rc .r.q{background:rgba(0,208,255,.18);font-weight:700}
+.rc .t{text-align:center;font-weight:700;letter-spacing:.1em;margin-bottom:6px}
+/* chat creative */
+.cc{position:absolute;inset:40px 22px 90px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.cc div{max-width:88%;padding:8px 11px;border-radius:14px;font-size:11px;line-height:1.35}
+.cc .j{background:#fff;color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px}
+.cc .u{background:var(--tide);align-self:flex-end;border-bottom-right-radius:4px}
+.cc .k{display:block;font-size:8px;font-weight:800;color:var(--current);letter-spacing:.08em;margin-bottom:2px}
+/* lock screen creative */
+.ls{position:absolute;inset:0;background:linear-gradient(160deg,#003B66,#001526 70%)}
+.ls .clock{position:absolute;top:18%;left:0;right:0;text-align:center;font-size:52px;font-weight:600;letter-spacing:-.03em;opacity:.95}
+.ls .date{position:absolute;top:13%;left:0;right:0;text-align:center;font-size:11px;font-weight:700;opacity:.7}
+.ls .nt{position:absolute;left:14px;right:14px;top:44%;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);border-radius:16px;padding:10px 12px;font-size:10.5px;line-height:1.35}
+.ls .nt b{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
+.ls .nt b span{font-weight:500;opacity:.7}
+/* film creative */
+.fm{position:absolute;inset:0;background:#000 url(assets/hero-mobile.jpg) center/cover}
+.fm::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.75))}
+.fm .play{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(6px);display:grid;place-items:center;z-index:1}
+.fm .play::before{content:"";border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.fm .lines{position:absolute;left:16px;bottom:18px;z-index:1;font-size:1.1rem;font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.fm .lines span{display:block;opacity:.55}.fm .lines span:last-child{opacity:1;color:var(--aqua)}
+.fmt{position:absolute;top:12px;right:12px;z-index:2;font-size:9px;font-weight:800;background:rgba(0,0,0,.45);padding:.3em .7em;border-radius:99px}
+.body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.body .row{display:flex;flex-wrap:wrap;gap:6px}
+.body h3{font-size:1.15rem}
+.copy{font-size:.84rem;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.copy .tabs{display:flex;background:var(--canvas);border-bottom:1px solid var(--line)}
+.copy .tabs button{flex:1;font:inherit;font-size:.74rem;font-weight:800;border:0;background:none;padding:.6em;cursor:pointer;color:var(--muted)}
+.copy .tabs button.on{background:#fff;color:var(--tide);box-shadow:inset 0 -2px 0 var(--tide)}
+.copy dl{padding:12px 14px;display:grid;gap:8px}
+.copy dt{font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.copy dd{margin-top:-4px}
+.copy [data-m]{display:none}.copy [data-m].on{display:grid}
+.why{font-size:.82rem;color:var(--muted)}
+.why b{color:var(--ink)}
+
+/* rules / do-dont */
+.dd{display:grid;gap:18px;margin-top:40px}
+@media(min-width:860px){.dd{grid-template-columns:1fr 1fr}}
+.dd div{border-radius:18px;padding:20px 22px}
+.dd .do{background:var(--okbg)}.dd .dont{background:var(--badbg)}
+.dd h4{margin-bottom:.6em}
+.dd ul{padding-left:1.1em;font-size:.9rem;display:grid;gap:.35em}
+
+/* timeline */
+.gantt{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.g-row{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--line);min-height:52px}
+.g-row:last-child{border-bottom:0}
+.g-row>div:first-child{padding:12px 16px;font-size:.84rem;font-weight:700;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.g-row>div:first-child small{font-weight:600;color:var(--muted);font-size:.72rem}
+.g-track{position:relative;display:grid;grid-template-columns:repeat(4,1fr)}
+.g-track span.col{border-right:1px dashed var(--line)}
+.g-track span.col:last-child{border-right:0}
+.bar2{position:absolute;top:50%;transform:translateY(-50%);height:26px;border-radius:8px;font-size:.7rem;font-weight:800;color:#fff;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden}
+.b-set{background:var(--current)}.b-test{background:var(--tide)}.b-scale{background:var(--deep)}.b-ms{background:var(--aqua);color:var(--ink)}
+.g-head{background:var(--canvas)}
+.g-head .g-track div{padding:10px 12px;font-size:.72rem;font-weight:800;color:var(--muted);border-right:1px dashed var(--line)}
+.g-head .g-track div b{display:block;color:var(--ink);font-size:.82rem}
+@media(max-width:760px){.gantt{overflow-x:auto}.g-row{min-width:760px}}
+
+/* calculator */
+.calc{display:grid;gap:18px;max-width:640px}
+.cbox{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+.cbox h3{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cbox h3 span{font-size:.7rem;font-weight:800;color:var(--aqua);letter-spacing:.1em}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:12px}
+.sl label{font-size:.8rem;color:rgba(255,255,255,.75);font-weight:600}
+.sl output{font-size:.86rem;font-weight:800;color:#fff;text-align:right}
+.sl input{grid-column:1/-1;width:100%;accent-color:var(--aqua)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.res div{background:rgba(0,208,255,.08);border-radius:14px;padding:12px}
+.res b{display:block;font-size:1.35rem;letter-spacing:-.03em;color:var(--aqua)}
+.res span{font-size:.7rem;color:rgba(255,255,255,.65);font-weight:700}
+.fbar{display:flex;flex-direction:column;gap:5px;margin-top:16px}
+.fbar div{height:22px;border-radius:6px;background:var(--grad);font-size:.68rem;font-weight:800;color:var(--ink);display:flex;align-items:center;padding:0 8px;white-space:nowrap;min-width:max-content;transition:width .3s}
+.plan-b{margin-top:22px;display:grid;gap:14px}
+@media(min-width:800px){.plan-b{grid-template-columns:repeat(3,1fr)}}
+.plan-b div{border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px}
+.plan-b b{font-size:1.4rem;letter-spacing:-.03em;display:block}
+.plan-b span{font-size:.8rem;color:rgba(255,255,255,.65)}
+
+/* rules cards */
+.rules{display:grid;gap:14px}
+@media(min-width:860px){.rules{grid-template-columns:repeat(3,1fr)}}
+.rule{border-radius:18px;padding:20px;background:#fff;border:1px solid var(--line)}
+.rule .ic{font-size:.7rem;font-weight:800;letter-spacing:.1em;padding:.3em .8em;border-radius:999px;display:inline-block;margin-bottom:10px}
+.rule.kill .ic{background:var(--badbg);color:var(--bad)}
+.rule.hold .ic{background:var(--warnbg);color:var(--warn)}
+.rule.scale .ic{background:var(--okbg);color:var(--ok)}
+.rule h4{font-size:1.05rem;margin-bottom:.35em}
+.rule p{font-size:.88rem;color:var(--muted)}
+
+/* appendix */
+.appx{counter-reset:ax}
+.ablock{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;margin-bottom:18px}
+.ablock>h3{display:flex;align-items:center;gap:12px;margin-bottom:6px;font-size:1.3rem}
+.ablock>h3 .id{font-size:.72rem;font-weight:800;background:var(--ink);color:var(--aqua);border-radius:8px;padding:.3em .6em;letter-spacing:.06em}
+.ablock>p.muted{margin-bottom:18px;font-size:.92rem}
+.chk{list-style:none;display:grid;gap:10px}
+.chk li{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--canvas);font-size:.9rem}
+.chk li::before{content:"";width:18px;height:18px;border:2px solid var(--current);border-radius:5px;margin-top:2px}
+.chk li small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
+.own{font-size:.7rem;font-weight:800;color:var(--tide);background:#fff;border:1px solid var(--line);border-radius:999px;padding:.25em .7em;white-space:nowrap}
+.tree{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;background:var(--ink);color:#CFE9F5;border-radius:16px;padding:20px 22px;overflow-x:auto;line-height:1.75;white-space:pre}
+.tree .c{color:var(--aqua);font-weight:700}.tree .s{color:#fff}.tree .a{color:#8FB3C6}.tree .n{color:#6E8C9C}
+.specs{display:grid;gap:12px}
+@media(min-width:800px){.specs{grid-template-columns:repeat(3,1fr)}}
+.spec{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--canvas)}
+.spec .box{background:var(--deep);border-radius:6px;margin-bottom:12px;position:relative}
+.spec .box::after{content:"";position:absolute;left:0;right:0;top:0;height:14%;background:rgba(0,208,255,.25)}
+.spec .box.st::after{height:14%}
+.spec .box.st::before{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;background:rgba(0,208,255,.25)}
+.spec h4{font-size:.95rem}
+.spec p{font-size:.8rem;color:var(--muted)}
+
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:40px 0;font-size:.8rem}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer img{height:20px}
+
+/* ================= v3 additions ================= */
+/* read-this-first */
+.readme{background:#FFF7E8;border-bottom:1px solid #F1D9A8;padding:64px 0}
+.rm{max-width:860px;border:2px solid var(--ink);border-radius:24px;background:#fff;padding:34px 32px;box-shadow:10px 10px 0 var(--ink)}
+.rm .tagline{display:inline-block;background:var(--ink);color:var(--aqua);font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:8px;padding:.45em .8em}
+.rm h2{font-size:clamp(1.8rem,4.4vw,2.8rem);margin:.5em 0 .5em;max-width:22ch}
+.rm p{font-size:1.02rem;margin-bottom:.9em}
+.rm .big{font-size:clamp(1.15rem,2.4vw,1.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.3;border-left:5px solid var(--bad);padding-left:16px;margin:22px 0}
+.rm ul{list-style:none;display:grid;gap:8px;margin:14px 0 18px}
+.rm li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.95rem}
+.rm li::before{content:"!";width:22px;height:22px;border-radius:50%;background:var(--bad);color:#fff;font-weight:800;font-size:.8rem;display:grid;place-items:center}
+.rm .days{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
+.rm .days div{background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px}
+.rm .days b{display:block;font-size:1.8rem;letter-spacing:-.03em;line-height:1;color:var(--aqua)}
+.rm .days span{font-size:.75rem;opacity:.7;font-weight:600}
+.rm .sig{font-weight:800;margin-top:18px}
+
+/* ad groups */
+.grp{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:56px 0 20px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.grp:first-of-type{margin-top:0}
+.grp h3{font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.03em}
+.grp p{font-size:.9rem;color:var(--muted);max-width:52ch}
+/* creatives */
+.cmp{position:absolute;inset:44px 14px 64px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:10px}
+.cmp .col{border-radius:12px;padding:10px 9px;display:flex;flex-direction:column;gap:7px}
+.cmp .l{background:rgba(255,255,255,.08);color:rgba(255,255,255,.62)}
+.cmp .r{background:rgba(0,208,255,.14);border:1px solid rgba(0,208,255,.5);color:#fff}
+.cmp .h{font-weight:800;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase}
+.cmp .r .h{color:var(--aqua)}
+.cmp div div{line-height:1.25}
+.callog{position:absolute;left:16px;right:16px;top:48px;display:grid;gap:8px}
+.callog .row{background:rgba(255,255,255,.1);border-radius:12px;padding:9px 11px;font-size:10.5px;display:flex;justify-content:space-between;align-items:center}
+.callog .row.jv{background:rgba(0,208,255,.16);border:1px solid rgba(0,208,255,.5)}
+.callog .row small{opacity:.6;font-size:9px}
+.callog .miss{color:#FF8A80;font-weight:700}
+.bigtype{position:absolute;left:16px;right:16px;top:50%;transform:translateY(-58%);font-size:clamp(2rem,4vw,2.7rem);font-weight:800;letter-spacing:-.045em;line-height:.98}
+.bigtype em{font-style:normal;color:var(--aqua)}
+.bigtype small{display:block;font-size:.36em;letter-spacing:-.01em;font-weight:600;opacity:.75;margin-top:.8em;line-height:1.3}
+.srcline{position:absolute;left:16px;right:16px;bottom:10px;font-size:7.5px;opacity:.55;line-height:1.3}
+.split{position:absolute;inset:0;display:grid;grid-template-rows:1fr 1fr}
+.split div{display:flex;flex-direction:column;justify-content:center;padding:0 18px}
+.split .top1{background:#0B2233;color:rgba(255,255,255,.6)}
+.split .bot1{background:linear-gradient(135deg,#005A9E,#001526)}
+.split b{font-size:2.2rem;letter-spacing:-.04em;line-height:1;color:#fff}
+.split .bot1 b{color:var(--aqua)}
+.split span{font-size:10.5px;font-weight:700;margin-top:4px}
+/* reactor */
+.reactor{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#00374F 0%,#001526 55%,#000A12 100%)}
+.reactor .core{position:absolute;left:50%;top:38%;width:120px;height:120px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#E9FFFF 0%,#00FDFF 22%,rgba(0,208,255,.45) 45%,transparent 70%);box-shadow:0 0 60px 20px rgba(0,208,255,.35)}
+.reactor .core img{position:absolute;left:50%;top:50%;width:56px;transform:translate(-50%,-50%);filter:brightness(0) invert(1) drop-shadow(0 0 6px #00FDFF)}
+.reactor .ring{position:absolute;left:50%;top:38%;width:190px;height:190px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(0,253,255,.35)}
+.reactor .ring.r2{width:250px;height:250px;border-color:rgba(0,253,255,.15)}
+/* HUD */
+.hud{position:absolute;inset:0;background:linear-gradient(160deg,#021B2B,#000D16);font-family:ui-monospace,Menlo,monospace;color:var(--aqua)}
+.hud .ret{position:absolute;left:50%;top:40%;width:150px;height:150px;transform:translate(-50%,-50%);border:1.5px solid rgba(0,253,255,.6);border-radius:50%}
+.hud .ret::before,.hud .ret::after{content:"";position:absolute;background:rgba(0,253,255,.6)}
+.hud .ret::before{left:50%;top:-14px;bottom:-14px;width:1px}
+.hud .ret::after{top:50%;left:-14px;right:-14px;height:1px}
+.hud .tg{position:absolute;font-size:8.5px;line-height:1.35;border:1px solid rgba(0,253,255,.45);background:rgba(0,253,255,.06);padding:5px 7px;border-radius:4px}
+.hud .tg b{color:#fff;display:block;font-size:9px}
+.hud .t1{left:12px;top:44px}.hud .t2{right:12px;top:92px}.hud .t3{left:12px;top:160px}
+.hud .scan{position:absolute;left:0;right:0;top:40%;height:1px;background:linear-gradient(90deg,transparent,#00FDFF,transparent);opacity:.7}
+.hud .corner{position:absolute;width:16px;height:16px;border:2px solid var(--aqua)}
+.hud .c1{left:8px;top:34px;border-right:0;border-bottom:0}.hud .c2{right:8px;top:34px;border-left:0;border-bottom:0}
+/* risk box */
+.risk{border-radius:14px;padding:12px 14px;font-size:.82rem;display:grid;gap:6px}
+.risk.hi{background:var(--badbg);color:#6B1A12}
+.risk.md{background:var(--warnbg);color:#6A3A00}
+.risk.lo{background:var(--okbg);color:#0B4A35}
+.risk b.lvl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+.risk .sw{font-size:.8rem}
+.risk .sw b{font-weight:800}
+.single dl{padding:12px 14px;display:grid;gap:8px}
+
+/* weekend band */
+.wk{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.wk span{font-size:.78rem;font-weight:700;border-radius:999px;padding:.4em .9em;background:#fff;border:1px solid var(--line)}
+.wk span.off{background:var(--badbg);border-color:transparent;color:var(--bad)}
+.wk span.on{background:var(--okbg);border-color:transparent;color:var(--ok)}
+
+/* one-place checklist */
+.prog{position:sticky;top:58px;z-index:5;background:var(--ink);color:#fff;border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.prog .bar{flex:1;height:8px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:var(--grad-lite);transition:width .3s}
+.prog b{font-size:.9rem;white-space:nowrap}
+.prog button{font:inherit;font-size:.72rem;font-weight:700;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:.35em .8em;cursor:pointer}
+.cl{list-style:none;display:grid;gap:10px}
+.ci{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:#fff;transition:background .2s,opacity .2s}
+.ci input{appearance:none;width:22px;height:22px;border:2px solid var(--current);border-radius:6px;margin-top:2px;cursor:pointer;display:grid;place-items:center}
+.ci input:checked{background:var(--tide);border-color:var(--tide)}
+.ci input:checked::after{content:"✓";color:#fff;font-weight:800;font-size:14px}
+.ci.done{background:var(--okbg)}
+.ci.done .t{text-decoration:line-through;text-decoration-color:rgba(0,0,0,.3)}
+.ci .t{font-weight:700;font-size:.96rem}
+.ci .d{font-size:.84rem;color:var(--muted);margin-top:3px}
+.ci .lk{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.ci .lk a{font-size:.74rem;font-weight:700;text-decoration:none;border-radius:999px;padding:.35em .8em;display:inline-flex;align-items:center;gap:.4em}
+.ci .lk a.doc{background:var(--soft);color:var(--tide)}
+.ci .lk a.vid{background:#FFE9E7;color:#B42318}
+.ci .lk a.vid::before{content:"▶";font-size:.8em}
+.ci .lk a.doc::before{content:"↗";font-size:.9em}
+.ci .lk a:hover{filter:brightness(.95)}
+.stage{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--current);margin:30px 0 10px;display:flex;align-items:center;gap:10px}
+.stage::after{content:"";flex:1;height:1px;background:var(--line)}
+.vids{display:grid;gap:14px}
+@media(min-width:760px){.vids{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.vids{grid-template-columns:repeat(3,1fr)}}
+.vc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
+.vc:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(0,46,81,.45)}
+.vc .th{aspect-ratio:16/9;background:#000 center/cover;position:relative}
+.vc .th::after{content:"▶";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,0,0,.9);color:#fff;display:grid;place-items:center;font-size:16px;padding-left:3px;box-sizing:border-box}
+.vc .th span{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.8);color:#fff;font-size:.7rem;font-weight:700;border-radius:4px;padding:.1em .4em}
+.vc .bd{padding:14px 16px 16px}
+.vc .bd small{font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--current)}
+.vc .bd h4{font-size:.95rem;margin:.35em 0 .3em;letter-spacing:-.01em;line-height:1.25}
+.vc .bd p{font-size:.78rem;color:var(--muted)}
+
+/* who does what */
+.split2{display:grid;gap:14px;margin-top:22px}
+@media(min-width:760px){.split2{grid-template-columns:1fr 1fr}}
+.split2>div{border-radius:18px;padding:20px 22px;background:var(--ink);color:#fff}
+.split2>div:last-child{background:var(--tide)}
+.split2 .eyebrow{color:var(--aqua)}
+.split2 h4{font-size:1.25rem;margin:.3em 0 .4em;letter-spacing:-.02em}
+.split2 p{font-size:.88rem;opacity:.85}
+.byline{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.35em .9em;background:var(--soft);color:var(--tide);margin-top:12px}
+
+/* ================= v4 ================= */
+section{scroll-margin-top:60px}
+.pt{display:inline-flex;align-items:center;gap:.45em;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.4em .9em;white-space:nowrap}
+.pt.ad{background:var(--aqua);color:var(--ink)}
+.pt.lp{background:var(--tide);color:#fff}
+.pt.wa{background:#1FAF5A;color:#fff}
+.pt::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.7}
+
+/* ads 101 */
+.edu{display:grid;gap:14px}
+@media(min-width:720px){.edu{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.edu{grid-template-columns:repeat(3,1fr)}}
+.ec{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px 22px;display:flex;flex-direction:column;gap:10px}
+.ec .n{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--aqua);font-weight:800;display:grid;place-items:center;font-size:.9rem}
+.ec h4{font-size:1.2rem;letter-spacing:-.02em}
+.ec p{font-size:.93rem;color:var(--muted)}
+.ec .ex{margin-top:auto;background:var(--soft);border-radius:12px;padding:10px 12px;font-size:.84rem;color:var(--deep)}
+.gl{margin-top:30px;background:var(--ink);color:#fff;border-radius:22px;padding:26px 24px}
+.gl h4{font-size:1.1rem;margin-bottom:14px}
+.gl dl{display:grid;gap:12px 28px}
+@media(min-width:760px){.gl dl{grid-template-columns:1fr 1fr}}
+.gl dt{font-weight:800;color:var(--aqua);font-size:.9rem}
+.gl dd{font-size:.88rem;color:rgba(255,255,255,.78)}
+
+/* the three parts */
+.parts{display:grid;gap:14px;align-items:stretch}
+@media(min-width:980px){.parts{grid-template-columns:1fr 40px 1fr 40px 1fr}}
+.part{border-radius:24px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;background:#fff;border:2px solid}
+.part.ad{border-color:var(--aqua)}.part.lp{border-color:var(--tide)}.part.wa{border-color:#1FAF5A}
+.part .pt{align-self:flex-start}
+.part h3{font-size:1.4rem}
+.part dl{display:grid;gap:10px;font-size:.9rem}
+.part dt{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.part dd{margin-top:-2px}
+.part .mini{height:120px;border-radius:14px;overflow:hidden;position:relative}
+.pa{display:grid;place-items:center;color:var(--current)}
+.pa svg{width:30px;height:30px}
+@media(max-width:979px){.pa svg{transform:rotate(90deg)}}
+.mini.m-ad{background:linear-gradient(160deg,#003B66,#001526);color:#fff;padding:12px 14px}
+.mini.m-ad b{font-size:1rem;letter-spacing:-.03em;display:block;margin-top:14px}.mini.m-ad b em{font-style:normal;color:var(--aqua)}
+.mini.m-ad small{position:absolute;left:14px;top:8px;font-size:.62rem;opacity:.7}
+.mini.m-ad span{position:absolute;left:0;right:0;bottom:0;background:#EEF6FA;color:var(--tide);font-size:.72rem;font-weight:800;padding:6px 14px}
+.mini.m-lp{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.mini.m-lp .u{background:var(--soft);font-size:.66rem;padding:5px 10px;color:var(--muted)}
+.mini.m-lp .h{padding:10px 12px;background:var(--ink);color:#fff;flex:1}
+.mini.m-lp .h b{font-size:.95rem;letter-spacing:-.03em;display:block}
+.mini.m-lp .h i{display:inline-block;margin-top:10px;font-style:normal;font-size:.7rem;font-weight:800;background:#fff;color:var(--ink);border-radius:999px;padding:.35em .9em}
+.mini.m-wa{background:var(--wabg);padding:10px;display:flex;flex-direction:column;gap:6px;font-size:.7rem}
+.mini.m-wa div{max-width:85%;border-radius:8px;padding:5px 8px;background:#fff}
+.mini.m-wa .me{align-self:flex-end;background:var(--wagreen)}
+.drip{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px 22px}
+.drip h4{font-size:1.1rem;margin-bottom:4px}
+.drip>p{font-size:.9rem;color:var(--muted);margin-bottom:16px}
+.dr{display:grid;grid-template-columns:170px 1fr;gap:12px;align-items:center;margin-bottom:8px;font-size:.86rem}
+.dr i{height:28px;border-radius:8px;font-style:normal;font-weight:800;font-size:.8rem;display:flex;align-items:center;padding:0 10px;white-space:nowrap;min-width:max-content}
+.userdef{margin-top:18px;display:grid;gap:12px}
+@media(min-width:760px){.userdef{grid-template-columns:1.4fr 1fr}}
+.userdef>div{border-radius:18px;padding:20px 22px}
+.userdef .y{background:var(--ink);color:#fff}.userdef .y .eyebrow{color:var(--aqua)}
+.userdef .n2{background:var(--badbg);color:#6B1A12}
+.userdef h4{font-size:1.15rem;margin:.3em 0}
+.userdef p{font-size:.9rem;opacity:.85}
+
+/* ads */
+.dirh{display:grid;gap:8px;margin:60px 0 22px;padding:22px 24px;border-radius:22px;background:var(--ink);color:#fff}
+.dirh.first{margin-top:0}
+.dirh .eyebrow{color:var(--aqua)}
+.dirh h3{font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.03em}
+.dirh p{font-size:.92rem;color:rgba(255,255,255,.75)}
+.dirh .go{font-size:.82rem;font-weight:800;color:var(--aqua)}
+.adg{display:grid;gap:20px}
+@media(min-width:1100px){.adg{grid-template-columns:1fr 1fr}}
+.adc{display:grid;background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden}
+@media(min-width:620px){.adc{grid-template-columns:300px 1fr}}
+.adc .post{border-bottom:0;border-right:1px solid var(--line);background:#fff}
+@media(max-width:619px){.adc .post{border-right:0;border-bottom:1px solid var(--line)}}
+.igact{display:flex;gap:12px;padding:8px 12px 2px;color:var(--ink)}
+.igact svg{width:20px;height:20px}
+.igact .sv{margin-left:auto}
+.adc .ig-cap{font-size:11px;padding:4px 12px 12px;color:#333;line-height:1.45}
+.adn{padding:20px 20px 22px;display:flex;flex-direction:column;gap:12px;font-size:.88rem}
+.adn .id{display:flex;gap:6px;flex-wrap:wrap}
+.adn h4{font-size:1.15rem;letter-spacing:-.02em;line-height:1.2}
+.adn .k{font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px}
+.adn .to{margin-top:auto;font-size:.8rem;font-weight:700;color:var(--tide);background:var(--soft);border-radius:10px;padding:8px 10px}
+.notif{position:absolute;left:12px;right:12px;display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;background:rgba(245,248,250,.9);backdrop-filter:blur(8px);color:var(--ink);border-radius:14px;padding:9px 10px;font-size:10px;line-height:1.3}
+.notif i{width:26px;height:26px;border-radius:7px;background:#8A97A0;display:grid;place-items:center;color:#fff;font-style:normal;font-size:12px}
+.notif.jv i{background:var(--ink) url(assets/mark.png) center/15px no-repeat}
+.notif b{display:flex;justify-content:space-between;font-size:10px}
+.notif b small{font-weight:500;opacity:.6}
+.term{position:absolute;inset:44px 14px 96px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.7;color:#9FE9FF}
+.term .p{color:#fff;font-weight:700}
+.term .ok{color:#00FDFF}
+.term .cur{display:inline-block;width:7px;height:12px;background:#00FDFF;vertical-align:middle;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.ill{position:absolute;right:12px;bottom:4px;font-size:7.5px;opacity:.6;z-index:2}
+
+/* landing page */
+.lpp{display:grid;gap:26px}
+@media(min-width:960px){.lpp{grid-template-columns:repeat(3,1fr)}}
+.brw{background:var(--ink);border-radius:36px;padding:10px 10px 12px;box-shadow:0 30px 60px -30px rgba(0,46,81,.55);max-width:360px;margin:0 auto}
+.brw .url{display:flex;align-items:center;gap:6px;margin:4px 8px 9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:11px;border-radius:10px;padding:6px 10px;overflow:hidden;white-space:nowrap}
+.brw .url::before{content:"🔒";font-size:9px}
+.brw .scr{height:560px;overflow:hidden;border-radius:26px;position:relative;background:#fff}
+.brw iframe{width:390px;border:0;transform-origin:0 0;display:block}
+.lpc{max-width:360px;margin:0 auto;width:100%}
+.lpc h4{font-size:1.15rem;margin:16px 0 4px}
+.lpc p{font-size:.88rem;color:var(--muted)}
+.lpc .feeds{margin-top:8px;font-size:.8rem;font-weight:700;color:var(--tide)}
+.lpc a{font-size:.8rem;font-weight:700;color:var(--tide)}
+.same{margin-top:36px;display:grid;gap:16px}
+@media(min-width:900px){.same{grid-template-columns:1fr 1fr}}
+.same>div{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 24px}
+.same ol{padding-left:1.2em;display:grid;gap:6px;font-size:.9rem;margin-top:10px}
+.same h4{font-size:1.1rem}
+
+/* day gantt */
+.dg{background:#fff;border:1px solid var(--line);border-radius:22px;overflow-x:auto}
+.dg-in{min-width:900px;display:grid;grid-template-columns:200px repeat(12,1fr)}
+.dg .dh{font-size:.7rem;font-weight:800;text-align:center;padding:12px 2px 10px;border-bottom:1px solid var(--line);background:var(--canvas);line-height:1.2}
+.dg .dh small{display:block;font-weight:600;color:var(--muted);font-size:.62rem}
+.dg .dl{padding:12px 14px;font-size:.84rem;font-weight:800;border-bottom:1px solid var(--line);line-height:1.25}
+.dg .dl small{display:block;font-weight:600;color:var(--muted);font-size:.72rem}
+.dg .dc{border-left:1px dashed var(--line);border-bottom:1px solid var(--line)}
+.dg .hol{background:repeating-linear-gradient(135deg,#FDECEA 0 6px,#fff 6px 12px)}
+.dg .dh.hol{color:var(--bad)}
+.dg .bb{align-self:center;margin:0 3px;height:30px;border-radius:9px;font-size:.72rem;font-weight:800;color:#fff;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden;z-index:1}
+.bb.fb{background:#8A6D00}.bb.lock{background:var(--ok)}.bb.lp{background:var(--tide)}.bb.ad{background:var(--current)}.bb.meta{background:#4B3FCF}
+.bb.pre{background:repeating-linear-gradient(135deg,#E3E0FA 0 8px,#F1EFFD 8px 16px);color:#4B3FCF}
+.bb.prod{background:var(--soft);color:var(--deep);border:1px dashed var(--current)}
+.bb.live{background:var(--bad);justify-content:center}
+.wkn{display:grid;gap:8px;margin:16px 0 0;font-size:.86rem;color:var(--muted)}
+.wkn b{color:var(--ink)}
+.phase{display:grid;gap:12px;margin:0 0 26px}
+@media(min-width:900px){.phase{grid-template-columns:repeat(3,1fr)}}
+.phase div{border-radius:18px;padding:18px 20px;background:#fff;border:1px solid var(--line)}
+.phase b{display:block;font-size:2rem;letter-spacing:-.04em;line-height:1;color:var(--tide)}
+.phase span{font-size:.84rem;color:var(--muted)}
+.phase h4{margin:.5em 0 .2em}
+
+/* softer read-first note */
+.rm{box-shadow:0 20px 50px -30px rgba(0,46,81,.35);border:1px solid var(--line)}
+.rm .tagline{background:var(--soft);color:var(--tide)}
+.rm h2{font-size:clamp(1.6rem,3.6vw,2.3rem)}
+.rm .big{border-left-color:var(--current);font-size:clamp(1.05rem,2vw,1.25rem)}
+.rm li::before{content:"";width:8px;height:8px;margin:8px 0 0 7px;background:var(--current)}
+.readme{background:var(--canvas);border-bottom:1px solid var(--line)}
+
+/* placeholder notes */
+.phn{background:var(--warnbg);border:1px solid #F1D9A8;color:#6A3A00;border-radius:14px;padding:12px 16px;font-size:.9rem;line-height:1.5;max-width:none}
+.phn b{color:#6A3A00}
+.shead .phn{margin-top:4px}
+.cover .phn{margin-top:22px;position:relative;background:rgba(255,244,229,.12);border-color:rgba(255,215,150,.35);color:#FFE3B3}
+.cover .phn b{color:#FFE3B3}
+.phb{position:absolute;z-index:5;top:8px;right:8px;background:#FFB020;color:#3A2200;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 7px;pointer-events:none}
+.brw .scr .phb{top:10px;right:10px;font-size:10px}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <img src="assets/logo.svg" alt="OneStop">
+  <nav id="tnav">
+    <a href="#readme">Read first</a><a href="#ads101">Ads 101</a><a href="#journey">The journey</a><a href="#ads">1 · Ads</a><a href="#lp">2 · Landing page</a><a href="#timeline">Timeline</a><a href="#budget">Budget</a><a href="#rules">Rules</a><a href="#setup">Meta setup</a><a href="#videos">Videos</a><a href="#open">Open items</a>
+  </nav>
+</div></div>
+
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <div class="wrap">
+    <div class="eyebrow">OneStop · soft launch · India</div>
+    <h1>JARVIS launch plan. <em>Meta ads.</em></h1>
+    <p class="lede">How we plan to get the first 500 JARVIS users with paid ads on Instagram and Facebook.</p>
+    <div class="kpis">
+      <div class="kpi"><b>500</b><span>people who use JARVIS</span></div>
+      <div class="kpi"><b>2 weeks</b><span>to get everything ready</span></div>
+      <div class="kpi"><b>Fri 9 Oct</b><span>ads go live</span></div>
+      <div class="kpi"><b>₹1.2 lakh</b><span>the most we spend</span></div>
+    </div>
+    <p class="meta">Draft v4 · 24 Sep 2026 · a number marked <span class="flag est">estimate</span> is our best guess until the first week of ads gives us the real one</p>
+    <div class="phn"><b>Please note:</b> the ads and the landing page in this plan are placeholders, to give an idea of how things will look and work. They are not final.</div>
+  </div>
+</header>
+
+<!-- ================= READ FIRST ================= -->
+<section class="readme" id="readme">
+  <div class="wrap">
+    <div class="rm">
+      <span class="tagline">Before we begin, please read this</span>
+      <h2>A note on timelines.</h2>
+      <p>We agreed the launch plan on 6 August. Two pieces of final feedback are still open:</p>
+      <ul>
+        <li><span><b>The launch video.</b> The four features to show, and a phone screen recording of each (requested on 17 September).</span></li>
+        <li><span><b>The landing page and the website.</b> One combined set of notes on the home page, the JARVIS page and the movement page, including the menu.</span></li>
+      </ul>
+      <p>The product will be ready in about two weeks, and this plan fits inside that window: 3 days for the landing page, 3 days for the ads and 3 days for the Meta setup.</p>
+      <p class="big">Each date depends on the one before it. If we don’t follow the timelines, none of this can be executed on time.</p>
+      <p>To keep us on track, it would help to have notes on this plan by <b>Mon 28 Sep</b> and a final go-ahead by <b>Tue 29 Sep</b>. After that, feedback within 2 working days, in one set of notes, keeps everything moving. If any date slips, I’ll share the new launch date the same day.</p>
+      <p class="sig">— Saurabh</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADS 101 ================= -->
+<section id="ads101">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">A short primer on Meta ads</div>
+      <h2>How Meta ads work, in six cards.</h2>
+      <p class="muted">Meta owns Instagram and Facebook. When we “run Meta ads”, we pay Meta to show our posts to people who don’t follow us.</p>
+    </div>
+    <div class="edu">
+      <div class="ec"><span class="n">1</span><h4>An ad is a post we pay for.</h4><p>It looks like a normal post, with a small “Sponsored” label. It shows up between posts from friends, in the feed, in Stories and in Reels.</p><div class="ex">Our 8 ads are 8 posts. Each one has a button that says “Learn more”.</div></div>
+      <div class="ec"><span class="n">2</span><h4>We say who. Meta picks the exact people.</h4><p>We tell Meta the rough group: people in India, aged 25 to 45. Meta decides which people inside that group see each ad. We don’t pick people one by one.</p><div class="ex">We keep the group wide on purpose. Meta finds the right people faster than we can guess them.</div></div>
+      <div class="ec"><span class="n">3</span><h4>We set a daily limit. Meta never goes over it.</h4><p>We tell Meta how much it can spend each day. It spends that money through the day and then stops. We pay for people seeing the ad, not for users.</p><div class="ex">Week 1: ₹3,600 a day. The whole plan can never go over ₹1,20,000.</div></div>
+      <div class="ec"><span class="n">4</span><h4>Meta learns who says yes.</h4><p>Each time someone taps “Start” on our page, Meta looks at who that person is. Then it shows the ad to more people like them. It needs about 50 of these a week to learn well.</p><div class="ex">This is why the first few days cost more. Meta is still learning.</div></div>
+      <div class="ec"><span class="n">5</span><h4>The pixel is a counter on our page.</h4><p>It is a small piece of code on the landing page. When someone taps “Start”, the pixel tells Meta. No pixel means Meta can’t learn, and we can’t see which ad works.</p><div class="ex">The pixel is part of the 3-day Meta setup.</div></div>
+      <div class="ec"><span class="n">6</span><h4>We test, then keep the winners.</h4><p>In week 1, all 8 ads run with small money. Then we switch off the ads that cost too much for each user. The money moves to the 2 or 3 ads that work best.</p><div class="ex">No one can predict the winner in advance. The test shows it.</div></div>
+    </div>
+    <div class="gl">
+      <h4>Terms used in this plan</h4>
+      <dl>
+        <div><dt>Campaign</dt><dd>The folder that holds the whole push. We have one.</dd></div>
+        <div><dt>Ad set</dt><dd>A group of ads inside the campaign, with its own daily budget. We have three, one for each ad direction in Part 1.</dd></div>
+        <div><dt>Ad</dt><dd>One post that people see. We have eight.</dd></div>
+        <div><dt>Landing page</dt><dd>The web page people reach after they tap an ad. It is not our website’s home page.</dd></div>
+        <div><dt>CPM</dt><dd>What it costs for 1,000 people to see an ad. In India, about ₹200.</dd></div>
+        <div><dt>Click rate</dt><dd>Out of 100 people who see the ad, how many tap it. About 1 is normal.</dd></div>
+        <div><dt>Cost per user</dt><dd>All the money we spent, divided by the users we got. This is the only number that decides which ad wins.</dd></div>
+        <div><dt>Learning</dt><dd>The first days of an ad, when Meta is still working out who to show it to. Changes during this time reset it.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section class="alt" id="journey">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">The whole journey</div>
+      <h2>Three parts. The ad, the page, the chat.</h2>
+      <p class="muted">A person meets us three times. First in Instagram, where they see the ad. Then on our landing page, which they only reach by tapping the ad. Then in WhatsApp, where JARVIS talks to them.</p>
+      <div class="phn"><b>Note:</b> every ad and every page on this plan is a placeholder, made to give an idea of how it will look and work. The final versions come after the plan is agreed.</div>
+    </div>
+    <div class="parts">
+      <div class="part ad">
+        <span class="pt ad">Part 1 · The ad</span>
+        <div class="mini m-ad"><small>Sponsored</small><b>Your advisor <em>vs JARVIS.</em></b><span>Learn more ›</span></div>
+        <h3>They see the ad.</h3>
+        <dl>
+          <div><dt>Where it lives</dt><dd>Inside Instagram and Facebook. We pay for it.</dd></div>
+          <div><dt>What the person does</dt><dd>Scrolls, stops on the ad, taps “Learn more”.</dd></div>
+          <div><dt>Its one job</dt><dd>Make them curious enough to tap.</dd></div>
+        </dl>
+      </div>
+      <div class="pa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="part lp">
+        <span class="pt lp">Part 2 · The landing page</span>
+        <div class="mini m-lp"><div class="u">🔒 onestop / start</div><div class="h"><b>Your advisor vs JARVIS.</b><i>Start with JARVIS</i></div></div>
+        <h3>They land on our page.</h3>
+        <dl>
+          <div><dt>Where it lives</dt><dd>On our website. Only people who tap an ad reach it.</dd></div>
+          <div><dt>What the person does</dt><dd>Reads the top, scrolls a little, taps “Start with JARVIS”.</dd></div>
+          <div><dt>Its one job</dt><dd>Say the same thing as the ad, prove it, and get the tap.</dd></div>
+        </dl>
+      </div>
+      <div class="pa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="part wa">
+        <span class="pt wa">Part 3 · WhatsApp</span>
+        <div class="mini m-wa"><div class="me">Hi JARVIS 👋 I’d like to start.</div><div>Hi. I’m JARVIS. First question: what do you own today?</div></div>
+        <h3>They talk to JARVIS.</h3>
+        <dl>
+          <div><dt>Where it lives</dt><dd>In WhatsApp, with JARVIS.</dd></div>
+          <div><dt>What the person does</dt><dd>Presses send on a message that is already typed. Answers JARVIS’s first question.</dd></div>
+          <div><dt>Its one job</dt><dd>Turn a curious person into a user.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="drip">
+      <h4>What happens to 1,000 people who see an ad</h4>
+      <p>People drop off at every step. That is normal. These are our guesses <span class="flag est">estimate</span>. The first week of ads gives us the real numbers.</p>
+      <div class="dr"><span>See the ad</span><i style="width:100%;background:var(--aqua);color:var(--ink)">1,000 people</i></div>
+      <div class="dr"><span>Tap the ad</span><i style="width:44%;background:var(--current);color:#fff">10</i></div>
+      <div class="dr"><span>Tap “Start” on the page</span><i style="width:30%;background:var(--tide);color:#fff">2 or 3</i></div>
+      <div class="dr"><span>Send the WhatsApp message</span><i style="width:22%;background:#1FAF5A;color:#fff">1 or 2</i></div>
+      <div class="dr"><span>Answer JARVIS</span><i style="width:15%;background:var(--ink);color:#fff">about 1</i></div>
+      <p style="margin:14px 0 0;font-size:.9rem"><b>So:</b> about 1 user for every 1,000 people who see an ad. At ₹200 per 1,000 views, one user costs about ₹200 to ₹240.</p>
+    </div>
+
+    <div class="userdef">
+      <div class="y"><span class="eyebrow">What counts as a user</span><h4>Someone who sends the message AND answers JARVIS’s first question.</h4><p>This is the number we count to 500.</p></div>
+      <div class="n2"><span class="eyebrow" style="color:var(--bad)">Not a user</span><h4>A tap, a page visit, or a “hi” with no reply.</h4><p>We track these, but we don’t count them.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 1: ADS ================= -->
+<section id="ads">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pt ad" style="justify-self:start">Part 1 · The ads</span>
+      <h2>This is what people see in Instagram.</h2>
+      <p class="muted">Eight ads in three directions. A direction is one idea, said in a few different ways. Each direction has its own landing page top (Part 2), so the page always repeats what the ad said. Each bold ad carries a note on why Meta may reject it, and a safer version we can swap in the same day.</p>
+      <div class="phn"><b>Placeholder ads.</b> These are rough examples to show the idea and the feel. They are not the final designs or the final copy. The real ads get made in the 3-day ad window, after the plan is final.</div>
+    </div>
+
+    <!-- DIRECTION 1 -->
+    <div class="dirh first"><span class="eyebrow">Direction 1 · 4 ads · direct</span><h3>Your advisor vs JARVIS.</h3><p>Put the advisor people already know next to JARVIS and show the difference. Every claim is a fact anyone can check.</p><span class="go">Tap goes to → Landing page, direction 1</span></div>
+    <div class="adg">
+
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr" style="background:linear-gradient(160deg,#003B66,#001526 75%)"><span class="phb">Placeholder</span>
+            <div class="lock"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div style="position:absolute;left:16px;right:16px;top:40px;font-weight:800;font-size:1.3rem;letter-spacing:-.035em;line-height:1">Your advisor <em style="font-style:normal;color:var(--aqua)">vs JARVIS.</em></div>
+            <div class="cmp" style="top:88px;bottom:40px">
+              <div class="col l"><div class="h">Your advisor</div><div>Calls when you book a meeting</div><div>Reads the summary page</div><div>Often paid by the funds he sells</div><div>Mon–Fri, 10 to 6</div></div>
+              <div class="col r"><div class="h">JARVIS</div><div>Speaks first when something changes</div><div>Reads every page</div><div>Sells nothing</div><div>6:40 am on a Sunday</div></div>
+            </div>
+            <div class="srcline">Regular mutual fund plans pay the distributor a yearly commission out of the fund.</div>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> Your advisor sees your portfolio when you book a meeting. JARVIS sees it every day and sells you nothing.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag">Ad 1</span><span class="tag o">Picture post</span></div>
+          <h4>The side-by-side.</h4>
+          <div><span class="k">Why people stop</span>A table is fast to read. Anyone with an advisor checks their own advisor against it.</div>
+          <div class="risk lo"><b class="lvl">Meta: likely to approve</b><span>It compares with “advisors” in general, not a named company.</span></div>
+          <div class="to">Tap → landing page, direction 1</div>
+        </div>
+      </article>
+
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr"><span class="phb">Placeholder</span>
+            <div class="ph-img" style="background-image:url(assets/moment-window.jpg)"></div><div class="shade" style="background:linear-gradient(180deg,rgba(0,21,38,.35),rgba(0,21,38,.9))"></div>
+            <div class="lock"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="notif" style="top:48px"><i>☎</i><div><b>My advisor <small>4 months ago</small></b>Missed call. “New fund offer, sir. Limited period.”</div></div>
+            <div class="notif jv" style="top:106px"><i></i><div><b>JARVIS <small>6:40 am</small></b>Three of your funds hold the same twelve stocks. Want to see?</div></div>
+            <div class="hl">When did your advisor last call you <em>first?</em></div>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> Not to sell you a fund. Just to tell you something about your money. JARVIS speaks first.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag">Ad 2</span><span class="tag o">Picture post + Story</span></div>
+          <h4>The call that never comes.</h4>
+          <div><span class="k">Why people stop</span>Everyone knows the “new fund offer” call. Nobody has had the other one.</div>
+          <div class="risk md"><b class="lvl">Meta: probably, watch one thing</b><span>Meta can reject ads that look like real phone alerts. These cards are drawn as a picture, not a real phone screen.</span><span class="sw"><b>Safer version:</b> same headline on plain dark blue, no alerts.</span></div>
+          <div class="to">Tap → landing page, direction 1</div>
+        </div>
+      </article>
+
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr"><span class="phb">Placeholder</span>
+            <div class="split"><div class="top1"><span>Portfolio manager · minimum to start</span><b>₹50,00,000</b></div><div class="bot1"><span style="color:#fff">JARVIS · time to start</span><b>2 minutes</b></div></div>
+            <div class="lock" style="z-index:1"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="srcline" style="z-index:1">SEBI (Portfolio Managers) Regulations, 2020: minimum investment ₹50 lakh.</div>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> Portfolio managers need ₹50 lakh before they look at your money. JARVIS looks at all of it, from your first SIP.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag">Ad 3</span><span class="tag o">Picture post</span></div>
+          <h4>Two numbers.</h4>
+          <div><span class="k">Why people stop</span>₹50 lakh is a shock number. “2 minutes” is the answer to it.</div>
+          <div class="risk lo"><b class="lvl">Meta: likely to approve</b><span>One public number, with its source on the picture. No promise of returns.</span></div>
+          <div class="to">Tap → landing page, direction 1</div>
+        </div>
+      </article>
+
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr" style="background:linear-gradient(170deg,#002E51,#000A12)"><span class="phb">Placeholder</span>
+            <div class="lock"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="bigtype" style="font-size:clamp(2.3rem,4.6vw,3rem)">Fire your <em>advisor.</em><small>He works 10 to 6. He earns when you buy. JARVIS works while you sleep, and sells nothing.</small></div>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> Hire one that never logs off. JARVIS reads every page and earns nothing when you buy.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag b">Ad 4 · bold</span><span class="tag o">Words only</span></div>
+          <h4>Fire your advisor.</h4>
+          <div><span class="k">Why people stop</span>Three words that start an argument in the comments. Comments make Meta show the ad to more people.</div>
+          <div class="risk hi"><b class="lvl">⚠ Meta may not approve this</b><span>Harsh lines get reported, and reports can pull the ad. India’s ad code (ASCI) also doesn’t allow ads that unfairly run down a whole profession.</span><span class="sw"><b>Safer version:</b> “Your advisor works 10 to 6. JARVIS never logs off.”</span></div>
+          <div class="to">Tap → landing page, direction 1</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- DIRECTION 2 -->
+    <div class="dirh"><span class="eyebrow">Direction 2 · 2 ads · bold</span><h3>Tony Stark had JARVIS. Now your money has one.</h3><p>Everyone knows JARVIS from Iron Man: the AI that watches everything and speaks first. The idea is simple: that kind of AI, for your money.</p><span class="go">Tap goes to → Landing page, direction 2</span></div>
+    <div class="adg">
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr"><span class="phb">Placeholder</span>
+            <div class="reactor"><div class="ring r2"></div><div class="ring"></div><div class="core"><img src="assets/mark.png" alt=""></div></div>
+            <div class="lock" style="z-index:1"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="hl">Tony Stark had JARVIS for his suit. <em>Now your money has one.</em></div>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> Same idea, different armour. An AI that watches everything, speaks first and never sleeps.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag b">Ad 5 · bold</span><span class="tag o">Picture + 6-second Reel</span></div>
+          <h4>The arc reactor.</h4>
+          <div><span class="k">Why people stop</span>The glow reads as Iron Man before anyone reads a word. Our orbit mark sits in the centre.</div>
+          <div class="risk hi"><b class="lvl">⚠ Meta may not approve this</b><span>“Tony Stark”, “Iron Man” and “JARVIS” belong to Marvel (Disney). If Marvel reports the ad, Meta takes it down, and the report can mark our ad account.</span><span class="sw"><b>Safer version:</b> “The AI billionaires have. Now for your money.” Same glow, no names.</span></div>
+          <div class="to">Tap → landing page, direction 2</div>
+        </div>
+      </article>
+
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr"><span class="phb">Placeholder</span>
+            <div class="reactor" style="background:radial-gradient(circle at 80% 18%,#004B6E 0%,#001526 50%,#000A12 100%)"></div>
+            <div class="lock" style="z-index:1"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="bigtype" style="z-index:1;top:48%;font-size:clamp(1.6rem,3.2vw,2.1rem);line-height:1.1"><span style="opacity:.55">Genius?</span> Optional.<br><span style="opacity:.55">Billionaire?</span> Optional.<br><span style="opacity:.55">JARVIS?</span> <em>Now standard.</em></div>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> The money AI that used to need a family office now fits in WhatsApp.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag b">Ad 6 · bold</span><span class="tag o">Words + 3-beat Reel</span></div>
+          <h4>Now standard.</h4>
+          <div><span class="k">Why people stop</span>It plays on Tony Stark’s famous “genius, billionaire…” line. Fans finish it in their heads and share it.</div>
+          <div class="risk hi"><b class="lvl">⚠ Meta may not approve this</b><span>Same Marvel risk as Ad 5. The line is close to a famous quote from the films.</span><span class="sw"><b>Safer version:</b> “Genius? Optional. Billionaire? Optional. Your own money AI? Now standard.”</span></div>
+          <div class="to">Tap → landing page, direction 2</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- DIRECTION 3 -->
+    <div class="dirh"><span class="eyebrow">Direction 3 · 2 ads · bold, visual</span><h3>A HUD for your money.</h3><p>Iron Man sees the world through a screen of labels and alerts. These ads show a portfolio the same way. No Marvel names, only the look.</p><span class="go">Tap goes to → Landing page, direction 3</span></div>
+    <div class="adg">
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr"><span class="phb">Placeholder</span>
+            <div class="hud" style="background:linear-gradient(rgba(2,27,43,.55),rgba(0,13,22,.88)),url(assets/moment-window.jpg) center 25%/cover"><span class="corner c1"></span><span class="corner c2"></span><div class="scan"></div><div class="ret"></div>
+              <div class="tg t1"><b>SCAN COMPLETE</b>4 funds · demat · EPF</div>
+              <div class="tg t2"><b>OVERLAP FOUND</b>12 stocks in 3 funds</div>
+              <div class="tg t3"><b>FEE LEAK</b>2 fees, 1 idea</div>
+            </div>
+            <div class="lock" style="z-index:1"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="hl">Your portfolio. <em>Now with a HUD.</em></div>
+            <span class="ill">Illustrative scan</span>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> JARVIS scans everything you own and flags what leaks: hidden fees, funds that repeat, cash that does nothing.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag b">Ad 7 · bold</span><span class="tag o">8-second Reel + picture</span></div>
+          <h4>The scan.</h4>
+          <div><span class="k">Why people stop</span>Moving labels on a real photo. It looks like a film, not like a finance ad.</div>
+          <div class="risk md"><b class="lvl">⚠ Meta may question this</b><span>No names, so the Marvel risk is low. Meta can call a made-up scan “misleading”, so “Illustrative scan” stays on the picture.</span><span class="sw"><b>Safer version:</b> the same scan with labels only, no numbers.</span></div>
+          <div class="to">Tap → landing page, direction 3</div>
+        </div>
+      </article>
+
+      <article class="adc">
+        <div class="post">
+          <div class="ig-top"><i></i><div>onestop.jarvis<small>Sponsored</small></div></div>
+          <div class="cr" style="background:linear-gradient(170deg,#021B2B,#000A12)"><span class="phb">Placeholder</span>
+            <div class="lock"><img src="assets/logo.svg" alt=""><span>JARVIS</span></div>
+            <div class="term">
+              <div class="p">&gt; JARVIS, scan my portfolio.</div>
+              <div>Reading 4 funds, 1 demat, EPF…</div>
+              <div class="ok">✓ 12 stocks repeat across 3 funds</div>
+              <div class="ok">✓ 2 fees paid for 1 idea</div>
+              <div class="ok">✓ Cash idle in savings for 7 months</div>
+              <div>Want the numbers? <span class="cur"></span></div>
+            </div>
+            <div class="hl">Say the word. <em>JARVIS runs the scan.</em></div>
+            <span class="ill">Illustrative</span>
+          </div>
+          <div class="ig-cta">Learn more <span>›</span></div>
+          <div class="igact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.5-9.3 9-9.3 9Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4 19-7Z"/></svg><svg class="sv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></div>
+          <div class="ig-cap"><b>onestop.jarvis</b> One line on WhatsApp. JARVIS reads everything you own and tells you what it found.</div>
+        </div>
+        <div class="adn">
+          <div class="id"><span class="tag b">Ad 8 · bold</span><span class="tag o">Typing Reel + picture</span></div>
+          <h4>The command.</h4>
+          <div><span class="k">Why people stop</span>Talking to JARVIS is the fantasy. The ad shows it happen, one line at a time.</div>
+          <div class="risk md"><b class="lvl">Meta: probably</b><span>Same rule as Ad 7: keep “Illustrative” on the picture. The findings are examples, not a real user’s money.</span></div>
+          <div class="to">Tap → landing page, direction 3</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="phn" style="margin-top:40px">Reminder: the 8 ads above are placeholders to show the direction. Final ads come after the plan is agreed.</div>
+    <div class="dd" style="margin-top:18px">
+      <div class="do"><h4>Every ad does this</h4><ul>
+        <li>One idea, readable in 2 seconds</li>
+        <li>Says “advisor” and “JARVIS” plainly</li>
+        <li>Any number carries its source</li>
+        <li>“Illustrative” on any example scan or chat</li>
+        <li>Two sizes: a post (4:5) and a full-screen Story (9:16)</li>
+      </ul></div>
+      <div class="dont"><h4>No ad does this</h4><ul>
+        <li>Names a real advisor, bank or app as bad</li>
+        <li>Promises a return, or shows “you could have made ₹X”</li>
+        <li>Shows a real user, a review or a result</li>
+        <li>Uses Marvel pictures, the Iron Man suit or an actor’s face</li>
+        <li>Makes fun of the person. We roast the system, never the user.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 2: LANDING PAGE ================= -->
+<section class="alt" id="lp">
+  <div class="wrap">
+    <div class="shead">
+      <span class="pt lp" style="justify-self:start">Part 2 · The landing page</span>
+      <h2>Our page. People only see it after they tap an ad.</h2>
+      <p class="muted">The ad lives inside Instagram. The landing page lives on our website. It is one page with three different tops, one for each direction. Someone who taps a direction 2 ad lands on the direction 2 top, so the page keeps saying what the ad said. These phones show the draft page. You can scroll inside them.</p>
+      <div class="phn"><b>Placeholder landing page.</b> This is a working sketch to show how the page flows and how each top matches its ad. It is not the final design or the final copy. The real page gets built in the 3-day landing page window.</div>
+    </div>
+    <div class="lpp">
+      <div class="lpc">
+        <div class="brw"><div class="url">onestop / start?a=advisor</div><div class="scr"><span class="phb">Placeholder</span><iframe src="lp/index.html?m=in&amp;a=advisor" title="Landing page, direction 1"></iframe></div></div>
+        <h4>Direction 1 · Your advisor vs JARVIS</h4>
+        <p>The top repeats the ad. Right under it sits the full advisor-vs-JARVIS table, so the claim is proved in one scroll.</p>
+        <div class="feeds">Gets people from ads 1, 2, 3, 4</div>
+        <a href="lp/index.html?m=in&amp;a=advisor" target="_blank">Open full size ↗</a>
+      </div>
+      <div class="lpc">
+        <div class="brw"><div class="url">onestop / start?a=stark</div><div class="scr"><span class="phb">Placeholder</span><iframe src="lp/index.html?m=in&amp;a=stark" title="Landing page, direction 2"></iframe></div></div>
+        <h4>Direction 2 · Tony Stark had one</h4>
+        <p>A darker photo with the arc-reactor glow and our orbit mark in it. The headline finishes the ad’s line.</p>
+        <div class="feeds">Gets people from ads 5, 6</div>
+        <a href="lp/index.html?m=in&amp;a=stark" target="_blank">Open full size ↗</a>
+      </div>
+      <div class="lpc">
+        <div class="brw"><div class="url">onestop / start?a=hud</div><div class="scr"><span class="phb">Placeholder</span><iframe src="lp/index.html?m=in&amp;a=hud" title="Landing page, direction 3"></iframe></div></div>
+        <h4>Direction 3 · A HUD for your money</h4>
+        <p>The same scan labels from the ad sit on the photo. The person sees the thing they tapped on.</p>
+        <div class="feeds">Gets people from ads 7, 8</div>
+        <a href="lp/index.html?m=in&amp;a=hud" target="_blank">Open full size ↗</a>
+      </div>
+    </div>
+
+    <div class="same">
+      <div>
+        <h4>Below the top, all three pages are the same</h4>
+        <ol>
+          <li>A live chat example: JARVIS spots a problem at 6:40 am.</li>
+          <li>Your advisor vs JARVIS, six rows, with sources.</li>
+          <li>Four things JARVIS does.</li>
+          <li>How it starts: tap, say hi, get your first finding.</li>
+          <li>Whose side it is on: “The bank works for the bank. JARVIS works for you.”</li>
+          <li>Three promises: never sells, never tells you what to buy, never shares your data.</li>
+          <li>The button again, plus a small button bar that follows on phones.</li>
+        </ol>
+      </div>
+      <div>
+        <h4>Why a new page, and not the website?</h4>
+        <p class="small muted" style="margin-top:10px">The website tells the whole OneStop story to people who come to read. Someone from an ad gives us 3 seconds. They need one line, one proof and one button. So this page has no menu and no links away. Every button opens WhatsApp.</p>
+        <h4 style="margin-top:20px">What the button does</h4>
+        <p class="small muted" style="margin-top:10px">It opens WhatsApp with a message already typed: “Hi JARVIS 👋 I’d like to start.” The message carries a short code that says which ad the person came from. So we know which ad works, even when the pixel misses someone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section class="alt" id="timeline">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">Timeline</div>
+      <h2>Two weeks to get ready. Ads go live Fri 9 Oct.</h2>
+      <p class="muted">The product is ready in about 2 weeks. We use those 2 weeks to build everything around it. Fri 2 Oct is Gandhi Jayanti, a holiday, so the landing page finishes on Mon 5 Oct.</p>
+    </div>
+    <div class="phase">
+      <div><b>3 days</b><h4>Landing page</h4><span>Wed 30 Sep, Thu 1 Oct, Mon 5 Oct. Build the page with its three tops, test it on phones, put it live.</span></div>
+      <div><b>3 days</b><h4>Ad copy + ad designs</h4><span>Tue 6 to Thu 8 Oct. Write and design 8 ads in 2 sizes, plus the safer versions. Each ad goes to Meta for review as soon as it is ready, because a review can take up to a day.</span></div>
+      <div><b>3 days</b><h4>Meta setup + pixel</h4><span>Tue 6 to Thu 8 Oct, by Pritham and OneStop. Accounts, WhatsApp number, pixel, campaign. The full list is in Appendix A.</span></div>
+    </div>
+    <div class="dg"><div class="dg-in" id="dg"></div></div>
+    <div class="wkn"><span><b>Why a Friday launch:</b> Meta needs about 3 days of learning with no changes, so the first review is on Mon 12 Oct.</span></div>
+
+    <h3 style="margin:48px 0 16px">After launch: three weeks of ads</h3>
+    <div class="gantt">
+      <div class="g-row g-head"><div>What happens</div><div class="g-track" style="grid-template-columns:repeat(3,1fr)"><div><b>Test</b>Fri 9 – Thu 15 Oct</div><div><b>Grow</b>Fri 16 – Thu 22 Oct</div><div style="border-right:0"><b>Grow</b>Fri 23 – Thu 29 Oct</div></div></div>
+      <div class="g-row"><div>Test all 8 ads</div><div class="g-track" style="grid-template-columns:repeat(3,1fr)"><span class="col"></span><span class="col"></span><span class="col"></span><span class="bar2 b-test" style="left:1%;width:32%">₹25k · about 100 users</span></div></div>
+      <div class="g-row"><div>Grow the 2–3 winners</div><div class="g-track" style="grid-template-columns:repeat(3,1fr)"><span class="col"></span><span class="col"></span><span class="col"></span><span class="bar2 b-scale" style="left:34%;width:65%">₹95k · about 400 users · 2 fresh ads a week</span></div></div>
+      <div class="g-row"><div>Check-ins</div><div class="g-track" style="grid-template-columns:repeat(3,1fr)"><span class="col"></span><span class="col"></span><span class="col"></span><span class="bar2 b-ms" style="left:6%;width:13%">Mon 12: first look</span><span class="bar2 b-ms" style="left:20%;width:13%">Thu 15: pick</span><span class="bar2 b-ms" style="left:52%;width:13%">Thu 22: 250</span><span class="bar2 b-ms" style="left:86%;width:13%">Thu 29: 500</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUDGET ================= -->
+<section class="dark" id="budget">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">Budget</div>
+      <h2>What 500 users cost. Try it yourself.</h2>
+      <p class="muted">Move the sliders. Each one is one step of the journey. The numbers are guesses based on what finance apps usually see on Meta in India. The first week of ads replaces every guess with a real number.</p>
+    </div>
+    <div class="calc">
+      <div class="cbox" data-cur="₹" id="cin"><h3>India <span>ESTIMATE</span></h3>
+        <div class="sl"><label>What 1,000 views cost (CPM)</label><output></output><input type="range" data-k="cpm" min="80" max="500" step="10" value="200"></div>
+        <div class="sl"><label>Out of 100 who see the ad, how many tap it</label><output></output><input type="range" data-k="ctr" min="0.3" max="3" step="0.1" value="1"></div>
+        <div class="sl"><label>Out of 100 on the page, how many tap Start</label><output></output><input type="range" data-k="lp" min="5" max="60" step="1" value="25"></div>
+        <div class="sl"><label>Out of 100 who tap Start, how many press send</label><output></output><input type="range" data-k="ch" min="20" max="95" step="1" value="65"></div>
+        <div class="sl"><label>Out of 100 who send, how many answer JARVIS</label><output></output><input type="range" data-k="ac" min="20" max="95" step="1" value="60"></div>
+        <div class="res"><div><b data-o="cpc"></b><span>per tap on the ad</span></div><div><b data-o="cpu"></b><span>per user</span></div><div><b data-o="tot"></b><span>for 500 users</span></div></div>
+        <div class="fbar" data-o="bars"></div>
+      </div>
+    </div>
+    <div class="plan-b">
+      <div><span>Test week</span><b>₹25,000</b><span>Fri 9 – Thu 15 Oct. All 8 ads, ₹3,600 a day. About 100 users, and the real cost per user.</span></div>
+      <div><span>Grow</span><b>₹95,000</b><span>Fri 16 – Thu 29 Oct. Only the 2 or 3 winning ads. About 400 users.</span></div>
+      <div><span>The ask</span><b>₹1,20,000 max</b><span>This is a ceiling, not a target. We stop early if we reach 500.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RULES ================= -->
+<section id="rules">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">How we decide</div>
+      <h2>Three rules. We agree on them before we spend.</h2>
+      <p class="muted">Our target is ₹240 per user. An ad needs ₹3,000 of spend before we judge it. Below that, the numbers are too small to judge.</p>
+    </div>
+    <div class="rules">
+      <div class="rule kill"><span class="ic">STOP</span><h4>More than ₹480 per user</h4><p>After ₹3,000 of spend, an ad that costs more than twice the target gets switched off. Same for an ad that fewer than 1 in 200 people tap.</p></div>
+      <div class="rule hold"><span class="ic">WAIT</span><h4>Between ₹240 and ₹480</h4><p>Leave it alone for 2 more working days. Changing an ad resets Meta’s learning, and the cost goes up again.</p></div>
+      <div class="rule scale"><span class="ic">GROW</span><h4>₹240 per user or less</h4><p>Give it 20% more money per day. Not more than that. Big jumps also reset Meta’s learning.</p></div>
+    </div>
+    <div class="note warn" style="max-width:none">If Meta rejects a bold ad, we switch on its safer version the same day and appeal in parallel.</div>
+    <h3 style="margin:40px 0 14px">The numbers we look at each morning</h3>
+    <div class="scroll-x"><table class="tbl">
+      <tr><th>Number</th><th>In plain words</th><th>Where it comes from</th><th>Good looks like</th></tr>
+      <tr><td>Spend</td><td>Money Meta used yesterday</td><td>Meta Ads Manager</td><td>Close to the daily limit</td></tr>
+      <tr><td>Click rate</td><td>Out of 100 who saw the ad, how many tapped</td><td>Meta Ads Manager</td><td>1 or more <span class="flag est">estimate</span></td></tr>
+      <tr><td>Start taps</td><td>People who tapped “Start” on our page</td><td>The pixel</td><td>1 in 4 page visitors</td></tr>
+      <tr><td>Chats</td><td>People who pressed send in WhatsApp</td><td>JARVIS’s own records</td><td>2 in 3 Start taps</td></tr>
+      <tr><td>Users</td><td>People who answered JARVIS</td><td>JARVIS’s own records</td><td>3 in 5 chats</td></tr>
+      <tr><td>Cost per user</td><td>Spend ÷ users</td><td>We work it out</td><td>₹240 or less</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ================= APPENDIX A: META SETUP ================= -->
+<section class="alt" id="setup">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">Appendix A · Meta setup</div>
+      <h2>Everything Meta needs, in one list.</h2>
+      <p class="muted">This is the 3-day Meta setup, from Tue 6 Oct. The account steps in group 1 can start any day before that, because Meta takes 1 to 5 days to check a business. Each line has Meta’s own help page and, where one helps, a short video. Tick a box when it is done. The ticks stay in your browser.</p>
+    </div>
+
+    <div class="prog"><b id="pct">0 of 0 done</b><div class="bar"><i id="pbar"></i></div><button id="reset" type="button">Clear ticks</button></div>
+
+    <div class="stage">1 · Accounts · start early</div>
+    <ul class="cl">
+      <li class="ci"><input type="checkbox" data-id="a1"><div><div class="t">A OneStop business portfolio</div><div class="d">The one place that owns the Facebook Page, Instagram, ad account and pixel. The legal name and address must match the company papers.</div><div class="lk"><a class="doc" href="https://business.facebook.com/settings" target="_blank" rel="noopener">Business settings</a><a class="vid" href="https://www.youtube.com/watch?v=ZB0qXMU2kxY" target="_blank" rel="noopener">Set up a business portfolio · 13 min</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="a2"><div><div class="t">Business check (verification) sent to Meta</div><div class="d">Meta takes 1 to 5 working days. Send it first.</div><div class="lk"><a class="doc" href="https://www.facebook.com/business/help/2058515294227817" target="_blank" rel="noopener">Verify your business · Meta help</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="a3"><div><div class="t">Facebook Page and Instagram account linked to the portfolio</div><div class="d">The ads show this name at the top. Decide the name: OneStop or JARVIS.</div><div class="lk"><a class="doc" href="https://business.facebook.com/settings" target="_blank" rel="noopener">Business settings → Accounts</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="a4"><div><div class="t">Ad account <code>OneStop – IN</code>, in rupees, India time</div><div class="d">Currency INR, time zone Asia/Kolkata. These can’t change later. Add a payment method and an account limit of ₹1,20,000.</div><div class="lk"><a class="doc" href="https://adsmanager.facebook.com" target="_blank" rel="noopener">Ads Manager</a><a class="vid" href="https://www.youtube.com/watch?v=wqFrD3Sq7OE" target="_blank" rel="noopener">Create a new ad account · 3 min</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="a5"><div><div class="t">Our website domain confirmed with Meta</div><div class="d">Meta gives a line of text. It goes into the domain’s DNS settings.</div><div class="lk"><a class="doc" href="https://www.facebook.com/business/help/321167023127050" target="_blank" rel="noopener">Verify your domain · Meta help</a><a class="vid" href="https://www.youtube.com/watch?v=-JftrppujiI" target="_blank" rel="noopener">Verify a domain · 3 min</a></div></div></li>
+    </ul>
+
+    <div class="stage">2 · WhatsApp</div>
+    <ul class="cl">
+      <li class="ci"><input type="checkbox" data-id="w1"><div><div class="t">The JARVIS WhatsApp Business number</div><div class="d">Every button on the landing page opens a chat with this number.</div><div class="lk"><a class="doc" href="https://developers.facebook.com/docs/whatsapp/cloud-api/get-started" target="_blank" rel="noopener">WhatsApp Cloud API · get started</a><a class="vid" href="https://www.youtube.com/watch?v=Njlz27ia-SU" target="_blank" rel="noopener">WhatsApp Business setup · 7 min</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="w2"><div><div class="t">Name “JARVIS”, logo and short description on the WhatsApp profile</div><div class="d">Meta approves the name after the business check.</div></div></li>
+      <li class="ci"><input type="checkbox" data-id="w3"><div><div class="t">JARVIS reads the ad code in the first message</div><div class="d">It saves the code with the user, so we know which ad brought them.</div></div></li>
+      <li class="ci"><input type="checkbox" data-id="w4"><div><div class="t">Tested: 100 new chats in one hour</div><div class="d">JARVIS answers each one in under 10 seconds.</div></div></li>
+    </ul>
+
+    <div class="stage">3 · The pixel</div>
+    <ul class="cl">
+      <li class="ci"><input type="checkbox" data-id="t1"><div><div class="t">One pixel called <code>JARVIS – web</code>, linked to the ad account</div><div class="d">Events Manager → Connect data → Web.</div><div class="lk"><a class="doc" href="https://business.facebook.com/events_manager2" target="_blank" rel="noopener">Events Manager</a><a class="vid" href="https://www.youtube.com/watch?v=g67wXWvtGq0" target="_blank" rel="noopener">Set up a Meta pixel · 9 min</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="t2"><div><div class="t">Pixel number pasted into the landing page</div><div class="d">The page already sends “page seen” and “Start tapped”. Only the number is missing.</div></div></li>
+      <li class="ci"><input type="checkbox" data-id="t3"><div><div class="t">“Start tapped” also sent from our server (Conversions API)</div><div class="d">A back-up copy. Some phones block the pixel. Meta counts each tap once, even when it gets both.</div><div class="lk"><a class="doc" href="https://developers.facebook.com/docs/marketing-api/conversions-api" target="_blank" rel="noopener">Conversions API · Meta docs</a><a class="vid" href="https://www.youtube.com/watch?v=sGLWd28YUjk" target="_blank" rel="noopener">Meta: what the Conversions API is · 2 min</a><a class="vid" href="https://www.youtube.com/watch?v=5NxMsZ9559Q" target="_blank" rel="noopener">Pixel + Conversions API setup · 12 min</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="t4"><div><div class="t">“Chat started” and “User” sent to Meta from JARVIS</div><div class="d">So from week 2, Meta can look for users, not only taps.</div></div></li>
+      <li class="ci"><input type="checkbox" data-id="t5"><div><div class="t">Test done: all four signals show up in Meta</div><div class="d">Open the page on a phone, tap Start, send the message, answer JARVIS. Meta’s Test Events screen must show all four.</div><div class="lk"><a class="doc" href="https://business.facebook.com/events_manager2" target="_blank" rel="noopener">Events Manager → Test events</a></div></div></li>
+    </ul>
+
+    <div class="stage">4 · The campaign</div>
+    <ul class="cl">
+      <li class="ci"><input type="checkbox" data-id="c1"><div><div class="t">One campaign <code>IN_JARVIS_START</code>, goal “Leads”, counting “Start tapped”</div><div class="d">India, age 25 to 45, all placements. Let Meta pick the people inside that group.</div><div class="lk"><a class="doc" href="https://adsmanager.facebook.com" target="_blank" rel="noopener">Ads Manager</a><a class="vid" href="https://www.youtube.com/watch?v=2ZnFPJ8yYW8" target="_blank" rel="noopener">Ads Manager for beginners · 10 min</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="c2"><div><div class="t">Three ad sets, one per direction</div><div class="d">Direction 1 · ₹1,800 a day. Direction 2 · ₹900 a day. Direction 3 · ₹900 a day.</div></div></li>
+      <li class="ci"><input type="checkbox" data-id="c3"><div><div class="t">8 ads uploaded, each in 2 sizes, plus the 4 safer versions ready</div><div class="d">4:5 is 1080 × 1350. 9:16 is 1080 × 1920. On 9:16, keep words out of the top 14% and bottom 20%.</div></div></li>
+      <li class="ci"><input type="checkbox" data-id="c4"><div><div class="t">Every ad links to its direction, with tracking tags</div><div class="d">Link: <code>/start?m=in&amp;a=advisor</code> (or <code>stark</code>, <code>hud</code>). Tags: <code>utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign={{campaign.name}}&amp;utm_content={{ad.name}}</code></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="c5"><div><div class="t">Every ad approved by Meta</div><div class="d">Read Meta’s ad rules once before upload.</div><div class="lk"><a class="doc" href="https://transparency.meta.com/policies/ad-standards/" target="_blank" rel="noopener">Meta Advertising Standards</a></div></div></li>
+      <li class="ci"><input type="checkbox" data-id="c6"><div><div class="t">Final check on Thu 8 Oct</div><div class="d">Every ad approved. Tap every ad link inside the Instagram app, on an iPhone and on an Android. WhatsApp must open with the message typed. Then schedule the ads for Fri 9 Oct.</div></div></li>
+    </ul>
+
+    <div class="tree" style="margin-top:34px"><span class="c">OneStop – IN</span>                          <span class="n">ad account · rupees · India time · limit ₹1,20,000</span>
+└─ <span class="c">IN_JARVIS_START</span>                  <span class="n">goal: Leads · counts “Start tapped”</span>
+    ├─ <span class="s">IN_DIR1_ADVISOR</span>   <span class="n">₹1,800/day</span>
+    │   ├─ <span class="a">IN_AD1_TABLE</span>
+    │   ├─ <span class="a">IN_AD2_CALLED</span>
+    │   ├─ <span class="a">IN_AD3_50LAKH</span>
+    │   └─ <span class="a">IN_AD4_FIRE</span>      <span class="n">bold</span>
+    ├─ <span class="s">IN_DIR2_STARK</span>     <span class="n">₹900/day · bold</span>
+    │   ├─ <span class="a">IN_AD5_REACTOR</span>
+    │   └─ <span class="a">IN_AD6_STANDARD</span>
+    └─ <span class="s">IN_DIR3_HUD</span>       <span class="n">₹900/day · bold</span>
+        ├─ <span class="a">IN_AD7_SCAN</span>
+        └─ <span class="a">IN_AD8_COMMAND</span></div>
+  </div>
+</section>
+
+<!-- ================= VIDEOS ================= -->
+<section id="videos">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">Appendix B · Watch first</div>
+      <h2>Useful videos for the Meta setup.</h2>
+      <p class="muted">About 70 minutes in total, all free on YouTube. Each one matches a group in the list above.</p>
+    </div>
+    <div class="vids">
+      <a class="vc" href="https://www.youtube.com/watch?v=p8pthMjKKXk" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/p8pthMjKKXk/hqdefault.jpg)"><span>11:16</span></div><div class="bd"><small>0 · The basics</small><h4>What you need to know to start with Facebook ads</h4><p>Ben Heath · the big picture first</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=2ZnFPJ8yYW8" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/2ZnFPJ8yYW8/hqdefault.jpg)"><span>10:17</span></div><div class="bd"><small>0 · The basics</small><h4>Meta Ads Manager for beginners</h4><p>Jamie Stenton · campaign, ad set, ad</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=ZB0qXMU2kxY" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/ZB0qXMU2kxY/hqdefault.jpg)"><span>13:33</span></div><div class="bd"><small>1 · Accounts</small><h4>Set up a Meta business account</h4><p>Ben Heath · portfolio, Page, Instagram</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=wqFrD3Sq7OE" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/wqFrD3Sq7OE/hqdefault.jpg)"><span>3:15</span></div><div class="bd"><small>1 · Accounts</small><h4>Create a new ad account</h4><p>Just Kristers · currency and time zone</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=-JftrppujiI" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/-JftrppujiI/hqdefault.jpg)"><span>3:05</span></div><div class="bd"><small>1 · Accounts</small><h4>Verify a domain</h4><p>Just Kristers · the DNS line</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=Njlz27ia-SU" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/Njlz27ia-SU/hqdefault.jpg)"><span>6:55</span></div><div class="bd"><small>2 · WhatsApp</small><h4>WhatsApp Business setup + business check</h4><p>LeminAi · number, check, display name</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=g67wXWvtGq0" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/g67wXWvtGq0/hqdefault.jpg)"><span>8:52</span></div><div class="bd"><small>3 · The pixel</small><h4>Set up a Meta pixel</h4><p>Derek Videll · the counter on our page</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=sGLWd28YUjk" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/sGLWd28YUjk/hqdefault.jpg)"><span>1:36</span></div><div class="bd"><small>3 · The pixel · from Meta</small><h4>What the Conversions API is</h4><p>Meta for Business · 90 seconds</p></div></a>
+      <a class="vc" href="https://www.youtube.com/watch?v=5NxMsZ9559Q" target="_blank" rel="noopener"><div class="th" style="background-image:url(https://i.ytimg.com/vi/5NxMsZ9559Q/hqdefault.jpg)"><span>11:47</span></div><div class="bd"><small>3 · The pixel</small><h4>Pixel + Conversions API, together</h4><p>David Parrottino · the back-up copy</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPEN ITEMS ================= -->
+<section class="alt" id="open">
+  <div class="wrap">
+    <div class="shead">
+      <div class="num">Open items</div>
+      <h2>What we need, and by when.</h2>
+      <p class="muted">Each item has the date we need it by to keep the launch on Fri 9 Oct.</p>
+    </div>
+    <div class="scroll-x"><table class="tbl">
+      <tr><th>#</th><th>What we need</th><th>Needed by</th></tr>
+      <tr><td>1</td><td>Notes on this plan, in one set.</td><td>Mon 28 Sep</td></tr>
+      <tr><td>2</td><td>Final yes on this plan, the ₹1,20,000 limit and the three rules.</td><td>Tue 29 Sep</td></tr>
+      <tr><td>3</td><td>Final feedback on the launch video: the four features and a screen recording of each.</td><td>Tue 29 Sep</td></tr>
+      <tr><td>4</td><td>Final feedback on the website, as one set of notes.</td><td>Tue 29 Sep</td></tr>
+      <tr><td>5</td><td>Direction 2 (Ads 5 and 6) names Tony Stark and JARVIS. Run them as written, or run the safer versions?</td><td>Tue 29 Sep</td></tr>
+      <tr><td>6</td><td>The name JARVIS is also Marvel’s. A quick trademark check before we spend on ads.</td><td>Tue 29 Sep</td></tr>
+      <tr><td>7</td><td>The JARVIS WhatsApp number, for the landing page buttons.</td><td>Mon 5 Oct</td></tr>
+      <tr><td>8</td><td>“We never share your data” on the landing page. Is it true, and can we say it?</td><td>Mon 5 Oct</td></tr>
+      <tr><td>9</td><td>Which Instagram account and Facebook Page run the ads.</td><td>Tue 6 Oct</td></tr>
+      <tr><td>10</td><td>The product ready for new users, with JARVIS’s real first message.</td><td>Thu 8 Oct</td></tr>
+      <tr><td>11</td><td>Invite links in JARVIS (3 per user), so users bring friends for free.</td><td>Thu 15 Oct</td></tr>
+      <tr><td>12</td><td>The US. This plan is India only. The two-market draft is saved as <code>index-in-us.html</code>.</td><td>After week 1</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<footer><div class="wrap"><img src="assets/logo.svg" alt="OneStop"><span>JARVIS · 500 users plan · India · draft v4 · 24 Sep 2026 · internal</span></div></footer>
+
+<script>
+/* top nav: highlight the section in view */
+const links=[...document.querySelectorAll('#tnav a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{let i=0;secs.forEach((s,k)=>{if(s&&s.getBoundingClientRect().top<120)i=k});links.forEach((a,k)=>a.classList.toggle('on',k===i&&scrollY>300))},{passive:true});
+
+/* landing page phones: scale a 390px-wide page into each frame */
+function fitLP(){document.querySelectorAll('.brw .scr').forEach(sc=>{const f=sc.querySelector('iframe');const s=sc.clientWidth/390;if(!s)return;f.style.transform=`scale(${s})`;f.style.height=(sc.clientHeight/s)+'px'})}
+addEventListener('resize',fitLP);fitLP();
+
+/* day-by-day timeline */
+const DAYS=[['Thu','24 Sep'],['Fri','25 Sep'],['Mon','28 Sep'],['Tue','29 Sep'],['Wed','30 Sep'],['Thu','1 Oct'],['Fri','2 Oct'],['Mon','5 Oct'],['Tue','6 Oct'],['Wed','7 Oct'],['Thu','8 Oct'],['Fri','9 Oct']];
+const HOL=6;
+const ROWS=[
+  ['Team reads this plan','and sends one set of notes',[[0,2,'fb','Notes by Mon 28']]],
+  ['Final plan','locked',[[3,3,'lock','Final ✓']]],
+  ['Landing page','3 working days',[[4,7,'lp','Build the page · 3 days · skips the holiday']]],
+  ['Ad copy + designs','3 working days',[[8,10,'ad','Write + design 8 ads · 3 days']]],
+  ['Meta setup + pixel','3 days · Pritham + OneStop',[[4,7,'pre','Account steps can start early'],[8,10,'meta','Pixel, campaign, test · 3 days']]],
+  ['Product (WhatsApp)','product team, about 2 weeks',[[0,10,'prod','Product team finishes JARVIS · ready by Thu 8 Oct']]],
+  ['Ads go live','',[[11,11,'live','LIVE']]]
+];
+(function(){
+  const g=document.getElementById('dg');if(!g)return;
+  let h='<div class="dh" style="grid-row:1;grid-column:1;text-align:left;padding-left:14px">Day</div>';
+  DAYS.forEach((d,i)=>{h+=`<div class="dh${i===HOL?' hol':''}" style="grid-row:1;grid-column:${i+2}">${d[0]}<small>${i===HOL?'Holiday':d[1]}</small></div>`});
+  ROWS.forEach((r,ri)=>{const row=ri+2;
+    h+=`<div class="dl" style="grid-row:${row};grid-column:1">${r[0]}${r[1]?`<small>${r[1]}</small>`:''}</div>`;
+    DAYS.forEach((d,i)=>{h+=`<div class="dc${i===HOL?' hol':''}" style="grid-row:${row};grid-column:${i+2}"></div>`});
+    r[2].forEach(([a,b,c,t])=>{h+=`<div class="bb ${c}" style="grid-row:${row};grid-column:${a+2}/${b+3}" title="${t}">${t}</div>`});
+  });
+  g.innerHTML=h;
+})();
+
+/* checklist: ticks saved in this browser only */
+const KEY='jarvis-500-setup-v4';
+let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const boxes=[...document.querySelectorAll('.ci input')];
+function paint(){let n=0;boxes.forEach(b=>{const on=!!st[b.dataset.id];b.checked=on;b.closest('.ci').classList.toggle('done',on);if(on)n++});
+  document.getElementById('pct').textContent=`${n} of ${boxes.length} done`;document.getElementById('pbar').style.width=(n/boxes.length*100)+'%'}
+boxes.forEach(b=>b.addEventListener('change',()=>{st[b.dataset.id]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}paint()}));
+document.getElementById('reset').onclick=()=>{st={};try{localStorage.removeItem(KEY)}catch(e){}paint()};
+paint();
+
+/* calculator */
+function fmt(v){return '₹'+Math.round(v).toLocaleString('en-IN')}
+function calc(box){
+  const g={};
+  box.querySelectorAll('input').forEach(i=>{g[i.dataset.k]=+i.value;i.previousElementSibling.textContent=i.dataset.k==='cpm'?fmt(+i.value):i.value+' of 100'});
+  const cpc=g.cpm/1000/(g.ctr/100);
+  const cpu=cpc/((g.lp/100)*(g.ch/100)*(g.ac/100));
+  box.querySelector('[data-o=cpc]').textContent=fmt(cpc);
+  box.querySelector('[data-o=cpu]').textContent=fmt(cpu);
+  box.querySelector('[data-o=tot]').textContent=fmt(cpu*500);
+  const act=500,chat=act/(g.ac/100),lead=chat/(g.ch/100),click=lead/(g.lp/100),imp=click/(g.ctr/100);
+  const rows=[['See the ad',imp],['Tap the ad',click],['Tap Start',lead],['Press send',chat],['Users',act]];
+  box.querySelector('[data-o=bars]').innerHTML=rows.map(([n,v],i)=>`<div style="width:${[100,70,52,38,28][i]}%">${n}: ${Math.round(v).toLocaleString('en-IN')}</div>`).join('');
+}
+document.querySelectorAll('.cbox').forEach(b=>{b.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>calc(b)));calc(b)});
+</script>
+</body>
+</html>
