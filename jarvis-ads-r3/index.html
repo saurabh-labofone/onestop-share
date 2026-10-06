@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JARVIS · Meta ad set · Round 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="copy.js"></script>
+<style>
+:root{--foam:#00FDFF;--aqua:#00D0FF;--current:#00A0CC;--tide:#005A9E;--deep:#002E51;--ink:#001526;--bg:#000d1a;--card:#06192b;--line:rgba(255,255,255,.12);--mut:rgba(255,255,255,.62)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1360px;margin:0 auto;padding:0 24px}
+header{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.lock{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.lock img{height:30px;filter:brightness(0) invert(1)}.lock b{font-size:20px;letter-spacing:.06em}
+h1{font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.03em;font-weight:800;max-width:18ch}
+h1 em{font-style:normal;color:var(--aqua)}
+.sub{margin-top:18px;color:var(--mut);font-size:17px;max-width:70ch;line-height:1.5}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:28px 0 0}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.rule small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:8px;font-weight:700}
+.rule b{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.rule p{color:var(--mut);font-size:14px;margin-top:6px;line-height:1.45}
+.bar{position:sticky;top:0;z-index:5;background:rgba(0,13,26,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 0}
+.bar .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--mut);cursor:pointer;background:none;font-family:inherit}
+.chip.on{color:#fff;border-color:var(--aqua);background:rgba(0,208,255,.1)}
+.bar .n{margin-left:auto;color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:22px;padding:28px 0 80px}
+.ad{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.ad .top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ad .top b{font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.tag.v{color:var(--aqua);border-color:rgba(0,208,255,.5)}
+.media{display:flex;align-items:flex-start;gap:10px;padding:14px;background:#02101f}
+.media>*{flex:1;min-width:0;border-radius:12px;overflow:hidden;background:#000}
+.media img,.media video{display:block;width:100%;height:auto}
+.media .st{aspect-ratio:4/5}.media .vd{aspect-ratio:9/16}
+.copy{padding:16px 18px 18px;display:grid;gap:10px;font-size:14px;line-height:1.45}
+.copy .h{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.copy .h em{font-style:normal;color:var(--aqua)}
+.copy small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:700;margin-bottom:3px}
+.copy p{color:rgba(255,255,255,.85)}
+.cta{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;padding:8px 14px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;width:fit-content}
+.cta svg{width:16px;height:16px;fill:#fff}
+.dl{display:flex;gap:10px;flex-wrap:wrap;padding:0 18px 18px}
+.dl a{font-size:12px;font-weight:700;color:var(--aqua);text-decoration:none;border:1px solid rgba(0,208,255,.35);border-radius:999px;padding:6px 12px}
+.flags{padding:0 0 80px}
+.flags h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.flags li{color:var(--mut);font-size:15px;line-height:1.5;margin:8px 0 8px 20px}
+.flags li b{color:#fff}
+footer{border-top:1px solid var(--line);padding:24px 0 60px;color:var(--mut);font-size:12px;line-height:1.5}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.media{flex-direction:column}}
+</style></head>
+<body>
+<header><div class="wrap">
+ <div class="lock"><img src="img/mark.png" alt=""><b>JARVIS</b><span style="color:var(--mut);font-size:12px;letter-spacing:.14em;margin-left:6px">META AD SET · ROUND 3 · 6 OCT 2026</span></div>
+ <h1>Meet JARVIS. <em>Your personal AI for your money.</em></h1>
+ <p class="sub">Sixteen ads, one system. Every ad carries the same personal line and the same call to action. Seven have a video cut (9:16 Reels) and all sixteen have a feed static (4:5). Nothing here is published to Meta. Example conversations throughout.</p>
+ <div class="rules">
+  <div class="rule"><small>Personal line</small><b>Meet JARVIS. Your personal AI for your money.</b><p>On every ad, above the button.</p></div>
+  <div class="rule"><small>Call to action</small><b>Chat with JARVIS on WhatsApp</b><p>The only CTA. Meta button label: “Get started”.</p></div>
+  <div class="rule"><small>Level</small><b>A 24/7 advisor. Your CFO.</b><p>Dry, honest, on your side. The system is the joke, never you. No buy or sell calls.</p></div>
+  <div class="rule"><small>Destination</small><b>/start → WhatsApp</b><p>Ad → landing page → WhatsApp chat. One minute. Free in beta.</p></div>
+ </div>
+</div></header>
+<div class="bar"><div class="wrap" id="chips">
+ <button class="chip on" data-f="all">All 16</button><button class="chip" data-f="video">Video cuts (7)</button><button class="chip" data-f="static">Static only (9)</button><span class="n" id="count"></span>
+</div></div>
+<main class="wrap"><div class="grid" id="grid"></div>
+<section class="flags">
+ <h2>Open with the team</h2>
+ <ul>
+  <li><b>“The price of a coffee”</b> (ad 05) is a price claim. JARVIS is free in beta. Confirm the line or the price before this ad runs.</li>
+  <li><b>Video plates.</b> All seven video ads run on generated clips (Seedance 2.5, 1080×1920). Ads 05 and 09 are 720p sources, the other five are 1080p.</li>
+  <li><b>WhatsApp number, pixel, IG handle.</b> The landing page and the CTA need the real number before launch.</li>
+  <li><b>All visuals are AI-generated</b> and will carry Meta’s AI label where it applies. No real person, brand or ticker appears.</li>
+ </ul>
+</section></main>
+<footer><div class="wrap">Draft for review. All chats are example conversations. * SEBI (Portfolio Managers) Regulations, 2020: minimum investment ₹50 lakh. JARVIS provides education and information, not financial advice.</div></footer>
+<script>
+const VID=['02','04','05','07','09','12','13'];
+const WA='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.1.6 2.8.5a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3z"/></svg>';
+const strip=s=>s.replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ');
+const g=document.getElementById('grid');
+g.innerHTML=ORDER.map((n,i)=>{const C=COPY[n];const v=VID.includes(n);
+ const seq=C.hv?`<div><small>On screen (video)</small><p>${(C.chat?C.chat.bubs.map(b=>'“'+b+'”').join(' → ')+' → ':'')+C.hv.map(strip).join(' → ')}</p></div>`:'';
+ return `<article class="ad" data-v="${v}"><div class="top"><b>${String(i+1).padStart(2,'0')} · ${C.code}</b><span class="tag ${v?'v':''}">${v?'Video 9:16 + static 4:5':'Static 4:5'}</span></div>
+ <div class="media"><div class="st"><img src="img/${n}-feed.jpg" alt="" loading="lazy"></div>${v?`<div class="vd"><video src="vid/${n}.mp4" controls playsinline preload="metadata" muted loop></video></div>`:''}</div>
+ <div class="copy"><div><small>Headline</small><div class="h">${C.h}</div></div><div><small>Support</small><p>${C.p}</p></div>${seq}<div><small>Primary text (Meta)</small><p>${C.cap}</p></div><div><small>Personal line + CTA</small><p style="margin-bottom:8px"><em style="font-style:normal;color:var(--aqua)">Meet JARVIS.</em> Your personal AI for your money.</p><span class="cta">${WA}${CTA}</span></div></div>
+ <div class="dl"><a href="img/${n}-feed.jpg" download>Static 1080×1350</a>${v?`<a href="vid/${n}.mp4" download>Video 1080×1920</a>`:''}</div></article>`}).join('');
+const chips=[...document.querySelectorAll('.chip')],cnt=document.getElementById('count');
+function filt(f){chips.forEach(c=>c.classList.toggle('on',c.dataset.f===f));let k=0;[...g.children].forEach(a=>{const v=a.dataset.v==='true';const on=f==='all'||(f==='video'&&v)||(f==='static'&&!v);a.style.display=on?'':'none';if(on)k++});cnt.textContent=k+' shown'}
+chips.forEach(c=>c.onclick=()=>filt(c.dataset.f));filt('all');
+</script>
+</body></html>

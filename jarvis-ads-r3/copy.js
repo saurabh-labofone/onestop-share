@@ -1,0 +1,29 @@
+// JARVIS ad copy — single source for static.html, comp.html and the review page (2026-10-06, round 3).
+// Rules: one Aqua highlight per headline (<em>), dry voice, roast the system never the user, no buy/sell calls.
+window.CTA='Chat with JARVIS on WhatsApp';
+window.LINE='Meet JARVIS. Your personal AI for your money.';
+window.COPY={
+ '00':{code:'MEET JARVIS',h:'Meet <em>JARVIS.</em>',p:'Your personal AI for your money. It reads what you own and speaks first when something changes.',cap:'Meet JARVIS. Your personal AI for your money. It reads every account you own, speaks first when something changes, and sells you nothing. Say hi on WhatsApp.'},
+ '01':{code:'POCKET OFFICE',h:'A 24/7 CFO. <em>In your pocket.</em>',p:'Reads everything you own. Speaks first when something changes.',cap:'Big money gets a CFO. Now you do. JARVIS reads every account you own and speaks first when something changes. Meet JARVIS. Your personal AI for your money.'},
+ '02':{code:'THE 6:40',h:'Sunday. 6:40 am. <em>JARVIS texted first.</em>',p:'Your money does not wait for Monday. Neither does JARVIS.',cap:'Every money app waits for you to open it. JARVIS does not wait. Meet JARVIS. Your personal AI for your money.',
+   chat:{time:'6:40 am',bubs:['Good morning.','One of your funds raised its fee overnight.','Nothing to do yet. I am watching it.']},hv:['It speaks first.<br><em>Before you ask.</em>']},
+ '03':{code:'PAID BY NOBODY',h:'Paid by nobody. <em>So it sells you nothing.</em>',p:'No commissions. No products. Only your numbers.',cap:'Most money advice is paid for by the product it recommends. JARVIS is paid by nobody, so it sells you nothing. Meet JARVIS. Your personal AI for your money.'},
+ '04':{code:'PAGE 14',h:'Nobody reads page&nbsp;14. <em>That is where the costs live.</em>',p:'JARVIS reads every page. Then tells you in two lines.',cap:'The fine print you skipped is where the costs live. JARVIS reads every page of every statement, then tells you in two lines. Meet JARVIS. Your personal AI for your money.',
+   hv:['Page 14. <em>Nobody ever comes here.</em>','That is where they keep <em>the costs.</em>','JARVIS reads <em>every page.</em>']},
+ '05':{code:'THE ₹50 LAKH ROPE',h:'Professional advice starts at ₹50&nbsp;lakh.* <em>JARVIS starts at the price of a coffee.</em>',p:'* SEBI (Portfolio Managers) Regulations, 2020: minimum investment ₹50 lakh.',cap:'A portfolio manager needs ₹50 lakh before the first meeting.* JARVIS starts at the price of a coffee. Meet JARVIS. Your personal AI for your money.'},
+ '06':{code:'OFFICE HOURS',h:'Your advisor keeps office hours. <em>Your money doesn’t.</em>',p:'JARVIS watches 24/7 and speaks first.',cap:'Markets move at night. Fees change on weekends. Your advisor is back on Monday. JARVIS is on at 6:40 am on Sunday. Meet JARVIS. Your personal AI for your money.'},
+ '07':{code:'FIVE TOWERS',h:'Your money sits in five apps. <em>Somebody should read all of it.</em>',p:'JARVIS reads all five. Every day.',cap:'Mutual funds here. Shares there. PF somewhere. Nobody reads all of it, every day. JARVIS does. Meet JARVIS. Your personal AI for your money.',
+   hv:['Your money sits in <em>five apps.</em>','Somebody should read <em>all of it.</em>','JARVIS reads all five. <em>Every day.</em>']},
+ '08':{code:'THINGS I OWN',h:'Funds here. Shares there. <em>PF somewhere.</em>',p:'One advisor reads all of it. On WhatsApp.',cap:'Your money is in five apps and a drawer. JARVIS reads all of it and tells you what changed. Meet JARVIS. Your personal AI for your money.'},
+ '09':{code:'GO FOR A WALK',h:'Market is down 2%. <em>Go for a walk.</em>',p:'Your 24/7 advisor. In your pocket.',cap:'On a red day, everybody shouts. JARVIS remembers why you own what you own, then lets you go. Meet JARVIS. Your personal AI for your money.',
+   chat:{time:'8:47 pm',bubs:['Market is down 2%.','Don’t panic.','Go for a walk.']},hv:['Your 24/7 advisor.<br><em>In your pocket.</em>']},
+ '10':{code:'SHOULD I SELL?',h:'Ask it anything. <em>It will never sell you anything.</em>',p:'JARVIS has no products. Only your numbers.',cap:'Ask JARVIS anything about your money. It has no products to push and no commission to earn. Meet JARVIS. Your personal AI for your money.'},
+ '12':{code:'FINE PRINT MARCH',h:'The fine print is <em>where the costs live.</em>',p:'JARVIS reads every page.',cap:'Small letters. Small numbers. Every year. Nobody reads them. JARVIS does. Meet JARVIS. Your personal AI for your money.',
+   hv:['The fine print is <em>where the costs live.</em>','JARVIS reads <em>every page.</em>']},
+ '13':{code:'THE STACK',h:'Nobody reads all of this. <em>JARVIS does.</em>',p:'Every statement. Every page. Every year.',cap:'Every statement. Every page. Every year. It is a full-time job, so we gave it to somebody who never sleeps. Meet JARVIS. Your personal AI for your money.',
+   hv:['Every statement. Every page. <em>Every year.</em>','Nobody reads <em>all of this.</em>','<em>JARVIS does.</em>']},
+ '14':{code:'THE FOLDER',h:'The folder you never open. <em>JARVIS opens it every day.</em>',p:'Every statement read. Every change, told to you first.',cap:'Somewhere at home there is a folder nobody opens. JARVIS reads what is in it, every day, and speaks first. Meet JARVIS. Your personal AI for your money.'},
+ '15':{code:'WHO READS IT?',h:'Who reads your statements? <em>Nobody. Until now.</em>',p:'JARVIS reads every page, every day.',cap:'Statements arrive. Nobody reads them. JARVIS does, every page, every day. Meet JARVIS. Your personal AI for your money.'},
+ '16':{code:'WANTED',h:'Wanted: a CFO <em>who never sleeps.</em>',p:'Found. JARVIS. Your personal AI for your money.',cap:'Wanted: somebody who reads every statement, every day, and sells you nothing. Found. Meet JARVIS. Your personal AI for your money.'}
+};
+window.ORDER=['00','01','09','05','02','04','07','13','03','06','08','10','12','14','15','16'];
